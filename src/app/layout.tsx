@@ -29,7 +29,9 @@ export default function RootLayout({
             <Header />
 
             <ToastProvider>
-              <div style={{ minHeight: "70vh" }}>{children}</div>
+              <div style={{ minHeight: "70vh", backgroundColor: "white" }}>
+                {children}
+              </div>
             </ToastProvider>
 
             <Footer />
