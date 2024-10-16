@@ -1,22 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-
-//design
-
-import { Bars4Icon, UserPlusIcon } from "@heroicons/react/20/solid";
+import React, { useEffect, useState, useRef } from "react";
+import { useRouter } from "next/navigation";
 import {
   Bars3Icon,
   ShoppingCartIcon,
-  TruckIcon,
   UserIcon,
 } from "@heroicons/react/24/solid";
-
-//hooks
-import { useRouter } from "next/navigation";
-
 import axios from "axios";
-import { Box, MenuItem, OutlinedInput, Select, TextField } from "@mui/material";
 import SearchBar from "../../molecules/SearchBar";
 import Logo from "@/components/atom/Logo";
 import FulfillmentMangement from "../FulfillmentMangement";
@@ -38,6 +29,7 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
   const debounceKeyword = useDebounce(keyword, 900);
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [openSearchDropDown, setOpenSearchDropdown] = useState<boolean>(false);
+  const clickInsideDropdown = useRef(false);
 
   const searchingByKeyword = async (keyword: string) => {
     try {
@@ -64,6 +56,11 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
       searchingByKeyword(debounceKeyword);
     }
   }, [debounceKeyword]);
+
+  const handleItemClick = (item: any) => {
+    console.log("item", item);
+    router.push(`/product-detail/hell-${item?.upc}`);
+  };
 
   return (
     <>
@@ -92,22 +89,39 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
                 setKeyword(value);
               }}
               onFocus={() => setOpenSearchDropdown(true)}
-              onBlur={() => setOpenSearchDropdown(false)}
+              onBlur={() => {
+                if (!clickInsideDropdown.current) {
+                  setOpenSearchDropdown(false);
+                }
+              }}
               onCategoryChange={() => {}}
               category=""
             />
 
             {openSearchDropDown && (
-              <div className="absolute min-h-[150px] max-h-[400px] overflow-auto bottom-auto top-[80px] left-auto ml-4 px-4 py-4 flex gap-y-4 flex-col bg-gray-50 border border-gray-50 shadow-xl w-[600px] h-auto rounded-xl">
+              <div
+                className="absolute min-h-[150px] max-h-[400px] overflow-auto bottom-auto top-[80px] left-auto ml-4 px-4 py-4 flex gap-y-4 flex-col bg-white border-2 border-gray-50 shadow-md w-[600px] h-auto rounded-xl"
+                onMouseDown={() => (clickInsideDropdown.current = true)}
+                onMouseUp={() => (clickInsideDropdown.current = false)}
+              >
                 {searchResults?.length > 0 ? (
                   <>
                     {searchResults?.map((item, index) => {
                       return (
-                        <div className="flex items-center gap-x-4 cursor-pointer hover:opacity-80">
+                        <div
+                          key={index}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleItemClick(item);
+                            setOpenSearchDropdown(false);
+                          }}
+                          className="flex items-center gap-x-4 cursor-pointer hover:opacity-80"
+                        >
                           <div>
                             <img
                               src={item?.thumbnail}
                               className="w-[40px] h-[40px]"
+                              alt={item?.name}
                             />
                           </div>
                           <div>
