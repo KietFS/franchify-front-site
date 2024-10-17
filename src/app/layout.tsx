@@ -7,6 +7,9 @@ import theme from "@/theme";
 import Header from "@/components/organisms/Header";
 import { ToastProvider } from "@/hooks/useToast";
 import Footer from "@/components/molecules/Footer";
+import "slick-carousel/slick/slick.css";
+
+import "slick-carousel/slick/slick-theme.css";
 
 const inter = Lexend({ subsets: ["latin"] });
 

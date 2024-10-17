@@ -58,8 +58,18 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
   }, [debounceKeyword]);
 
   const handleItemClick = (item: any) => {
-    console.log("item", item);
-    router.push(`/product-detail/hell-${item?.upc}`);
+    let splits = (item?.name as string)?.split(" ");
+    let final = "";
+
+    const prefix = splits?.map((key: any, index: number) => {
+      if (index == splits?.length - 1) {
+        final = final + `${key}`;
+      } else {
+        final = final + `${key}-`;
+      }
+    });
+
+    router.push(`/product-detail/${final}-${item?.upc}`);
   };
 
   return (
