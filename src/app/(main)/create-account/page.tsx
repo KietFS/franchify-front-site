@@ -177,7 +177,7 @@ const CreateAccountPage: React.FC<ICreateAccountPageProps> = (props) => {
 
         <Box>
           <Typography sx={{ fontSize: "14px", color: "GrayText" }}>
-            By sign in, you agree to Market Floor's Terms of Service and Privacy
+            By sign in, you agree to Market Floors Terms of Service and Privacy
             Policy, as well as the Cookie Policy
           </Typography>
         </Box>

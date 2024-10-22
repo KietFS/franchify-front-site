@@ -1,41 +1,41 @@
 import React from "react";
-import LeftSide from "../LeftSide";
-import RightSide from "../RightSide";
+import ProductLeftSide from "../../organisms/ProductLeftSide";
+import ProductRightSide from "../../organisms/ProductRightSide";
+import { Divider } from "@mui/material";
+import SimilarProduct from "@/components/organisms/SimilarProduct";
 
 interface IProductDetailTemplateProps {
-  product: any;
+  product: IStoreProduct;
+  relatedProduct: IStoreProduct[];
 }
 
 const ProductDetailTemplate: React.FC<IProductDetailTemplateProps> = (
   props
 ) => {
-  const { product } = props;
+  const { product, relatedProduct } = props;
 
   console.log("product", product);
 
   return (
     <>
-      <div className="py-10 bg-white desktop:min-w-[1200px] laptop:min-w-[960px] mx-auto min-h-[800px]">
-        <div className="flex gap-y-8 gap-x-[80px] justify-center flex-col laptop:flex-row">
-          <div className="desktop:w-[480px] w-[480px]">
-            <LeftSide product={product} />
+      {!!product ? (
+        <div className="py-16 bg-white desktop:min-w-[1200px] laptop:min-w-[960px] mx-auto min-h-[800px]">
+          <div className="flex gap-y-8 gap-x-[80px] justify-center flex-col tablet:flex-row">
+            <ProductLeftSide storeProduct={product} />
+            {!!product ? <ProductRightSide storeProduct={product} /> : null}
           </div>
-          <div className="w-[480px]">
-            {!!product ? <RightSide product={product} /> : null}
+
+          <div className="mt-16 flex flex-col justify-center w-full">
+            <h1 className="text-gray-600 font-bold text-3xl">
+              Sản phẩm tương tự
+            </h1>
+            <Divider sx={{ marginY: 4 }} />
+            {!!relatedProduct && (
+              <SimilarProduct listProduct={relatedProduct} />
+            )}
           </div>
         </div>
-        {/* {!!productDetail && (
-            <ProductDescription productDetail={productDetail} />
-          )} */}
-      </div>
-
-      {/* <div className="w-5/6 mx-auto flex">
-        {!!productDetail && <ProductComment productDetail={productDetail} />}
-      </div> */}
-
-      {/* <div className="w-5/6 mx-auto flex">
-        {!!productDetail && <SimilarProduct productDetail={productDetail} />}
-      </div> */}
+      ) : null}
     </>
   );
 };

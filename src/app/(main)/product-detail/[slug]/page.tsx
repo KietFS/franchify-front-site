@@ -7,7 +7,8 @@ const ProductDetailPage = async (props: any) => {
 
   const upc = props?.params?.slug?.split("-").pop();
 
-  let product = null;
+  let product: IStoreProduct | null = null;
+  let relatedProducts = null;
 
   try {
     const response = await axios.get(
@@ -19,18 +20,25 @@ const ProductDetailPage = async (props: any) => {
     }
 
     if (response?.data?.success) {
-      product = response?.data?.data;
+      product = response?.data?.data?.storeProduct;
+      relatedProducts = response?.data?.data?.relatedProducts;
     } else {
       product = null;
     }
   } catch (error: any) {
     console.log("error", error);
+    relatedProducts = [];
     product = null;
   }
 
   return (
     <div className="flex w-full justify-center">
-      <ProductDetailTemplate product={product} />
+      {product && (
+        <ProductDetailTemplate
+          product={product}
+          relatedProduct={relatedProducts}
+        />
+      )}
     </div>
   );
 };

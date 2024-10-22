@@ -19,6 +19,8 @@ const VerifyAccount: React.FC<ILoginPageProps> = (props) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
+  console.log("searchParams", searchParams);
+
   const phoneNumberValue = `+${searchParams.get("phoneNumber")}`;
 
   const handlePressVerifyAccount = async (values: any) => {

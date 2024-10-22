@@ -12,6 +12,7 @@ import SearchBar from "../../molecules/SearchBar";
 import Logo from "@/components/atom/Logo";
 import FulfillmentMangement from "../FulfillmentMangement";
 import useDebounce from "@/hooks/useDebounce";
+import NextNProgress from "nextjs-progressbar";
 
 interface IHeaderV2Props {}
 
@@ -110,7 +111,7 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
 
             {openSearchDropDown && (
               <div
-                className="absolute min-h-[150px] max-h-[400px] overflow-auto bottom-auto top-[80px] left-auto ml-4 px-4 py-4 flex gap-y-4 flex-col bg-white border-2 border-gray-50 shadow-md w-[600px] h-auto rounded-xl"
+                className="absolute min-h-[150px] z-50 max-h-[400px] overflow-auto bottom-auto top-[80px] left-auto ml-4 px-4 py-4 flex gap-y-4 flex-col bg-white border-2 border-gray-50 shadow-md w-[600px] h-auto rounded-xl"
                 onMouseDown={() => (clickInsideDropdown.current = true)}
                 onMouseUp={() => (clickInsideDropdown.current = false)}
               >
@@ -198,6 +199,8 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
           />
         </div>
       </div>
+
+      <NextNProgress color="black" height={50} />
     </>
   );
 };
