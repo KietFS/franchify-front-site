@@ -4,65 +4,23 @@ interface ILoadingProps {}
 
 const Loading: React.FC<ILoadingProps> = (props) => {
   return (
-    <div style={{ height: "1200px", width: "1200px", margin: "0 auto" }}>
-      <div
-        style={{
-          display: "flex",
-          padding: "80px 0",
-          columnGap: "80px",
-        }}
-      >
-        <div
-          className="animate-pulse bg-gray-100 mt-20 pt-20"
-          style={{ width: 480, height: 480 }}
-        ></div>
-        <div
-          style={{ display: "flex", flexDirection: "column", rowGap: "40px" }}
-        >
-          <div
-            className="animate-pulse bg-gray-100 mt-20 pt-20"
-            style={{ width: 600, height: 80 }}
-          ></div>
-
-          <div
-            className="animate-pulse bg-gray-100 mt-20 pt-20"
-            style={{ width: 400, height: 30 }}
-          ></div>
-
-          <div
-            className="animate-pulse bg-gray-100 mt-20 pt-20"
-            style={{ width: 400, height: 60 }}
-          ></div>
-
-          <div
-            className="animate-pulse bg-gray-100 mt-20 pt-20"
-            style={{ width: 600, height: 120 }}
-          ></div>
+    <div className="max-w-[1200px] w-full mx-auto px-4 pb-20">
+      <div className="flex flex-col md:flex-row py-10 gap-5">
+        <div className="animate-pulse bg-gray-100 mt-10 pt-20 w-full md:w-[480px] h-[480px]"></div>
+        <div className="flex flex-col gap-5 w-full">
+          <div className="animate-pulse bg-gray-100 mt-10 pt-20 w-full h-[80px]"></div>
+          <div className="animate-pulse bg-gray-100 mt-10 pt-20 w-full h-[30px]"></div>
+          <div className="animate-pulse bg-gray-100 mt-10 pt-20 w-full h-[120px]"></div>
         </div>
       </div>
 
       <div>
-        <div
-          className="animate-pulse bg-gray-100 mt-20"
-          style={{ width: 1200, height: 40 }}
-        ></div>
-        <div style={{ display: "flex", columnGap: "40px", marginTop: 40 }}>
-          <div
-            className="animate-pulse bg-gray-100 mt-20 pt-20"
-            style={{ width: 280, height: 280 }}
-          ></div>
-          <div
-            className="animate-pulse bg-gray-100 mt-20 pt-20"
-            style={{ width: 280, height: 280 }}
-          ></div>
-          <div
-            className="animate-pulse bg-gray-100 mt-20 pt-20"
-            style={{ width: 280, height: 280 }}
-          ></div>
-          <div
-            className="animate-pulse bg-gray-100 mt-20 pt-20"
-            style={{ width: 280, height: 280 }}
-          ></div>
+        <div className="animate-pulse bg-gray-100 mt-10 w-full h-[40px]"></div>
+        <div className="flex flex-col md:flex-row gap-5 mt-10">
+          <div className="animate-pulse bg-gray-100 mt-10 pt-20 w-full md:w-[280px] h-[280px]"></div>
+          <div className="animate-pulse bg-gray-100 mt-10 pt-20 w-full md:w-[280px] h-[280px]"></div>
+          <div className="animate-pulse bg-gray-100 mt-10 pt-20 w-full md:w-[280px] h-[280px]"></div>
+          <div className="animate-pulse bg-gray-100 mt-10 pt-20 w-full md:w-[280px] h-[280px]"></div>
         </div>
       </div>
     </div>

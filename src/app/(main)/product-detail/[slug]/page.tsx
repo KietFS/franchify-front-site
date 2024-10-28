@@ -3,8 +3,6 @@ import axios from "axios";
 import ProductDetailTemplate from "@/components/template/ProductDetail";
 
 const ProductDetailPage = async (props: any) => {
-  console.log("props", props);
-
   const upc = props?.params?.slug?.split("-").pop();
 
   let product: IStoreProduct | null = null;

@@ -13,6 +13,13 @@ import Logo from "@/components/atom/Logo";
 import FulfillmentMangement from "../FulfillmentMangement";
 import useDebounce from "@/hooks/useDebounce";
 import NextNProgress from "nextjs-progressbar";
+import { setCurrentCart } from "@/redux/slices/cart";
+import { useSelector } from "react-redux";
+import useCart from "@/hooks/useCart";
+import useNavigation from "@/hooks/useNavigation";
+import SearchSheet from "@/components/molecules/SearchSheet";
+import SearchDropdown from "@/components/molecules/SearchDropdown";
+import useSearch from "@/hooks/useSearch";
 
 interface IHeaderV2Props {}
 
@@ -26,52 +33,17 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
   const [displayMenu, setDisplayMenu] = useState<boolean>(false);
   const [openRegister, setOpenRegister] = useState<boolean>(false);
   const [openMobileDrawer, setOpenMobileDrawer] = useState<boolean>(false);
-  const [keyword, setKeyword] = useState<string>("");
-  const debounceKeyword = useDebounce(keyword, 900);
-  const [searchResults, setSearchResults] = useState<any[]>([]);
+
   const [openSearchDropDown, setOpenSearchDropdown] = useState<boolean>(false);
-  const clickInsideDropdown = useRef(false);
+  const [openSearchSheet, setOpenSearchSheet] = useState<boolean>(false);
 
-  const searchingByKeyword = async (keyword: string) => {
-    try {
-      const searchResponse = await axios.post(
-        "http://localhost:4000/products/search",
-        {
-          keyword: keyword,
-        }
-      );
+  const { currentCart, getCartById } = useCart();
 
-      if (searchResponse) {
-        if (searchResponse?.data?.data?.length > 0) {
-          setSearchResults(searchResponse?.data?.data);
-        }
-      }
-    } catch (error) {
-      console.log("searching error", error);
-      setSearchResults([]);
-    }
-  };
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (debounceKeyword?.length > 0) {
-      searchingByKeyword(debounceKeyword);
-    }
-  }, [debounceKeyword]);
-
-  const handleItemClick = (item: any) => {
-    let splits = (item?.name as string)?.split(" ");
-    let final = "";
-
-    const prefix = splits?.map((key: any, index: number) => {
-      if (index == splits?.length - 1) {
-        final = final + `${key}`;
-      } else {
-        final = final + `${key}-`;
-      }
-    });
-
-    router.push(`/product-detail/${final}-${item?.upc}`);
-  };
+    !currentCart && getCartById();
+  }, []);
 
   return (
     <>
@@ -95,85 +67,23 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
           </div>
           <div className="laptop:w-[500px] desktop:w-[700px] hidden laptop:flex">
             <SearchBar
+              key="desktop-search-bar"
               placeholder="Search for anything, any words"
-              onChange={(value) => {
-                setKeyword(value);
-              }}
               onFocus={() => setOpenSearchDropdown(true)}
-              onBlur={() => {
-                if (!clickInsideDropdown.current) {
-                  setOpenSearchDropdown(false);
-                }
-              }}
-              onCategoryChange={() => {}}
-              category=""
             />
 
-            {openSearchDropDown && (
-              <div
-                className="absolute min-h-[150px] z-50 max-h-[400px] overflow-auto bottom-auto top-[80px] left-auto ml-4 px-4 py-4 flex gap-y-4 flex-col bg-white border-2 border-gray-50 shadow-md w-[600px] h-auto rounded-xl"
-                onMouseDown={() => (clickInsideDropdown.current = true)}
-                onMouseUp={() => (clickInsideDropdown.current = false)}
-              >
-                {searchResults?.length > 0 ? (
-                  <>
-                    {searchResults?.map((item, index) => {
-                      return (
-                        <div
-                          key={index}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            handleItemClick(item);
-                            setOpenSearchDropdown(false);
-                          }}
-                          className="flex items-center gap-x-4 cursor-pointer hover:opacity-80"
-                        >
-                          <div>
-                            <img
-                              src={item?.thumbnail}
-                              className="w-[40px] h-[40px]"
-                              alt={item?.name}
-                            />
-                          </div>
-                          <div>
-                            <p className="text-gray-600 text-sm text-regular">
-                              {item?.name}
-                            </p>
-                            <p className="mt-2 text-green-600 text-xs">
-                              {item?.price?.displayPrice}
-                            </p>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </>
-                ) : (
-                  <>
-                    <h2 className="text-md text-gray-600 font-bold">
-                      Các danh mục
-                    </h2>
-                    <div className="w-full flex flex-wrap gap-y-4 gap-x-2">
-                      <div className="px-4 py-2 border-gray-300 border rounded-full text-sm text-gray-600 text-regular">
-                        Coffee
-                      </div>
-                      <div className="px-4 py-2 border-gray-300 border rounded-full text-sm text-gray-600 text-regular">
-                        Milk
-                      </div>
-                      <div className="px-4 py-2 border-gray-300 border rounded-full text-sm text-gray-600 text-regular">
-                        Tea
-                      </div>
-                      <div className="px-4 py-2 border-gray-300 border rounded-full text-sm text-gray-600 text-regular">
-                        Boba tea
-                      </div>
-                    </div>
-                  </>
-                )}
+            {openSearchDropDown ? (
+              <div className="absolute min-h-[150px] z-50 max-h-[400px] overflow-auto bottom-auto top-[80px] left-auto ml-4 px-4 py-4 flex flex-col bg-white border-2 border-gray-50 shadow-md w-[600px] h-auto rounded-xl">
+                <SearchDropdown
+                  open={openSearchDropDown}
+                  onClose={() => setOpenSearchDropdown(false)}
+                />
               </div>
-            )}
+            ) : null}
           </div>
 
           <div className="hidden laptop:flex">
-            <div className="hidden laptop:flex flex-end space-x-1 items-center justify-between w-64">
+            <div className="hidden laptop:flex flex-end space-x-1 items-center justify-between w-fit">
               <button
                 className=" rounded-xl px-4 py-2 text-center text-gray-600  text-sm w-fit flex space-x-1 items-center hover:bg-gray-100"
                 onClick={() => router.replace("/login")}
@@ -183,24 +93,34 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
               <FulfillmentMangement />
               <button
                 className=" rounded-xl px-4 py-2 text-center text-gray-600  text-sm w-fit flex space-x-1 items-center hover:bg-gray-100"
-                onClick={() => router.replace("/login")}
+                onClick={() => router.replace("/cart")}
               >
                 <ShoppingCartIcon className="w-8 h-8 text-gray-600" />
+                <div>{currentCart?.cartDetails?.length}</div>
               </button>
             </div>
           </div>
         </div>
         <div className="flex laptop:hidden px-2">
           <SearchBar
+            ref={searchInputRef}
             placeholder="Search for anything, any words"
             onChange={() => {}}
-            onCategoryChange={() => {}}
-            category=""
+            onFocus={() => {
+              if (!openSearchSheet) {
+                setOpenSearchSheet(true);
+                searchInputRef?.current?.blur();
+              }
+            }}
           />
         </div>
       </div>
-
-      <NextNProgress color="black" height={50} />
+      {openSearchSheet && (
+        <SearchSheet
+          open={openSearchSheet}
+          onClose={() => setOpenSearchSheet(false)}
+        />
+      )}
     </>
   );
 };

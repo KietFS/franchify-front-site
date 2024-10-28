@@ -14,8 +14,6 @@ const ProductDetailTemplate: React.FC<IProductDetailTemplateProps> = (
 ) => {
   const { product, relatedProduct } = props;
 
-  console.log("product", product);
-
   return (
     <>
       {!!product ? (

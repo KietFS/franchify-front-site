@@ -29,6 +29,8 @@ const colors = {
 module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx}",
+    "./src/app/**/*.{js,ts,jsx,tsx}", // Add this line for the App Router
+    "./src/apps/(main)/**/*.{js,ts,jsx,tsx}",
     "./src/containers/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/*.{js,ts,jsx,tsx}",
     "./src/components/atoms/**/*.{js,ts,jsx,tsx}",

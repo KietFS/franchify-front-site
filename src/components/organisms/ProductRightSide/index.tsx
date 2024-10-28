@@ -30,8 +30,7 @@ const ProductRightSide: React.FC<IProductRightSideProps> = (props) => {
               <div key={key} className="flex items-center">
                 <h3 className="text-gray-400 text-lg">
                   {storeProduct?.product?.category?.properties?.map(
-                    (property: any) => {
-                      console.log("property", property);
+                  (property: any) => {
                       if (property?.name == key) {
                         return `${property?.displayName} :`;
                       }

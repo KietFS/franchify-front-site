@@ -10,6 +10,8 @@ import React from "react";
 import { useToast } from "@/hooks/useToast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { setAccessToken } from "@/redux/slices/auth";
 
 interface ILoginPageProps {}
 
@@ -18,6 +20,7 @@ const LoginPage: React.FC<ILoginPageProps> = (props) => {
   const [loading, setLoading] = React.useState(false);
   const toast = useToast();
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handlePressLogin = async (values: any) => {
     try {
@@ -28,6 +31,8 @@ const LoginPage: React.FC<ILoginPageProps> = (props) => {
       );
       const { success, data, error } = response.data;
       if (success) {
+        dispatch(setAccessToken(data?.accessToken));
+        router.push("/");
         setLoading(false);
         toast.sendToast("Success", "Login successfully");
       } else {

@@ -1,54 +1,68 @@
-import { TextField, Select, MenuItem, Box, OutlinedInput } from "@mui/material";
-import React from "react";
+import useDebounce from "@/hooks/useDebounce";
+import useSearch from "@/hooks/useSearch";
+import { TextField, Box } from "@mui/material";
+import React, { forwardRef, useEffect } from "react";
 
 interface ISearchBarProps {
-  placeholder: string;
-  onChange: (value: string) => void;
+  placeholder?: string;
+  onChange?: (value: string) => void;
   onFocus?: () => void;
   onBlur?: () => void;
-  category: string;
-  onCategoryChange: (value: string) => void;
+  autoFocus?: boolean;
 }
 
-const SearchBar: React.FC<ISearchBarProps> = (props) => {
-  const { onChange, category, onCategoryChange, onBlur, onFocus } = props;
+const SearchBar = forwardRef<HTMLInputElement, ISearchBarProps>(
+  (props, ref) => {
+    const { onChange, onBlur, onFocus, placeholder, autoFocus = false } = props;
+    const [keyword, setKeyword] = React.useState<string>("");
+    const debounceKeyword = useDebounce(keyword, 500);
+    const { searchingByKeyword } = useSearch();
 
-  return (
-    <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
-      <TextField
-        onBlur={() => onBlur?.()}
-        onFocus={() => onFocus?.()}
-        InputProps={{
-          sx: { height: 40 },
-          classes: {
-            notchedOutline: "no-border",
-          },
-        }}
-        placeholder={props.placeholder}
-        fullWidth
-        id="input"
-        onChange={(e) => {
-          onChange(e.target.value);
-        }}
-        sx={{
-          backgroundColor: "#f6f7f9",
-          borderRadius: "20px 0 0 20px",
-          padding: "0px 16px",
-          "& .MuiOutlinedInput-root": {
-            "& fieldset": {
+    useEffect(() => {
+      if (debounceKeyword?.length > 0) {
+        searchingByKeyword(debounceKeyword);
+      }
+    }, [debounceKeyword]);
+
+    return (
+      <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
+        <TextField
+          autoFocus={autoFocus}
+          inputRef={ref}
+          onBlur={() => onBlur?.()}
+          onFocus={() => onFocus?.()}
+          InputProps={{
+            sx: { height: 40 },
+            classes: {
+              notchedOutline: "no-border",
+            },
+          }}
+          placeholder={placeholder}
+          fullWidth
+          id="input"
+          onChange={(e) => {
+            setKeyword(e.target.value);
+          }}
+          sx={{
+            backgroundColor: "#f6f7f9",
+            borderRadius: "20px",
+            padding: "0px 16px",
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": {
+                border: "none",
+              },
+            },
+            "& .MuiOutlinedInput-notchedOutline": {
               border: "none",
             },
-          },
-          "& .MuiOutlinedInput-notchedOutline": {
-            border: "none",
-          },
-          "& .MuiInputLabel-root": {
-            top: "-4px", // Adjust the label position if needed
-          },
-        }}
-      />
-    </Box>
-  );
-};
+            "& .MuiInputLabel-root": {
+              top: "-4px", // Adjust the label position if needed
+            },
+          }}
+        />
+      </Box>
+    );
+  }
+);
 
 export default SearchBar;
