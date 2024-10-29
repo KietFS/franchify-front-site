@@ -69,6 +69,7 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
             <SearchBar
               key="desktop-search-bar"
               placeholder="Search for anything, any words"
+              onBlur={() => setOpenSearchDropdown(false)}
               onFocus={() => setOpenSearchDropdown(true)}
             />
 

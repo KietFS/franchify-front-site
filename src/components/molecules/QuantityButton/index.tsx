@@ -30,8 +30,6 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
     !currentCart && getCartById();
   }, []);
 
-  console.log("current cart", currentCart);
-
   return (
     <div className="flex items-center">
       {currentQuantity > 0 ? (

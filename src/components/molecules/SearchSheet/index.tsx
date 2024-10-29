@@ -37,7 +37,7 @@ const BottomSheet: React.FC<BottomSheetProps> = ({ open, onClose }) => {
           />
 
           <div className="mt-8 px-4">
-            <SearchDropdown open={true} onClose={() => {}} />
+            <SearchDropdown open={true} onClose={() => onClose()} />
           </div>
         </div>
       </div>

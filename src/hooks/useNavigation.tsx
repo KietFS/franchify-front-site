@@ -6,8 +6,6 @@ const useNavigation = () => {
   const router = useRouter();
 
   const navigateToProductDetail = (item: IProduct) => {
-    console.log("item", item);
-
     let splits = (item?.name as string)?.split(" ");
     let final = "";
 
