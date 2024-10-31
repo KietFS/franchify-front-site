@@ -10,16 +10,14 @@ const useProducts = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const { accessToken } = useSelector((state: any) => state.auth);
   const { currentStore } = useStore();
-
+  const { storeProdutcs } = useSelector((state: any) => state.product);
   const dispatch = useDispatch();
 
   const getAllProducts = async () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        `localhost:4000/products/by-store?storeId=${
-          currentStore?.id
-        }&page=${0}&pageSize=20`,
+        `http://localhost:4000/products/by-store?storeId=${currentStore?.id}&page=${1}&pageSize=20`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -44,7 +42,9 @@ const useProducts = () => {
   };
 
   return {
+    storeProdutcs,
     getAllProducts,
+    loading,
   };
 };
 

@@ -20,6 +20,7 @@ import useNavigation from "@/hooks/useNavigation";
 import SearchSheet from "@/components/molecules/SearchSheet";
 import SearchDropdown from "@/components/molecules/SearchDropdown";
 import useSearch from "@/hooks/useSearch";
+import useCategory from "@/hooks/useCategories";
 
 interface IHeaderV2Props {}
 
@@ -38,11 +39,13 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
   const [openSearchSheet, setOpenSearchSheet] = useState<boolean>(false);
 
   const { currentCart, getCartById } = useCart();
+  const { listCategory, getCategories } = useCategory();
 
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     !currentCart && getCartById();
+    getCategories();
   }, []);
 
   return (

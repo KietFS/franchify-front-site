@@ -1,10 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 
 import { CircularProgress, Dialog, IconButton } from "@mui/material";
 import useNavigation from "@/hooks/useNavigation";
 import useSearch from "@/hooks/useSearch";
+import useCategory from "@/hooks/useCategories";
 
 interface IPopularSearchesProps {
   open: boolean;
@@ -14,6 +15,7 @@ interface IPopularSearchesProps {
 const SearchDropdown: React.FC<IPopularSearchesProps> = (props) => {
   const { open, onClose } = props;
   const { searchResults, isLoading } = useSearch();
+  const { listCategory } = useCategory();
 
   const { navigateToProductDetail } = useNavigation();
 
@@ -64,18 +66,11 @@ const SearchDropdown: React.FC<IPopularSearchesProps> = (props) => {
                 Các danh mục
               </h2>
               <div className="w-full flex flex-wrap gap-y-4 gap-x-2">
-                <div className="px-4 py-2 border-gray-300 border rounded-full text-sm text-gray-600 text-regular">
-                  Coffee
-                </div>
-                <div className="px-4 py-2 border-gray-300 border rounded-full text-sm text-gray-600 text-regular">
-                  Milk
-                </div>
-                <div className="px-4 py-2 border-gray-300 border rounded-full text-sm text-gray-600 text-regular">
-                  Tea
-                </div>
-                <div className="px-4 py-2 border-gray-300 border rounded-full text-sm text-gray-600 text-regular">
-                  Boba tea
-                </div>
+                {listCategory?.map((cat: any) => (
+                  <div className="px-4 py-2 border-gray-300 border rounded-full text-sm text-gray-600 text-regular">
+                    {cat?.name}
+                  </div>
+                ))}
               </div>
             </>
           )}

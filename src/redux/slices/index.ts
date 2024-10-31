@@ -4,6 +4,7 @@ import cart from "./cart";
 import search from "./search";
 import store from "./store";
 import product from "./product";
+import category from "./category";
 
 export const reducer = combineReducers({
   auth,
@@ -11,4 +12,5 @@ export const reducer = combineReducers({
   search,
   store,
   product,
+  category,
 });

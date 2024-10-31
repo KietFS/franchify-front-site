@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const useStore = () => {
   const { currentStore, listStore } = useSelector((state: any) => state.store);
+  const { product } = useSelector((state: any) => state.product);
 
   const dispatch = useDispatch();
 
