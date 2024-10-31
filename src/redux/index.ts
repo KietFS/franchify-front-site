@@ -23,7 +23,7 @@ const persistConfig = {
   key: "root",
   storage,
   transforms: [saveSubsetAuthReducer],
-  whitelist: ["auth"],
+  whitelist: ["auth", "store"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

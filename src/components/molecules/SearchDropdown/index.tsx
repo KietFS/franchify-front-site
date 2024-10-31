@@ -33,6 +33,8 @@ const SearchDropdown: React.FC<IPopularSearchesProps> = (props) => {
                     key={index}
                     onClick={(e) => {
                       navigateToProductDetail(item);
+                      e?.preventDefault();
+
                       onClose();
                     }}
                     className="flex items-center gap-x-4 cursor-pointer hover:opacity-80"

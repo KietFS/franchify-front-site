@@ -9,7 +9,7 @@ const initialState: IInitialState = {
 };
 
 const cartSlice = createSlice({
-  name: "searchSlice",
+  name: "cartSlice",
   initialState,
   reducers: {
     setCurrentCart: (state, actions: PayloadAction<any>) => {

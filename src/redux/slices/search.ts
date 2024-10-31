@@ -10,7 +10,7 @@ const initialState: IInitialState = {
   isLoading: false,
 };
 
-const cartSlice = createSlice({
+const searchSlice = createSlice({
   name: "searchSlice",
   initialState,
   reducers: {
@@ -23,5 +23,5 @@ const cartSlice = createSlice({
   },
 });
 
-export const { setSearchResults, setLoading } = cartSlice.actions;
-export default cartSlice.reducer;
+export const { setSearchResults, setLoading } = searchSlice.actions;
+export default searchSlice.reducer;

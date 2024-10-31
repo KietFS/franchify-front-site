@@ -60,7 +60,7 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
           <Logo />
           <div className="flex w-1/3 laptop:hidden laptop:w-0 flex-row-reverse">
             {false ? null : (
-              <div className="flex flex-row-reverse laptop:hidden  w-1/3 laptop:w-0">
+              <div className="flex flex-row-reverse laptop:hidden  w-full laptop:w-0">
                 <FulfillmentMangement />
               </div>
             )}
@@ -69,7 +69,7 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
             <SearchBar
               key="desktop-search-bar"
               placeholder="Search for anything, any words"
-              onBlur={() => setOpenSearchDropdown(false)}
+              onBlur={() => setTimeout(() => setOpenSearchDropdown(false), 200)}
               onFocus={() => setOpenSearchDropdown(true)}
             />
 
