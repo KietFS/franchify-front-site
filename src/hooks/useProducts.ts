@@ -10,29 +10,43 @@ const useProducts = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const { accessToken } = useSelector((state: any) => state.auth);
   const { currentStore } = useStore();
-  const { storeProdutcs } = useSelector((state: any) => state.product);
+
+  const [storeProducts, setStoreProducts] = useState<any[]>([]);
   const dispatch = useDispatch();
 
-  const getAllProducts = async () => {
+  const getAllProducts = async (payload?: {
+    categoryId?: number;
+    page?: number;
+  }) => {
     try {
       setLoading(true);
-      const response = await axios.get(
-        `http://localhost:4000/products/by-store?storeId=${currentStore?.id}&page=${1}&pageSize=20`,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
+
+      let url = `http://localhost:4000/products/by-store?storeId=${currentStore?.id}&pageSize=8`;
+
+      if (payload?.page) {
+        url += `&page=${payload.page}`;
+      }
+
+      if (payload?.categoryId) {
+        url += `&category=${payload.categoryId}`;
+      }
+
+      console.log("url", url);
+
+      const response = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
 
       if (response) {
         console.log("GET PRODUCT RESPONSE", response);
       }
 
       if (response?.data?.success) {
-        dispatch(setStoreProducts(response?.data?.data?.results));
+        setStoreProducts(storeProducts?.concat(response?.data?.data?.results));
       } else {
-        dispatch(setStoreProducts([]));
+        setStoreProducts(storeProducts || []);
       }
     } catch (error) {
       console.log("GET PRODUCT RESPONSE", error);
@@ -42,7 +56,7 @@ const useProducts = () => {
   };
 
   return {
-    storeProdutcs,
+    storeProducts,
     getAllProducts,
     loading,
   };
