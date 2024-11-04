@@ -3,6 +3,7 @@ import ProductLeftSide from "../../organisms/ProductLeftSide";
 import ProductRightSide from "../../organisms/ProductRightSide";
 import { Divider } from "@mui/material";
 import SimilarProduct from "@/components/organisms/SimilarProduct";
+import ProductComments from "@/components/organisms/Comments";
 
 interface IProductDetailTemplateProps {
   product: IStoreProduct;
@@ -22,6 +23,8 @@ const ProductDetailTemplate: React.FC<IProductDetailTemplateProps> = (
             <ProductLeftSide storeProduct={product} />
             {!!product ? <ProductRightSide storeProduct={product} /> : null}
           </div>
+
+          <ProductComments productDetail={product} />
 
           <div className="mt-16 flex flex-col justify-center w-full">
             <h1 className="text-gray-600 font-bold text-3xl">

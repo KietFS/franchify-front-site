@@ -6,6 +6,9 @@ import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import Image from "next/image";
 import FirstCarousel from "@/assets/images/Carousel1.png";
+import SecondCarousel from "@/assets/images/Carousel2.png";
+import ThirdCarousel from "@/assets/images/Carousel3.png";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -60,7 +63,7 @@ const Carousel: React.FC<ISimilarProduct> = ({}) => {
         </div>
         <div>
           <Image
-            src={FirstCarousel}
+            src={SecondCarousel}
             className="w-full h-[400px] rounded-xl object-cover"
             alt={`Product `}
             layout="responsive"
@@ -70,7 +73,7 @@ const Carousel: React.FC<ISimilarProduct> = ({}) => {
         </div>
         <div>
           <Image
-            src={FirstCarousel}
+            src={ThirdCarousel}
             className="w-full h-[400px] rounded-xl object-cover"
             alt={`Product `}
             layout="responsive"

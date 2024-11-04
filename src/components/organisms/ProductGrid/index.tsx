@@ -61,7 +61,7 @@ const ProductGrid: React.FC<IProductGridProps> = (props) => {
               <div className="w-full flex justify-center mt-8">
                 <Button
                   variant="secondary"
-                  className="w-[200px]"
+                  className="max-w-[200px]"
                   onClick={() => {
                     setCurrentPage((page) => page + 1);
                   }}

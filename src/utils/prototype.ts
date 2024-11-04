@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 String.prototype.truncate = function (num: number) {
   if (this.length > num) {
     return (this.slice(0, num) + "...") as string;
@@ -12,6 +14,10 @@ String.prototype.prettyMoney = function (hideSymbol?: boolean) {
     currency: "VND",
   });
   return formatter.format(Number(this));
+};
+
+String.prototype.prettyDateTime = function () {
+  return dayjs(String(this)).format("DD/MM/YYYY - hh:mm:ss");
 };
 
 Array.prototype.has = function (item) {
