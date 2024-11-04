@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/useToast";
 import { useSelector } from "react-redux";
 import ConfirmDialog from "@/components/molecules/ConfirmDialog";
 import { apiURL } from "@/constanst";
+import useAuth from "@/hooks/useAuth";
 
 interface IProductCommentCardProps {
   productDetail: any;
@@ -39,6 +40,7 @@ const CommentCard: React.FC<any> = (props) => {
   const [isCommenting, setIsCommenting] = useState<boolean>(false);
   const [commentMode, setCommentMode] = useState<ICommentMode>("view");
   const toast = useToast();
+  const { isAuthenticated } = useAuth();
 
   if (replies?.length > 0) {
     console.log("replies", replies);
@@ -180,7 +182,7 @@ const CommentCard: React.FC<any> = (props) => {
 
                   <p className="text-gray-600 text-sm">{content}</p>
                   <div className="items-center flex mt-1">
-                    {!!accessToken && (
+                    {!!isAuthenticated && (
                       <button
                         className="text-gray-500 hover:text-gray-500 font-regular text-xs"
                         onClick={handleTurnOnReply}

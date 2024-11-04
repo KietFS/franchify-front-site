@@ -11,6 +11,7 @@ import { useToast } from "@/hooks/useToast";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import useComments from "@/hooks/useComments";
 import { apiURL } from "@/constanst";
+import useAuth from "@/hooks/useAuth";
 
 interface IProductCommentsProps {
   productDetail: any;
@@ -25,6 +26,7 @@ const ProductComments: React.FC<IProductCommentsProps> = (props) => {
     useComments(productDetail);
 
   const { register, control, handleSubmit, watch, setValue } = useForm();
+  const { isAuthenticated } = useAuth();
 
   const handlePostComment = async () => {
     try {
@@ -93,7 +95,7 @@ const ProductComments: React.FC<IProductCommentsProps> = (props) => {
             </div>
 
             <div className="mt-4">
-              {!!accessToken ? (
+              {!!isAuthenticated ? (
                 <CommentInput
                   {...register("comment", {
                     required: {
@@ -118,7 +120,7 @@ const ProductComments: React.FC<IProductCommentsProps> = (props) => {
               </p>
             </div>
             <div className="mt-8">
-              {!!accessToken ? (
+              {!!isAuthenticated ? (
                 <CommentInput
                   {...register("comment", {
                     required: {

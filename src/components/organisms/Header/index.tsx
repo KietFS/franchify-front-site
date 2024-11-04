@@ -21,6 +21,8 @@ import SearchSheet from "@/components/molecules/SearchSheet";
 import SearchDropdown from "@/components/molecules/SearchDropdown";
 import useSearch from "@/hooks/useSearch";
 import useCategory from "@/hooks/useCategories";
+import useAuth from "@/hooks/useAuth";
+import AccountButton from "../AccountButton";
 
 interface IHeaderV2Props {}
 
@@ -40,6 +42,7 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
 
   const { currentCart, getCartById } = useCart();
   const { listCategory, getCategories } = useCategory();
+  const { isAuthenticated } = useAuth();
 
   const searchInputRef = useRef<HTMLInputElement>(null);
 
@@ -65,11 +68,7 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
           </div>
           <Logo />
           <div className="flex w-1/3 laptop:hidden laptop:w-0 flex-row-reverse">
-            {false ? null : (
-              <div className="flex flex-row-reverse laptop:hidden  w-full laptop:w-0">
-                <FulfillmentMangement />
-              </div>
-            )}
+            <FulfillmentMangement />
           </div>
           <div className="laptop:w-[500px] desktop:w-[700px] hidden laptop:flex">
             <SearchBar
@@ -91,12 +90,7 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
 
           <div className="hidden laptop:flex">
             <div className="hidden laptop:flex flex-end space-x-1 items-center justify-between w-fit">
-              <button
-                className=" rounded-xl px-4 py-2 text-center text-gray-600  text-sm w-fit flex space-x-1 items-center hover:bg-gray-100"
-                onClick={() => router.replace("/login")}
-              >
-                <UserIcon className="w-8 h-8 text-gray-600" />
-              </button>
+              <AccountButton />
               <FulfillmentMangement />
               <button
                 className=" rounded-xl px-4 py-2 text-center text-gray-600  text-sm w-fit flex space-x-1 items-center hover:bg-gray-100"
