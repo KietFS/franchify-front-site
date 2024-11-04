@@ -9,6 +9,7 @@ import { apiURL } from "@/constanst";
 
 const useProducts = () => {
   const [loading, setLoading] = useState<boolean>(false);
+  const [total, setTotal] = useState<number>(0);
   const { accessToken } = useSelector((state: any) => state.auth);
   const { currentStore } = useStore();
 
@@ -40,6 +41,7 @@ const useProducts = () => {
 
       if (response?.data?.success) {
         setStoreProducts(storeProducts?.concat(response?.data?.data?.results));
+        setTotal(response?.data?.data?.total);
       } else {
         setStoreProducts(storeProducts || []);
       }
@@ -54,6 +56,7 @@ const useProducts = () => {
     storeProducts,
     getAllProducts,
     loading,
+    total,
   };
 };
 
