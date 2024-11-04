@@ -4,7 +4,6 @@ import axios from "axios";
 import useStore from "./useStore";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setStoreProducts } from "@/redux/slices/product";
 import { apiURL } from "@/constanst";
 
 const useProducts = () => {
@@ -14,6 +13,7 @@ const useProducts = () => {
   const { currentStore } = useStore();
 
   const [storeProducts, setStoreProducts] = useState<any[]>([]);
+  const [popularProducts, setPopularProducts] = useState<any[]>([]);
   const dispatch = useDispatch();
 
   const getAllProducts = async (payload?: {
@@ -52,11 +52,41 @@ const useProducts = () => {
     }
   };
 
+  const getAllPopularProducts = async (payload: { page?: number }) => {
+    try {
+      setLoading(true);
+
+      let url = `${apiURL}/products/by-store/popular?storeId=${currentStore?.id}&pageSize=10`;
+
+      if (payload?.page) {
+        url += `&page=${payload.page}`;
+      }
+
+      const response = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      if (response?.data?.success) {
+        setPopularProducts(response?.data?.data?.results);
+      } else {
+        setPopularProducts(storeProducts || []);
+      }
+    } catch (error) {
+      console.warn("GET PRODUCT RESPONSE", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return {
     storeProducts,
     getAllProducts,
     loading,
     total,
+    getAllPopularProducts,
+    popularProducts,
   };
 };
 

@@ -83,6 +83,13 @@ const AccountButton: React.FC<IAccountButtonProps> = (props) => {
             <strong className="text-gray-600 text-lg">{user?.username}</strong>
           </div>
 
+          <div className="flex flex-row items-center gap-x-2">
+            <p className="text-gray-500 text-sm font-normal">Điểm tích lũy</p>
+            <strong className="text-green-600 text-lg">
+              {user?.savePoints}
+            </strong>
+          </div>
+
           <Divider sx={{ height: 4, width: "100%", margin: "4px 0" }} />
 
           <div></div>
@@ -108,7 +115,8 @@ const AccountButton: React.FC<IAccountButtonProps> = (props) => {
             onClick={() => {
               logOut();
               setOpenPopup(false);
-              window.location.reload();
+              location.reload();
+              window.location.href = "/";
             }}
             className="mt-4"
           >

@@ -24,13 +24,19 @@ const ProductRightSide: React.FC<IProductRightSideProps> = (props) => {
             {storeProduct?.price.displayPrice}
           </h3>
         </div>
+        <div className="flex items-center mt-2">
+          <h3 className="text-gray-400 text-lg">Danh mục: </h3>
+          <h3 className="text-gray-600 text-lg ml-2 cursor-pointer">
+            {storeProduct?.product?.category?.name}
+          </h3>
+        </div>
         {storeProduct?.product?.properties &&
           Object.entries(storeProduct?.product?.properties).map(
             ([key, value]: [string, any]) => (
               <div key={key} className="flex items-center">
                 <h3 className="text-gray-400 text-lg">
                   {storeProduct?.product?.category?.properties?.map(
-                  (property: any) => {
+                    (property: any) => {
                       if (property?.name == key) {
                         return `${property?.displayName} :`;
                       }
