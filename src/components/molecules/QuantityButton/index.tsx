@@ -7,6 +7,8 @@ import React, { useEffect } from "react";
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/solid";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import useCart from "@/hooks/useCart";
+import useAuth from "@/hooks/useAuth";
+import { useRouter } from "next/navigation";
 
 interface IQuantityButtonProps {
   storeProduct: IStoreProduct;
@@ -25,6 +27,8 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
     loading,
     handleRemoveProduct,
   } = useCart(storeProduct?.product);
+  const { isAuthenticated } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     !currentCart && getCartById();
@@ -68,8 +72,14 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
         </button>
       ) : (
         <button
-          onClick={() => handleAddToCart()}
-          className={`items-center rounded-full px-6 py-3 min-w-[300px] justify-center text-center w-fit flex hover:opacity-50 bg-gray-800 text-white font-semibold text-lg `}
+          onClick={() => {
+            if (!isAuthenticated) {
+              handleAddToCart();
+            } else {
+              router?.push("/login");
+            }
+          }}
+          className={`items-center disabled:opacity-50 rounded-full px-6 py-3 min-w-[300px] justify-center text-center w-fit flex hover:opacity-50 bg-gray-800 text-white font-semibold text-lg `}
         >
           <>
             {loading ? (
