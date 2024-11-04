@@ -25,20 +25,24 @@ const ProductScroll: React.FC<IProductScrollProps> = (props) => {
     }
   }, [currentPage]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const { scrollTop, scrollHeight, clientHeight } =
-        document.documentElement;
-      if (scrollTop + clientHeight >= scrollHeight - 5) {
-        setCurrentPage(currentPage + 1);
+  const handleScroll = () => {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    if (scrollTop + clientHeight >= scrollHeight) {
+      if (storeProducts?.length < total) {
+        setCurrentPage((prev) => prev + 1);
+        window.removeEventListener("scroll", handleScroll);
       }
-    };
+    }
+  };
 
-    window.addEventListener("scroll", handleScroll);
+  useEffect(() => {
+    if (!loading) {
+      window.addEventListener("scroll", handleScroll);
+    }
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [loading]);
 
   return (
     <div ref={scrollRef}>
@@ -60,7 +64,7 @@ const ProductScroll: React.FC<IProductScrollProps> = (props) => {
 
           {loading && (
             <div className="w-full grid grid-cols-4 gap-4">
-              {Array(8)
+              {Array(total - storeProducts?.length)
                 .fill(1)
                 ?.map((item, index) => (
                   <div
