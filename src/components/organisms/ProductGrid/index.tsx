@@ -37,7 +37,10 @@ const ProductGrid: React.FC<IProductGridProps> = (props) => {
             {Array(8)
               .fill(1)
               ?.map((item, index) => (
-                <div className="bg-gray-200 animate-pulse w-full h-[360px]"></div>
+                <div
+                  key={`loading-${index}`}
+                  className="bg-gray-200 animate-pulse w-full h-[360px]"
+                ></div>
               ))}
           </div>
         </div>
@@ -51,6 +54,7 @@ const ProductGrid: React.FC<IProductGridProps> = (props) => {
               <div className="w-full grid tablet:grid-cols-2 laptop:grid-cols-4 gap-y-4 gap-x-4">
                 {storeProducts?.map((item: any, index: number) => (
                   <ProductCard
+                    key={`card-${index}`}
                     handleItemClick={() => {}}
                     item={item}
                     index={index}

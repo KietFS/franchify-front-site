@@ -16,7 +16,7 @@ export default function Home() {
 
       <div className="w-full desktop:w-[1200px] mx-auto flex flex-col py-20 gap-y-20">
         {listCategory?.map((category: any) => (
-          <ProductGrid category={category} />
+          <ProductGrid category={category} key={category?.id} />
         ))}
       </div>
     </div>

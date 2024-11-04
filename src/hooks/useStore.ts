@@ -1,3 +1,4 @@
+import { apiURL } from "@/constanst";
 import { setCurrentStore, setListStore } from "@/redux/slices/store";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,7 +24,7 @@ const useStore = () => {
 
   const getListStore = async (longtitude?: number, latitude?: number) => {
     try {
-      let url = "http://localhost:4000/store";
+      let url = `${apiURL}/store`;
 
       if (longtitude !== undefined && latitude !== undefined) {
         url += `?currentLng=${longtitude}&currentLat=${latitude}`;

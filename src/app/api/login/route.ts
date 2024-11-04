@@ -1,6 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
+import { apiURL } from "@/constanst";
 
+//@ts-ignore
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -8,7 +10,7 @@ export default async function handler(
   if (req.method === "POST") {
     const { phoneNumber, password } = req.body;
     try {
-      const response = await axios.post("http://localhost:4000/auth/signin", {
+      const response = await axios.post(`${apiURL}/auth/signin`, {
         phoneNumber,
         password,
       });

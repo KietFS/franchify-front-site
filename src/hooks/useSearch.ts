@@ -1,5 +1,6 @@
 "use client";
 
+import { apiURL } from "@/constanst";
 import { setLoading, setSearchResults } from "@/redux/slices/search";
 import axios from "axios";
 import { useState } from "react";
@@ -19,12 +20,9 @@ const useSearch = () => {
   const searchingByKeyword = async (keyword: string) => {
     try {
       dispatch(setLoading(true));
-      const searchResponse = await axios.post(
-        "http://localhost:4000/products/search",
-        {
-          keyword: keyword,
-        }
-      );
+      const searchResponse = await axios.post(`${apiURL}/products/search`, {
+        keyword: keyword,
+      });
 
       if (searchResponse) {
         dispatch(setLoading(false));

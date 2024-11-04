@@ -3,6 +3,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { apiURL } from "@/constanst";
 
 const useComments = (productDetail: any) => {
   const [listComments, setListComments] = useState<any[]>([]);
@@ -14,7 +15,7 @@ const useComments = (productDetail: any) => {
     try {
       setLoadComments(true);
       const response = await axios.get(
-        `http://localhost:4000/products/${productDetail?.id}/comments`
+        `${apiURL}/products/${productDetail?.id}/comments`
       );
 
       if (response) {

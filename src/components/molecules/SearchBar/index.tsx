@@ -11,6 +11,7 @@ interface ISearchBarProps {
   autoFocus?: boolean;
 }
 
+//@ts-ignore
 const SearchBar = forwardRef<HTMLInputElement, ISearchBarProps>(
   (props, ref) => {
     const { onChange, onBlur, onFocus, placeholder, autoFocus = false } = props;
@@ -18,7 +19,7 @@ const SearchBar = forwardRef<HTMLInputElement, ISearchBarProps>(
     const debounceKeyword = useDebounce(keyword, 500);
     const { searchingByKeyword } = useSearch();
 
-  useEffect(() => {
+    useEffect(() => {
       if (debounceKeyword?.length > 0) {
         searchingByKeyword(debounceKeyword);
       }

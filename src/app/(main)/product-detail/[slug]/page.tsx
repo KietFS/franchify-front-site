@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import ProductDetailTemplate from "@/components/template/ProductDetail";
+import { apiURL } from "@/constanst";
 
 const ProductDetailPage = async (props: any) => {
   const upc = props?.params?.slug?.split("-").pop();
@@ -10,13 +11,8 @@ const ProductDetailPage = async (props: any) => {
 
   try {
     const response = await axios.get(
-      `http://localhost:4000/products/detail?upc=${upc}&storeId=6`
+      `${apiURL}/products/detail?upc=${upc}&storeId=6`
     );
-
-    if (response) {
-      console.log("response", response?.data);
-    }
-
     if (response?.data?.success) {
       product = response?.data?.data?.storeProduct;
       relatedProducts = response?.data?.data?.relatedProducts;

@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { useToast } from "@/hooks/useToast";
 import { useSelector } from "react-redux";
 import ConfirmDialog from "@/components/molecules/ConfirmDialog";
+import { apiURL } from "@/constanst";
 
 interface IProductCommentCardProps {
   productDetail: any;
@@ -48,7 +49,7 @@ const CommentCard: React.FC<any> = (props) => {
       setIsReplying(true);
       if (watch("reply")?.length > 0) {
         const response = await axios.post(
-          `http://localhost:4000/products/comments`,
+          `${apiURL}/products/comments`,
           {
             content: watch("reply") || "",
             parentComment: id || null,
@@ -82,7 +83,7 @@ const CommentCard: React.FC<any> = (props) => {
     try {
       setIsDeleting(true);
       const response = await axios.delete(
-        `http://localhost:4000/products/${productDetail?.id}/comments/${id}`,
+        `${apiURL}/products/${productDetail?.id}/comments/${id}`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -110,7 +111,7 @@ const CommentCard: React.FC<any> = (props) => {
     try {
       setIsCommenting(true);
       const response = await axios.put(
-        `http://localhost:4000/products/${productDetail?.id}/comments/${id}`,
+        `${apiURL}/products/${productDetail?.id}/comments/${id}`,
         {
           comment: watch("edit") || "",
           parentId: parentId,
@@ -249,7 +250,7 @@ const CommentCard: React.FC<any> = (props) => {
         <div>
           {replies?.map((reply: any, replyIndex: number) => {
             return (
-              <div className="relative ml-2">
+              <div className="relative ml-2" key={`reply-${replyIndex}`}>
                 <svg
                   className="absolute left-0 top-0 h-full"
                   width="40"

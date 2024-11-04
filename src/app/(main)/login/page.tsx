@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { setAccessToken } from "@/redux/slices/auth";
+import { apiURL } from "@/constanst";
 
 interface ILoginPageProps {}
 
@@ -25,10 +26,7 @@ const LoginPage: React.FC<ILoginPageProps> = (props) => {
   const handlePressLogin = async (values: any) => {
     try {
       setLoading(true);
-      const response = await axios.post(
-        "http://localhost:4000/auth/signin",
-        values
-      );
+      const response = await axios.post(`${apiURL}/auth/signin`, values);
       const { success, data, error } = response.data;
       if (success) {
         dispatch(setAccessToken(data?.accessToken));

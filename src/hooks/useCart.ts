@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useToast } from "./useToast";
 import { setCurrentCart } from "@/redux/slices/cart";
+import { apiURL } from "@/constanst";
 
 const useCart = (currentProduct?: IProduct) => {
   const { accessToken } = useSelector((state: any) => state.auth);
@@ -17,7 +18,7 @@ const useCart = (currentProduct?: IProduct) => {
 
   const getUserCart = async () => {
     try {
-      const response = await axios.get(`http://localhost:4000/cart/`, {
+      const response = await axios.get(`${apiURL}/cart/`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -35,7 +36,7 @@ const useCart = (currentProduct?: IProduct) => {
     try {
       setLoading(true);
       const response = await axios.post(
-        `http://localhost:4000/cart/add-product`,
+        `${apiURL}/cart/add-product`,
         {
           productId: currentProduct?.id,
           quantity: 1,
@@ -69,7 +70,7 @@ const useCart = (currentProduct?: IProduct) => {
         const newQuantity = prevQuantity + 1;
         axios
           .post(
-            `http://localhost:4000/cart/change-quantity`,
+            `${apiURL}/cart/change-quantity`,
             {
               cartDetailId: currentCart?.cartDetails?.find(
                 (item: any) => item.product?.id == currentProduct?.id
@@ -114,7 +115,7 @@ const useCart = (currentProduct?: IProduct) => {
         const newQuantity = prevQuantity - 1;
         axios
           .post(
-            `http://localhost:4000/cart/change-quantity`,
+            `${apiURL}/cart/change-quantity`,
             {
               cartDetailId: currentCart?.cartDetails?.find(
                 (item: any) => item.product?.id == currentProduct?.id
@@ -159,16 +160,11 @@ const useCart = (currentProduct?: IProduct) => {
       )?.id;
       setLoading(true);
       axios
-        .delete(
-          `http://localhost:4000/cart/remove-product/${
-            currentCartDetailId || ""
-          }`,
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        )
+        .delete(`${apiURL}/cart/remove-product/${currentCartDetailId || ""}`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
         .then((response) => {
           if (response?.data?.success) {
             toast.sendToast(

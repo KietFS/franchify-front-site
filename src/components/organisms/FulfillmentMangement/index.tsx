@@ -179,7 +179,9 @@ const FulfillmentMangement: React.FC<IFulfillmentMangementProps> = (props) => {
           maxWidth="sm"
           title="Chọn cửa hàng bạn muốn mua hàng"
           children={
-            <StoreList onSelectedStore={() => setOpenSelectStore(false)} />
+            <>
+              <StoreList onSelectedStore={() => setOpenSelectStore(false)} />
+            </>
           }
           open={openSelectStore}
           onClose={() => setOpenSelectStore(false)}

@@ -2,6 +2,7 @@
 
 import Button from "@/components/atom/Button";
 import CartItem from "@/components/atom/CartItem";
+import { apiURL } from "@/constanst";
 import { useToast } from "@/hooks/useToast";
 import { setCurrentCart } from "@/redux/slices/cart";
 import { Divider } from "@mui/material";
@@ -21,7 +22,7 @@ const Cart: React.FC<ICartProps> = (props) => {
 
   const getCartById = async () => {
     try {
-      const response = await axios.get(`http://localhost:4000/cart`, {
+      const response = await axios.get(`${apiURL}/cart`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -77,7 +78,7 @@ const Cart: React.FC<ICartProps> = (props) => {
                 <div className="w-full justify-between flex items-center">
                   <p className="text-md text-gray-600 font-bold">Giảm giá</p>
                   <p className="text-md text-red-600 font-bold">
-                    -{(0)?.toString().prettyMoney()}
+                    -{0?.toString().prettyMoney()}
                   </p>
                 </div>
                 <Divider />
@@ -105,7 +106,7 @@ const Cart: React.FC<ICartProps> = (props) => {
                 <div className="w-full justify-between flex items-center">
                   <p className="text-md text-gray-600 font-bold">Phí dịch vụ</p>
                   <p className="text-md text-green-600 font-bold">
-                    {(1000)?.toString()?.prettyMoney()}
+                    {1000?.toString()?.prettyMoney()}
                   </p>
                 </div>
 
@@ -116,7 +117,7 @@ const Cart: React.FC<ICartProps> = (props) => {
                     Tổng ước tính
                   </p>
                   <p className="text-md text-green-600 font-bold">
-                    {(200000)?.toString()?.prettyMoney()}
+                    {200000?.toString()?.prettyMoney()}
                   </p>
                 </div>
               </div>

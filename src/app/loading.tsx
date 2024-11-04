@@ -6,7 +6,10 @@ const Loading = () => {
         {Array(16)
           .fill(1)
           ?.map((item, index) => (
-            <div className="bg-gray-200 animate-pulse w-full h-[360px]"></div>
+            <div
+              key={`lodaing-${index}`}
+              className="bg-gray-200 animate-pulse w-full h-[360px]"
+            ></div>
           ))}
       </div>
     </div>

@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/useToast";
 import OTPInput from "@/components/atom/OtpInput";
 
 import { useRouter, useSearchParams } from "next/navigation";
+import { apiURL } from "@/constanst";
 
 interface ILoginPageProps {}
 
@@ -19,20 +20,15 @@ const VerifyAccount: React.FC<ILoginPageProps> = (props) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  console.log("searchParams", searchParams);
-
   const phoneNumberValue = `+${searchParams.get("phoneNumber")}`;
 
   const handlePressVerifyAccount = async (values: any) => {
     try {
       setLoading(true);
-      const response = await axios.post(
-        "http://localhost:4000/auth/verify-otp",
-        {
-          otpCode: values.otp,
-          phoneNumber: phoneNumberValue,
-        }
-      );
+      const response = await axios.post(`${apiURL}/auth/verify-otp`, {
+        otpCode: values.otp,
+        phoneNumber: phoneNumberValue,
+      });
       const { success, data, error } = response.data;
       if (success) {
         setLoading(false);
@@ -98,7 +94,7 @@ const VerifyAccount: React.FC<ILoginPageProps> = (props) => {
 
         <Box>
           <Typography sx={{ fontSize: "14px", color: "GrayText" }}>
-            By verifying your account, you agree to Market Floor's Terms of
+            By verifying your account, you agree to Market Floors Terms of
             Service and Privacy Policy, as well as the Cookie Policy. This helps
             us ensure the security and integrity of our platform.
           </Typography>
@@ -114,7 +110,7 @@ const VerifyAccount: React.FC<ILoginPageProps> = (props) => {
               columnGap: "2px",
             }}
           >
-            Didn't received one time password?
+            Didnt received one time password?
             <Typography
               style={{
                 marginLeft: "4px",

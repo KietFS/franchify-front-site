@@ -1,5 +1,6 @@
 "use client";
 
+import { apiURL } from "@/constanst";
 import { setListCategory } from "@/redux/slices/category";
 import axios from "axios";
 import { useState } from "react";
@@ -15,7 +16,7 @@ const useCategory = () => {
   const getCategories = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`http://localhost:4000/category`, {
+      const response = await axios.get(`${apiURL}/category`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },

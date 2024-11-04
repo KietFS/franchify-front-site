@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, use } from "react";
 import { useRouter } from "next/navigation";
 import {
   Bars3Icon,
@@ -44,9 +44,12 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    !currentCart && getCartById();
     getCategories();
   }, []);
+
+  useEffect(() => {
+    !currentCart && getCartById();
+  }, [currentCart]);
 
   return (
     <>

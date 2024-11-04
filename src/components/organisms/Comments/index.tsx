@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { useToast } from "@/hooks/useToast";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import useComments from "@/hooks/useComments";
+import { apiURL } from "@/constanst";
 
 interface IProductCommentsProps {
   productDetail: any;
@@ -30,7 +31,7 @@ const ProductComments: React.FC<IProductCommentsProps> = (props) => {
       setIsPosting(true);
       if (watch("comment")?.length > 0) {
         const response = await axios.post(
-          `http://localhost:4000/products/comments`,
+          `${apiURL}/products/comments`,
           {
             content: watch("comment") || "",
             parentId: null,

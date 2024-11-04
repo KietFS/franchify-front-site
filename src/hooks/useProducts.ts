@@ -5,6 +5,7 @@ import useStore from "./useStore";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setStoreProducts } from "@/redux/slices/product";
+import { apiURL } from "@/constanst";
 
 const useProducts = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -21,7 +22,7 @@ const useProducts = () => {
     try {
       setLoading(true);
 
-      let url = `http://localhost:4000/products/by-store?storeId=${currentStore?.id}&pageSize=8`;
+      let url = `${apiURL}/products/by-store?storeId=${currentStore?.id}&pageSize=8`;
 
       if (payload?.page) {
         url += `&page=${payload.page}`;
