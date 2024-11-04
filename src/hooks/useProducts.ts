@@ -32,17 +32,11 @@ const useProducts = () => {
         url += `&category=${payload.categoryId}`;
       }
 
-      console.log("url", url);
-
       const response = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-
-      if (response) {
-        console.log("GET PRODUCT RESPONSE", response);
-      }
 
       if (response?.data?.success) {
         setStoreProducts(storeProducts?.concat(response?.data?.data?.results));
@@ -50,7 +44,7 @@ const useProducts = () => {
         setStoreProducts(storeProducts || []);
       }
     } catch (error) {
-      console.log("GET PRODUCT RESPONSE", error);
+      console.warn("GET PRODUCT RESPONSE", error);
     } finally {
       setLoading(false);
     }

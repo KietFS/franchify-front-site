@@ -57,7 +57,7 @@ const useCart = (currentProduct?: IProduct) => {
         dispatch(setCurrentCart(response?.data?.data?.cart));
       }
     } catch (error) {
-      console.log("GET PRODUCT RESPONSE", error);
+      console.warn("GET PRODUCT RESPONSE ERROR", error);
     } finally {
       setLoading(false);
     }
@@ -94,7 +94,7 @@ const useCart = (currentProduct?: IProduct) => {
             }
           })
           .catch((error) => {
-            console.log("GET PRODUCT RESPONSE", error);
+            console.warn("GET PRODUCT RESPONSE", error);
           })
           .finally(() => {
             setLoading(false);

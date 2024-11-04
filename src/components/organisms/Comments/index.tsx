@@ -68,8 +68,6 @@ const ProductComments: React.FC<IProductCommentsProps> = (props) => {
     getListComments();
   }, []);
 
-  console.log("LIST COMMENTS", listComments);
-
   return (
     <div className="mt-16 flex flex-col justify-center w-full">
       <h1 className="text-gray-600 font-bold text-3xl">
