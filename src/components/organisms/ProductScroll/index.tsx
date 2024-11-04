@@ -30,7 +30,7 @@ const ProductScroll: React.FC<IProductScrollProps> = (props) => {
       const { scrollTop, scrollHeight, clientHeight } =
         document.documentElement;
       if (scrollTop + clientHeight >= scrollHeight - 5) {
-        setCurrentPage((prevPage) => prevPage + 1);
+        setCurrentPage(currentPage + 1);
       }
     };
 
