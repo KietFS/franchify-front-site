@@ -73,7 +73,7 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
       ) : (
         <button
           onClick={() => {
-            if (!isAuthenticated) {
+            if (isAuthenticated) {
               handleAddToCart();
             } else {
               router?.push("/login");
