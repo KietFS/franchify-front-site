@@ -42,10 +42,6 @@ const CommentCard: React.FC<any> = (props) => {
   const toast = useToast();
   const { isAuthenticated } = useAuth();
 
-  if (replies?.length > 0) {
-    console.log("replies", replies);
-  }
-
   const handlePostReply = async () => {
     try {
       setIsReplying(true);
