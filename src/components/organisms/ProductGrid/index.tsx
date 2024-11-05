@@ -33,7 +33,7 @@ const ProductGrid: React.FC<IProductGridProps> = (props) => {
     <>
       {storeProducts?.length > 0 && (
         <div>
-          <h1 className="text-4xl font-bold text-gray-600 mb-16">
+          <h1 className="text-4xl font-bold text-secondary-900 mb-16">
             Danh mục {category?.name}
           </h1>
           <div className="w-full grid tablet:grid-cols-2 laptop:grid-cols-4 gap-y-4 gap-x-4">

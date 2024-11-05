@@ -38,11 +38,11 @@ const ProductCard: React.FC<IProductCardProps> = (props) => {
       )}
       <div className="w-full grid grid-cols-2 gap-x-4 mt-6">
         <div>
-          <p className="text-md text-gray-700 font-bold text-left w-full">
+          <p className="text-md text-gray-600 font-bold text-left w-full">
             {item?.product?.name}
           </p>
           <p
-            className={`text-sm text-gray-500 font-bold text-left w-full ${
+            className={`text-sm text-green-500 font-bold text-left w-full ${
               item?.price?.salePrice ? "line-through" : ""
             }`}
           >

@@ -33,12 +33,12 @@ const Button: React.FC<IButtonProps> = (props) => {
       className={`ripple items-center min-w-[120px] justify-center rounded-lg px-4 py-2 text-center w-full flex ${
         disable ? "opacity-10" : "hover:opacity-75"
       } ${className} ${
-        variant === "primary" && "bg-gray-800 hover:bg-gray-700"
-      } ${variant === "secondary" && "bg-white hover:bg-gray-100"}
+        variant === "primary" && "bg-primary-800 hover:bg-primary-700"
+      } ${variant === "secondary" && "bg-white hover:bg-primary-100"}
       ${variant === "error" && "bg-red-500 hover:bg-red-400"} ${
-        variant === "secondary" ? "text-gray-800" : "text-white"
+        variant === "secondary" ? "text-primary-800" : "text-white"
       } border ${
-        variant === "secondary" ? "border-gray-800" : "border-transparent"
+        variant === "secondary" ? "border-primary-800" : "border-transparent"
       } font-semibold text-lg`}
       onClick={() => (disable ? {} : onClick?.())}
       type={type}

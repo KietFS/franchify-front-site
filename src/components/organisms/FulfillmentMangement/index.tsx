@@ -72,9 +72,9 @@ const FulfillmentMangement: React.FC<IFulfillmentMangementProps> = (props) => {
     <>
       <button
         onClick={handleClick}
-        className="p-2 text-black-500 rounded-full w-full desktop:max-w-[250px] bg-transparent justify-center items-center flex border border-gray-100"
+        className="p-2 text-black-500 rounded-full w-full desktop:max-w-[250px] bg-transparent justify-center items-center flex border border-primary-100"
       >
-        <TruckIcon className="w-8 h-8 text-gray-600 mr-1" />
+        <TruckIcon className="w-8 h-8 text-primary-600 mr-1" />
         <p>{currentStore?.name}</p>
       </button>
 
@@ -109,12 +109,12 @@ const FulfillmentMangement: React.FC<IFulfillmentMangementProps> = (props) => {
           },
         }}
       >
-        <div className="w-[280px] border border-gray-100 min-h-[400px] shadow-sm bg-gray-50 px-4 py-8 rounded-lg flex flex-col gap-y-4">
+        <div className="w-[280px] border border-primary-100 min-h-[400px] shadow-sm bg-primary-50 px-4 py-8 rounded-lg flex flex-col gap-y-4">
           <div>
-            <p className="text-gray-500 text-sm font-normal">
+            <p className="text-primary-500 text-sm font-normal">
               Bạn đang mua sắm ở
             </p>
-            <strong className="text-gray-600 text-lg">
+            <strong className="text-primary-600 text-lg">
               Store {currentStore?.storeCode}
             </strong>
           </div>
@@ -137,12 +137,12 @@ const FulfillmentMangement: React.FC<IFulfillmentMangementProps> = (props) => {
                 </>
               )}
             </div>
-            <strong className="text-gray-500 font-normal text-sm">
+            <strong className="text-primary-500 font-normal text-sm">
               5201 4th St #7, Lubbock, TX 79416
             </strong>
           </div>
 
-          <a className="no-underline text-gray-700 text-sm font-semibold cursor-pointer hover:underline">
+          <a className="no-underline text-primary-700 text-sm font-semibold cursor-pointer hover:underline">
             Store Detail
           </a>
 
@@ -150,12 +150,12 @@ const FulfillmentMangement: React.FC<IFulfillmentMangementProps> = (props) => {
 
           <div>
             <div className="flex items-center gap-x-2">
-              <ShoppingBagIcon className="w-8 h-8 text-gray-500" />
+              <ShoppingBagIcon className="w-8 h-8 text-primary-500" />
               <div>
-                <p className="text-gray-600 text-sm font-semibold">
+                <p className="text-primary-600 text-sm font-semibold">
                   Free for orders over $30{" "}
                 </p>
-                <p className="text-sm text-gray-500 font-normal">
+                <p className="text-sm text-primary-500 font-normal">
                   Varies by location
                 </p>
               </div>

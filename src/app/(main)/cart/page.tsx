@@ -85,7 +85,9 @@ const Cart: React.FC<ICartProps> = (props) => {
     <div className="w-full flex justify-center py-20 px-8">
       {currentCart?.cartDetails?.length > 0 ? (
         <div className="w-[1200px] h-fit">
-          <h1 className="text-gray-600 font-bold text-3xl">Giỏ hàng của bàn</h1>
+          <h1 className="text-primary-600 font-bold text-3xl">
+            Giỏ hàng của bàn
+          </h1>
           <Divider sx={{ marginY: 4 }} />
           <div className="flex gap-x-4 gap-y-4 flex-col laptop:flex-row">
             <div className="flex flex-col gap-y-4 w-full  laptop:w-2/3 max-h-[700px] overflow-auto ">
@@ -94,22 +96,24 @@ const Cart: React.FC<ICartProps> = (props) => {
               ))}
             </div>
 
-            <div className="h-full w-[10px] bg-gray-200"></div>
+            <div className="h-full w-[10px] bg-primary-200"></div>
 
             <div className="flex flex-col w-full gap-y-8 laptop:w-1/3 justify-between">
               <div className="flex flex-col">
-                <h1 className="text-gray-600 font-bold text-2xl">
+                <h1 className="text-primary-600 font-bold text-2xl">
                   Thông tin đơn hàng
                 </h1>
                 <div className="flex flex-col gap-y-4 mt-8">
                   <div className="w-full justify-between flex items-center">
-                    <p className="text-md text-gray-600 font-bold">Tạm tính</p>
+                    <p className="text-md text-primary-600 font-bold">
+                      Tạm tính
+                    </p>
                     <p className="text-md text-green-600 font-bold">
                       {totalPrice()}
                     </p>
                   </div>
                   <div className="w-full justify-between flex items-center">
-                    <p className="text-md text-gray-600 font-bold">
+                    <p className="text-md text-primary-600 font-bold">
                       Giảm giá ( Bằng điểm tích lũy )
                     </p>
                     <p className="text-md text-red-600 font-bold">
@@ -119,7 +123,7 @@ const Cart: React.FC<ICartProps> = (props) => {
                   <Divider />
 
                   <div className="w-full justify-between flex items-center">
-                    <p className="text-md text-gray-600 font-bold">
+                    <p className="text-md text-primary-600 font-bold">
                       Tạm tính sau giảm giá
                     </p>
                     <p className="text-md text-green-600 font-bold">
@@ -130,27 +134,27 @@ const Cart: React.FC<ICartProps> = (props) => {
                   <Divider />
 
                   <div className="w-full justify-between flex items-center">
-                    <p className="text-md text-gray-600 font-bold">
+                    <p className="text-md text-primary-600 font-bold">
                       Phí giao hàng
                     </p>
                     <p className="text-md text-green-600 font-bold">
-                      +{(50000)?.toString().prettyMoney()}
+                      +{50000?.toString().prettyMoney()}
                     </p>
                   </div>
 
                   <div className="w-full justify-between flex items-center">
-                    <p className="text-md text-gray-600 font-bold">
+                    <p className="text-md text-primary-600 font-bold">
                       Phí dịch vụ
                     </p>
                     <p className="text-md text-green-600 font-bold">
-                      +{(1000)?.toString()?.prettyMoney()}
+                      +{1000?.toString()?.prettyMoney()}
                     </p>
                   </div>
 
                   <Divider />
 
                   <div className="w-full justify-between flex items-center">
-                    <p className="text-md text-gray-600 font-bold">
+                    <p className="text-md text-primary-600 font-bold">
                       Tổng ước tính
                     </p>
                     <p className="text-md text-green-600 font-bold">
@@ -166,12 +170,12 @@ const Cart: React.FC<ICartProps> = (props) => {
         </div>
       ) : (
         <div className="w-full h-full flex items-center justify-center flex-col">
-          <ShoppingBagIcon className="w-20 h-20 text-gray-500" />
-          <h1 className="text-3xl text-gray-600 font-bold mt-4">
+          <ShoppingBagIcon className="w-20 h-20 text-primary-500" />
+          <h1 className="text-3xl text-primary-600 font-bold mt-4">
             Giỏ hàng đang trống
           </h1>
           <Link href="/">
-            <p className="text-md text-gray-600 font-bold mt-4 underline">
+            <p className="text-md text-primary-600 font-bold mt-4 underline">
               Quay lại trang chủ
             </p>
           </Link>

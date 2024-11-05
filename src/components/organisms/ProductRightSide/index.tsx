@@ -13,20 +13,20 @@ const ProductRightSide: React.FC<IProductRightSideProps> = (props) => {
 
   return (
     <div className="w-[320px] h-full tablet:w-[360px] laptop:w-[400px] laptop:h-full desktop:w-[480px] desktop:h-full flex flex-col gap-y-8">
-      <h1 className="text-gray-600 font-bold text-3xl">
+      <h1 className="text-primary-600 font-bold text-3xl">
         {storeProduct?.product?.name}
       </h1>
 
       <div className="flex flex-col">
         <div className="flex items-center">
-          <h3 className="text-gray-400 text-lg">Giá bán: </h3>
+          <h3 className="text-primary-400 text-lg">Giá bán: </h3>
           <h3 className="text-green-600 text-lg ml-2 cursor-pointer">
             {storeProduct?.price.displayPrice}
           </h3>
         </div>
         <div className="flex items-center mt-2">
-          <h3 className="text-gray-400 text-lg">Danh mục: </h3>
-          <h3 className="text-gray-600 text-lg ml-2 cursor-pointer">
+          <h3 className="text-primary-400 text-lg">Danh mục: </h3>
+          <h3 className="text-primary-600 text-lg ml-2 cursor-pointer">
             {storeProduct?.product?.category?.name}
           </h3>
         </div>
@@ -34,7 +34,7 @@ const ProductRightSide: React.FC<IProductRightSideProps> = (props) => {
           Object.entries(storeProduct?.product?.properties).map(
             ([key, value]: [string, any]) => (
               <div key={key} className="flex items-center">
-                <h3 className="text-gray-400 text-lg">
+                <h3 className="text-primary-400 text-lg">
                   {storeProduct?.product?.category?.properties?.map(
                     (property: any) => {
                       if (property?.name == key) {
@@ -43,7 +43,7 @@ const ProductRightSide: React.FC<IProductRightSideProps> = (props) => {
                     }
                   )}
                 </h3>
-                <h3 className="text-gray-500 ml-2 text-lg cursor-pointer">
+                <h3 className="text-primary-500 ml-2 text-lg cursor-pointer">
                   {value}
                 </h3>
               </div>
@@ -54,8 +54,10 @@ const ProductRightSide: React.FC<IProductRightSideProps> = (props) => {
       <QuantityButton storeProduct={storeProduct} />
 
       <div className="flex flex-col gap-y-2">
-        <h1 className="text-gray-600 font-bold text-lg">Mô tả về sản phẩm</h1>
-        <p className="text-gray-400 text-sm">
+        <h1 className="text-primary-600 font-bold text-lg">
+          Mô tả về sản phẩm
+        </h1>
+        <p className="text-primary-400 text-sm">
           {storeProduct?.product?.fullDescription}
         </p>
       </div>

@@ -48,7 +48,7 @@ const ProductScroll: React.FC<IProductScrollProps> = (props) => {
     <div ref={scrollRef}>
       {storeProducts?.length > 0 && (
         <div>
-          <h1 className="text-4xl font-bold text-gray-600 mb-16">
+          <h1 className="text-4xl font-bold text-secondary-900 mb-16">
             Tất cả sản phẩm
           </h1>
           <div className="w-full grid tablet:grid-cols-2 laptop:grid-cols-4 gap-y-4 gap-x-4">
@@ -69,7 +69,7 @@ const ProductScroll: React.FC<IProductScrollProps> = (props) => {
                 ?.map((item, index) => (
                   <div
                     key={`loading-${index}`}
-                    className="bg-gray-200 animate-pulse w-full h-[360px]"
+                    className="bg-primary-200 animate-pulse w-full h-[360px]"
                   ></div>
                 ))}
             </div>

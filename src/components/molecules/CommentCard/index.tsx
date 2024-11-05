@@ -155,7 +155,7 @@ const CommentCard: React.FC<any> = (props) => {
           isConfirmLoadingButton={isDeleting}
         />
       )}
-      <div className="my-2 py-3 pl-4 rounded-xl bg-gray-50 h-fit">
+      <div className="my-2 py-3 pl-4 rounded-xl bg-primary-50 h-fit">
         <>
           {commentMode == "view" ? (
             <div className="flex justify-between w-full">
@@ -165,22 +165,22 @@ const CommentCard: React.FC<any> = (props) => {
                 </Avatar>
                 <div>
                   <div className="flex flex-col tablet:flex-row tablet:items-center">
-                    <p className="text-sm tablet:text-lg font-semibold text-gray-800">
+                    <p className="text-sm tablet:text-lg font-semibold text-primary-800">
                       {commentUser?.username}
                     </p>
                     {props?.createdAt && (
-                      <p className="text-gray-500 text-[10px] tablet:text-xs text-sm tablet:ml-1">
+                      <p className="text-primary-500 text-[10px] tablet:text-xs text-sm tablet:ml-1">
                         vào ngày{" "}
                         {props.createdAt?.toString()?.prettyDateTime() || ""}
                       </p>
                     )}
                   </div>
 
-                  <p className="text-gray-600 text-sm">{content}</p>
+                  <p className="text-primary-600 text-sm">{content}</p>
                   <div className="items-center flex mt-1">
                     {!!isAuthenticated && (
                       <button
-                        className="text-gray-500 hover:text-gray-500 font-regular text-xs"
+                        className="text-primary-500 hover:text-primary-500 font-regular text-xs"
                         onClick={handleTurnOnReply}
                       >
                         Trả lời
@@ -188,7 +188,7 @@ const CommentCard: React.FC<any> = (props) => {
                     )}
                     {props.userName == user?.username && (
                       <button
-                        className="text-gray-500 hover:text-red-500 font-regular text-xs ml-2"
+                        className="text-primary-500 hover:text-red-500 font-regular text-xs ml-2"
                         onClick={() => setOpenConfirmDialog(true)}
                       >
                         Xóa bình luận
@@ -196,7 +196,7 @@ const CommentCard: React.FC<any> = (props) => {
                     )}
                     {props.userName == user?.username && (
                       <button
-                        className="text-gray-500 hover:text-red-500 font-regular text-xs ml-2"
+                        className="text-primary-500 hover:text-red-500 font-regular text-xs ml-2"
                         onClick={handleTurnOnEdit}
                       >
                         Chỉnh sửa
@@ -261,7 +261,7 @@ const CommentCard: React.FC<any> = (props) => {
                     strokeWidth="0.5"
                   />
                 </svg>
-                <div className="ml-8 mt-2 border-t border-gray-200 pl-4">
+                <div className="ml-8 mt-2 border-t border-primary-200 pl-4">
                   <CommentCard
                     key={replyIndex}
                     productDetail={productDetail}

@@ -27,7 +27,7 @@ const BottomSheet: React.FC<BottomSheetProps> = ({ open, onClose }) => {
         <div>
           <div className="mb-4 flex flex-row-reverse w-full">
             <IconButton onClick={() => onClose()}>
-              <XMarkIcon className="text-gray-800 w-6 h-6" />
+              <XMarkIcon className="text-primary-800 w-6 h-6" />
             </IconButton>
           </div>
           <SearchBar

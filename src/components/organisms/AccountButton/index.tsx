@@ -30,10 +30,10 @@ const AccountButton: React.FC<IAccountButtonProps> = (props) => {
     <>
       {!isAuthenticated ? (
         <button
-          className=" rounded-xl px-4 py-2 text-center text-gray-600  text-sm w-fit flex space-x-1 items-center hover:bg-gray-100"
+          className=" rounded-xl px-4 py-2 text-center text-primary-600  text-sm w-fit flex space-x-1 items-center hover:bg-primary-100"
           onClick={() => router.replace("/login")}
         >
-          <UserIcon className="w-8 h-8 text-gray-600" />
+          <UserIcon className="w-8 h-8 text-primary-600" />
         </button>
       ) : (
         <button
@@ -77,14 +77,18 @@ const AccountButton: React.FC<IAccountButtonProps> = (props) => {
           },
         }}
       >
-        <div className="w-[280px] border border-gray-100 min-h-[400px] shadow-sm bg-gray-50 px-4 py-8 rounded-lg flex flex-col gap-y-4">
+        <div className="w-[280px] border border-primary-100 min-h-[400px] shadow-sm bg-primary-50 px-4 py-8 rounded-lg flex flex-col gap-y-4">
           <div>
-            <p className="text-gray-500 text-sm font-normal">Xin chào</p>
-            <strong className="text-gray-600 text-lg">{user?.username}</strong>
+            <p className="text-primary-500 text-sm font-normal">Xin chào</p>
+            <strong className="text-primary-600 text-lg">
+              {user?.username}
+            </strong>
           </div>
 
           <div className="flex flex-row items-center gap-x-2">
-            <p className="text-gray-500 text-sm font-normal">Điểm tích lũy</p>
+            <p className="text-primary-500 text-sm font-normal">
+              Điểm tích lũy
+            </p>
             <strong className="text-green-600 text-lg">
               {user?.savePoints}
             </strong>
@@ -94,7 +98,7 @@ const AccountButton: React.FC<IAccountButtonProps> = (props) => {
 
           <div></div>
 
-          <a className="no-underline text-gray-700 text-sm font-semibold cursor-pointer hover:underline">
+          <a className="no-underline text-primary-700 text-sm font-semibold cursor-pointer hover:underline">
             Thông tin cá nhân
           </a>
 
@@ -102,9 +106,9 @@ const AccountButton: React.FC<IAccountButtonProps> = (props) => {
 
           <div>
             <div className="flex items-center gap-x-2 cursor-pointer">
-              <Cog6ToothIcon className="w-8 h-8 text-gray-500" />
+              <Cog6ToothIcon className="w-8 h-8 text-primary-500" />
               <div>
-                <p className="text-gray-600 text-sm font-semibold">
+                <p className="text-primary-600 text-sm font-semibold">
                   Cài đặt tài khoản
                 </p>
               </div>

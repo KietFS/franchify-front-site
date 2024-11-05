@@ -48,7 +48,7 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
             mode == Mode.detail ? "px-6 py-3" : "px-2 py-1"
           } ${
             mode == Mode.detail ? "min-w-[300px]" : "min-w-[130px]"
-          } justify-center text-center w-fit flex hover:opacity-50 bg-white text-black border border-gray-800 font-semibold text-lg opactiy-50`}
+          } justify-center text-center w-fit flex hover:opacity-50 bg-white text-black border border-secondary-800 font-semibold text-lg opactiy-50`}
           onClick={(e) => e.stopPropagation()}
         >
           <>
@@ -67,9 +67,9 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
                   }}
                 >
                   {currentQuantity > 1 ? (
-                    <MinusIcon className="w-4 h-4 text-gray-800" />
+                    <MinusIcon className="w-4 h-4 text-secondary-800" />
                   ) : (
-                    <TrashIcon className="w-4 h-4 text-gray-800" />
+                    <TrashIcon className="w-4 h-4 text-secondary-800" />
                   )}
                 </IconButton>
                 <span>{currentQuantity}</span>
@@ -80,7 +80,7 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
                     handleIncreaseQuantity();
                   }}
                 >
-                  <PlusIcon className="w-4 h-4 text-gray-800" />
+                  <PlusIcon className="w-4 h-4 text-secondary-800" />
                 </IconButton>
               </div>
             )}
@@ -100,14 +100,14 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
             mode == Mode.detail ? "px-6 py-3" : "px-2 py-2"
           } ${
             mode == Mode.detail ? "min-w-[300px]" : "min-w-[100px]"
-          }  justify-center text-center w-fit flex hover:opacity-50 bg-gray-800 text-white font-semibold text-lg `}
+          }  justify-center text-center w-fit flex hover:opacity-50 bg-primary-600 text-white font-semibold text-lg `}
         >
           <>
             {loading ? (
               <CircularProgress size={32} />
             ) : (
               <>
-                <AddShoppingCart sx={{ marginRight: 1 }} />
+                <AddShoppingCart />
                 <p>{mode == Mode.detail ? "Thêm vào giỏ hàng" : ""}</p>
               </>
             )}

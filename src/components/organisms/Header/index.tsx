@@ -56,14 +56,14 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
 
   return (
     <>
-      <div className="w-full shadow-lg pb-4  bg-white laptop:pb-0 border-b border-gray-200">
+      <div className="w-full shadow-lg pb-4  bg-primary-500 laptop:pb-0 border-b border-primary-200">
         <div className="w-full flex space-x-4  tablet:space-x-6 laptop:space-x-6 desktop:space-x-8 items-center px-4 py-4  justify-between laptop:justify-around">
           <div className="flex laptop:hidden  w-1/3 laptop:w-0">
             <button
-              className="bg-gray-100 p-2 rounded-lg active:bg-gray-300"
+              className="bg-primary-100 p-2 rounded-lg active:bg-primary-300"
               onClick={() => setOpenMobileDrawer(true)}
             >
-              <Bars3Icon className="text-gray-500 font-bold w-5 h-5" />
+              <Bars3Icon className="text-primary-500 font-bold w-5 h-5" />
             </button>
           </div>
           <Logo />
@@ -79,7 +79,7 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
             />
 
             {openSearchDropDown ? (
-              <div className="absolute min-h-[150px] z-50 max-h-[400px] overflow-auto bottom-auto top-[80px] left-auto ml-4 px-4 py-4 flex flex-col bg-white border-2 border-gray-50 shadow-md w-[600px] h-auto rounded-xl">
+              <div className="absolute min-h-[150px] z-50 max-h-[400px] overflow-auto bottom-auto top-[80px] left-auto ml-4 px-4 py-4 flex flex-col bg-white border-2 border-primary-50 shadow-md w-[600px] h-auto rounded-xl">
                 <SearchDropdown
                   open={openSearchDropDown}
                   onClose={() => setOpenSearchDropdown(false)}
@@ -93,10 +93,10 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
               <AccountButton />
               <FulfillmentMangement />
               <button
-                className=" rounded-xl px-4 py-2 text-center text-gray-600  text-sm w-fit flex space-x-1 items-center hover:bg-gray-100"
+                className=" rounded-xl px-4 py-2 text-center text-primary-600  text-sm w-fit flex space-x-1 items-center hover:bg-primary-100"
                 onClick={() => router.replace("/cart")}
               >
-                <ShoppingCartIcon className="w-8 h-8 text-gray-600" />
+                <ShoppingCartIcon className="w-8 h-8 text-primary-600" />
                 <div>{currentCart?.cartDetails?.length}</div>
               </button>
             </div>

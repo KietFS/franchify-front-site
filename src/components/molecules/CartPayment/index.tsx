@@ -20,17 +20,17 @@ const CartPayment: React.FC<ICartPaymentProps> = (props) => {
 
   return (
     <>
-      <div className="laptop:w-1/5 w-full h-fit laptop:min-h-[600px] bg-white rounded-lg border border-gray-200 shadow-lg px-4 py-4 justify-between flex flex-col">
+      <div className="laptop:w-1/5 w-full h-fit laptop:min-h-[600px] bg-white rounded-lg border border-primary-200 shadow-lg px-4 py-4 justify-between flex flex-col">
         <div className="flex flex-col gap-y-3">
           <h2 className="text-xl text-blue-500 font-bold"> Review</h2>
 
-          <p className="text-gray-500 text-sm laptop:text-lg">
+          <p className="text-primary-500 text-sm laptop:text-lg">
             Giá từng sản phẩm
           </p>
           {[1].map((item: any, index: number) => (
             <>
               <p
-                className="text-gray-600 text-sm font-semibold laptop:text-lg mb-2"
+                className="text-primary-600 text-sm font-semibold laptop:text-lg mb-2"
                 key={index.toString()}
               >
                 {item.priceWin}$
@@ -38,17 +38,17 @@ const CartPayment: React.FC<ICartPaymentProps> = (props) => {
             </>
           ))}
 
-          <span className="h-0.5 w-full bg-gray-200"></span>
+          <span className="h-0.5 w-full bg-primary-200"></span>
           <div className="flex items-center  justify-between">
-            <p className="text-gray-500 text-sm laptop:text-lg">Đã trừ</p>
+            <p className="text-primary-500 text-sm laptop:text-lg">Đã trừ</p>
             <p className="text-blue-500 text-sm font-semibold laptop:text-lg">
               {/* {total}$ */}
             </p>
           </div>
         </div>
         <div className="flex flex-col gap-y-1">
-          <p className="text-xs italic text-gray-400">*Đơn vị tính: USD</p>
-          <p className="text-xs italic text-gray-400 mb-2">
+          <p className="text-xs italic text-primary-400">*Đơn vị tính: USD</p>
+          <p className="text-xs italic text-primary-400 mb-2">
             *Với việc nhấn giao hàng ngay, sản phẩm sẽ bắt đầu được giao đến địa
             chỉ của bạn và chúng tôi sẽ trừ chi phí giao hàng vào tài khoản của
             bạn

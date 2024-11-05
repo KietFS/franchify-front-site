@@ -15,12 +15,13 @@ const Logo: React.FC = () => {
         cursor: "pointer",
       }}
     >
-      <Image
+      {/* <Image
         alt="/logo"
         src={require("@/assets/icons/logo.png")}
         style={{ width: 36, height: 36 }}
-      />
+      /> */}
       <Typography
+        className="text-secondary-500"
         sx={{
           margin: 0,
           padding: 0,

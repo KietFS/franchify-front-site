@@ -47,14 +47,14 @@ const CommentInput: React.FC<ICommentInputProps> = (props) => {
           <div className="flex items-center gap-x-3">
             {isClosable && (
               <button
-                className="bg-white text-gray-500 border-gray-500 border rounded-md px-3 py-1 mt-2 min-w-[80px]"
+                className="bg-white text-primary-500 border-primary-500 border rounded-md px-3 py-1 mt-2 min-w-[80px]"
                 onClick={() => onClose?.()}
               >
                 Đóng
               </button>
             )}
             <button
-              className="bg-gray-500 text-white font-semibold rounded-md px-3 py-1 mt-2 min-w-[80px]"
+              className="bg-primary-500 text-white font-semibold rounded-md px-3 py-1 mt-2 min-w-[80px]"
               onClick={() => onPostComment()}
             >
               {isPosting ? (

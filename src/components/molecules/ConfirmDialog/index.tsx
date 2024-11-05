@@ -31,8 +31,8 @@ const ConfirmDialog: React.FC<IConfirmDialogProps> = (props) => {
       fullWidth={false}
     >
       <DialogContent className="max-h-[600px]">
-        <h1 className="text-gray-600 font-bold text-xl mb-2 ">{title}</h1>
-        <p className="text-gray-500  text-xs mb-2">{description}</p>
+        <h1 className="text-primary-600 font-bold text-xl mb-2 ">{title}</h1>
+        <p className="text-primary-500  text-xs mb-2">{description}</p>
         <div className="flex justify-between">
           <div></div>
 

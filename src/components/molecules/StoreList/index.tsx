@@ -34,18 +34,18 @@ const StoreList: React.FC<IStoreListProps> = ({ onSelectedStore }) => {
             onSelectedStore(store);
           }}
           key={store.id}
-          className="flex flex-col gap-y-2 p-4 border border-gray-400 rounded-lg cursor-pointer hover:shadow-md"
+          className="flex flex-col gap-y-2 p-4 border border-primary-400 rounded-lg cursor-pointer hover:shadow-md"
         >
-          <h1 className="text-lg font-bold text-gray-800">{store.name}</h1>
+          <h1 className="text-lg font-bold text-primary-800">{store.name}</h1>
 
           <div className="w-full flex gap-x-2 items-center">
-            <ClockIcon className="w-4 h-4 text-gray-800 font-bold" />
-            <p className="text-sm text-gray-800 font-bold">Giờ hoạt động</p>
-            <p className="text-sm text-gray-600">
+            <ClockIcon className="w-4 h-4 text-primary-800 font-bold" />
+            <p className="text-sm text-primary-800 font-bold">Giờ hoạt động</p>
+            <p className="text-sm text-primary-600">
               {formatTime(store?.openTime)}
             </p>
             -{" "}
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-primary-600">
               {formatTime(store?.closeTime)}
             </p>
           </div>
@@ -65,8 +65,10 @@ const StoreList: React.FC<IStoreListProps> = ({ onSelectedStore }) => {
           </div>
 
           <div className="w-full flex gap-x-2 items-center">
-            <p className="text-sm text-gray-800 w-[80px] font-bold">Địa chỉ</p>
-            <span className="text-gray-600 text-sm">
+            <p className="text-sm text-primary-800 w-[80px] font-bold">
+              Địa chỉ
+            </p>
+            <span className="text-primary-600 text-sm">
               124 Đường Hoàng Diệu 2, Lich Chiểu, Thủ Đức thành phố Hồ Chí Minh{" "}
             </span>
           </div>
