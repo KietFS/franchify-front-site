@@ -1,9 +1,8 @@
 import React from "react";
 import ProductLeftSide from "../../organisms/ProductLeftSide";
 import ProductRightSide from "../../organisms/ProductRightSide";
-import { Divider } from "@mui/material";
-import SimilarProduct from "@/components/organisms/SimilarProduct";
 import ProductComments from "@/components/organisms/Comments";
+import SimilarProducts from "@/components/organisms/SimilarProducts";
 
 interface IProductDetailTemplateProps {
   product: IStoreProduct;
@@ -25,16 +24,7 @@ const ProductDetailTemplate: React.FC<IProductDetailTemplateProps> = (
           </div>
 
           <ProductComments productDetail={product} />
-
-          <div className="mt-16 flex flex-col justify-center w-full">
-            <h1 className="text-gray-600 font-bold text-3xl">
-              Sản phẩm tương tự
-            </h1>
-            <Divider sx={{ marginY: 4 }} />
-            {!!relatedProduct && (
-              <SimilarProduct listProduct={relatedProduct} />
-            )}
-          </div>
+          <SimilarProducts listProduct={relatedProduct} />
         </div>
       ) : null}
     </>

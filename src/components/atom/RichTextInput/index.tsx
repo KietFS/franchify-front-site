@@ -40,7 +40,7 @@ const RichTextInput: React.FC<IRichTextInputProps> = (props) => {
             <div
               className={`flex mt-1 ${
                 focus && !error
-                  ? "border-2 border-blue-500"
+                  ? "border-2 border-gray-500"
                   : !!error
                   ? "border-2 border-red-500"
                   : "border border-gray-300"

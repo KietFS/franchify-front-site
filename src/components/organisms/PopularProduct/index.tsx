@@ -3,7 +3,7 @@
 import useProducts from "@/hooks/useProducts";
 import { Divider } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import SimilarProduct from "../SimilarProduct";
+import ProductCarousel from "@/components/molecules/ProductCarousel";
 import useStore from "@/hooks/useStore";
 
 interface IPopularProductProps {}
@@ -21,7 +21,7 @@ const PopularProducts: React.FC<IPopularProductProps> = (props) => {
     <div className="mt-16 flex flex-col justify-center w-full">
       <h1 className="text-gray-600 font-bold text-3xl">Sản phẩm bán chạy</h1>
       <Divider sx={{ marginY: 4 }} />
-      {!!popularProducts && <SimilarProduct listProduct={popularProducts} />}
+      {!!popularProducts && <ProductCarousel listProduct={popularProducts} />}
     </div>
   );
 };

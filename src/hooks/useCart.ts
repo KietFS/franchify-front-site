@@ -103,7 +103,7 @@ const useCart = (currentProduct?: IProduct) => {
         return newQuantity;
       });
     } catch (error) {
-      console.log("GET PRODUCT RESPONSE", error);
+      console.warn("GET PRODUCT RESPONSE", error);
       setLoading(false);
     }
   };
@@ -139,7 +139,7 @@ const useCart = (currentProduct?: IProduct) => {
             }
           })
           .catch((error) => {
-            console.log("GET PRODUCT RESPONSE", error);
+            console.warn("GET PRODUCT RESPONSE", error);
           })
           .finally(() => {
             setLoading(false);
@@ -148,7 +148,7 @@ const useCart = (currentProduct?: IProduct) => {
         return newQuantity;
       });
     } catch (error) {
-      console.log("GET PRODUCT RESPONSE", error);
+      console.warn("GET PRODUCT RESPONSE", error);
       setLoading(false);
     }
   };
@@ -176,7 +176,7 @@ const useCart = (currentProduct?: IProduct) => {
           }
         })
         .catch((error) => {
-          console.log("GET PRODUCT RESPONSE", error);
+          console.warn("GET PRODUCT RESPONSE", error);
         })
         .finally(() => {
           setLoading(false);

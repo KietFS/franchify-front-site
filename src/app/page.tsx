@@ -1,6 +1,5 @@
 "use client";
 
-import HeroSection from "@/components/organisms/Hero";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ProductGrid from "@/components/organisms/ProductGrid";

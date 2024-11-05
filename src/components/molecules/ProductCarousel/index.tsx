@@ -6,12 +6,13 @@ import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import EmptyImage from "@/assets/images/EmptyImage.png";
 import Image from "next/image";
+import ProductCard from "@/components/molecules/ProductCard";
 
 interface ISimilarProduct {
   listProduct: IStoreProduct[];
 }
 
-const SimilarProduct: React.FC<ISimilarProduct> = ({ listProduct }) => {
+const ProductCarousel: React.FC<ISimilarProduct> = ({ listProduct }) => {
   const router = useRouter();
   const [slidesToShow, setSlidesToShow] = useState<number>(4);
 
@@ -117,32 +118,12 @@ const SimilarProduct: React.FC<ISimilarProduct> = ({ listProduct }) => {
         <div className="h-fit rounded-lg bg-white w-full px-8 pt-4">
           <Slider {...settings}>
             {listProduct.map((item, index) => (
-              <div
-                key={index}
-                className="flex h-[400px] flex-col items-center gap-y-4 justify-center p-4 cursor-pointer"
-                onClick={() => handleItemClick(item?.product)}
-              >
-                {!!item?.product?.thumbnail ? (
-                  <img
-                    src={item.product?.thumbnail}
-                    className="w-full h-[267px] desktop:max-w-[280px] rounded-xl object-cover"
-                    alt={`Product ${index + 1}`}
-                  />
-                ) : (
-                  <Image
-                    src={EmptyImage}
-                    className="w-full h-[267px] desktop:max-w-[280px] rounded-xl object-cover"
-                    alt={`Product ${index + 1}`}
-                  />
-                )}
-                <p className="text-lg text-gray-600 font-bold mt-4">
-                  {item?.product?.name}
-                </p>
-
-                <p className="text-md text-green-600 font-bold mt-4">
-                  {item?.product?.price?.displayPrice}
-                </p>
-              </div>
+              <ProductCard
+                item={item}
+                index={index}
+                key={`card-${index}`}
+                handleItemClick={() => handleItemClick(item)}
+              />
             ))}
           </Slider>
         </div>
@@ -151,4 +132,4 @@ const SimilarProduct: React.FC<ISimilarProduct> = ({ listProduct }) => {
   );
 };
 
-export default SimilarProduct;
+export default ProductCarousel;

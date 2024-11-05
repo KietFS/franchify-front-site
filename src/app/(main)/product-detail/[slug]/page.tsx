@@ -25,8 +25,6 @@ const ProductDetailPage = async (props: any) => {
     product = null;
   }
 
-  console.log("product detail", product);
-
   return (
     <div className="flex w-full justify-center">
       {product && (

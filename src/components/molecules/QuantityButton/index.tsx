@@ -10,12 +10,18 @@ import useCart from "@/hooks/useCart";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 
+enum Mode {
+  card = "card",
+  detail = "detail",
+}
+
 interface IQuantityButtonProps {
   storeProduct: IStoreProduct;
+  mode?: Mode;
 }
 
 const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
-  const { storeProduct } = props;
+  const { storeProduct, mode = Mode.detail } = props;
 
   const {
     currentQuantity,
@@ -35,12 +41,15 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
   }, []);
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center z-20">
       {currentQuantity > 0 ? (
         <button
-          className={`items-center rounded-full px-6 py-3 min-w-[300px] justify-center text-center w-fit flex hover:opacity-50 bg-white text-black border border-gray-800 font-semibold text-lg ${
-            false ? "opacity-20" : ""
-          }`}
+          className={`items-center rounded-full ${
+            mode == Mode.detail ? "px-6 py-3" : "px-2 py-1"
+          } ${
+            mode == Mode.detail ? "min-w-[300px]" : "min-w-[130px]"
+          } justify-center text-center w-fit flex hover:opacity-50 bg-white text-black border border-gray-800 font-semibold text-lg opactiy-50`}
+          onClick={(e) => e.stopPropagation()}
         >
           <>
             {loading ? (
@@ -48,7 +57,8 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
             ) : (
               <div className="w-full flex justify-between items-center">
                 <IconButton
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation();
                     if (currentQuantity > 1) {
                       handleDecreaseQuantity();
                     } else {
@@ -63,7 +73,13 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
                   )}
                 </IconButton>
                 <span>{currentQuantity}</span>
-                <IconButton onClick={handleIncreaseQuantity}>
+                <IconButton
+                  className="z-20"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleIncreaseQuantity();
+                  }}
+                >
                   <PlusIcon className="w-4 h-4 text-gray-800" />
                 </IconButton>
               </div>
@@ -72,22 +88,27 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
         </button>
       ) : (
         <button
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             if (isAuthenticated) {
               handleAddToCart();
             } else {
               router?.push("/login");
             }
           }}
-          className={`items-center disabled:opacity-50 rounded-full px-6 py-3 min-w-[300px] justify-center text-center w-fit flex hover:opacity-50 bg-gray-800 text-white font-semibold text-lg `}
+          className={`items-center disabled:opacity-50 rounded-full  ${
+            mode == Mode.detail ? "px-6 py-3" : "px-2 py-2"
+          } ${
+            mode == Mode.detail ? "min-w-[300px]" : "min-w-[100px]"
+          }  justify-center text-center w-fit flex hover:opacity-50 bg-gray-800 text-white font-semibold text-lg `}
         >
           <>
             {loading ? (
               <CircularProgress size={32} />
             ) : (
               <>
-                <AddShoppingCart sx={{ marginRight: 1 }} />{" "}
-                <p>Thêm vào giỏ hàng</p>
+                <AddShoppingCart sx={{ marginRight: 1 }} />
+                <p>{mode == Mode.detail ? "Thêm vào giỏ hàng" : ""}</p>
               </>
             )}
           </>

@@ -11,22 +11,6 @@ const useComments = (productDetail: any) => {
   const { accessToken } = useSelector((state: any) => state.auth);
   const [isPosting, setIsPosting] = useState<boolean>(false);
 
-  function nestComments(
-    comments: any[],
-    parentCommentId: number | null = null
-  ): any[] {
-    let results = comments;
-
-    results?.map((comment) => {
-      comment.replies = comments.filter(
-        (reply) => reply.parentComment?.id === comment.id
-      );
-      return comment;
-    });
-
-    return results;
-  }
-
   const getListComments = async () => {
     try {
       setLoadComments(true);
@@ -40,8 +24,7 @@ const useComments = (productDetail: any) => {
       if (response?.data?.success) {
         setLoadComments(false);
         let comments = response?.data?.data;
-        const infal = nestComments(comments);
-        setListComments(infal);
+        setListComments(comments);
       }
     } catch (error) {
       setLoadComments(false);
