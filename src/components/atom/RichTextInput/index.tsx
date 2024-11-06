@@ -33,7 +33,7 @@ const RichTextInput: React.FC<IRichTextInputProps> = (props) => {
           >
             <div className="flex items-center justify-between">
               <div className="flex">
-                <p className="text-md font-bold text-primary-700 mr-1">
+                <p className="text-md font-bold text-secondary-900 mr-1">
                   {label}
                 </p>
                 {false && <p className="text-blue-500 font-bold">*</p>}
@@ -42,16 +42,16 @@ const RichTextInput: React.FC<IRichTextInputProps> = (props) => {
             <div
               className={`flex mt-1 ${
                 focus && !error
-                  ? "border-2 border-primary-500"
+                  ? "border-2 border-secondary-900"
                   : !!error
                   ? "border-2 border-red-500"
-                  : "border border-primary-300"
+                  : "border border-secondary-800"
               } ${
                 focus && !error
                   ? "bg-blue-50"
                   : error
                   ? "bg-red-50"
-                  : "bg-primary-100"
+                  : "bg-secondary-100"
               } px-2 py-1 rounded-lg  ${className}`}
             >
               <textarea
@@ -66,7 +66,7 @@ const RichTextInput: React.FC<IRichTextInputProps> = (props) => {
                     ? "bg-blue-50"
                     : error
                     ? "bg-red-50"
-                    : "bg-primary-100"
+                    : "bg-secondary-100"
                 } text-primary-700 rounded-lg w-80 h-8 text-sm  outline-none ring-0 border-transparent focus:border-transparent focus:ring-0 focus:outline-transparent`}
               />
             </div>

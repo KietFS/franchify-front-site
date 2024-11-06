@@ -31,14 +31,14 @@ const Button: React.FC<IButtonProps> = (props) => {
   return (
     <button
       className={`ripple items-center min-w-[120px] justify-center rounded-lg px-4 py-2 text-center w-full flex ${
-        disable ? "opacity-10" : "hover:opacity-75"
+        disable ? "opacity-10" : ""
       } ${className} ${
-        variant === "primary" && "bg-primary-800 hover:bg-primary-700"
-      } ${variant === "secondary" && "bg-white hover:bg-primary-100"}
+        variant === "primary" && "bg-primary-500 hover:bg-primary-600"
+      } ${variant === "secondary" && "bg-white hover:bg-secondary-500"}
       ${variant === "error" && "bg-red-500 hover:bg-red-400"} ${
-        variant === "secondary" ? "text-primary-800" : "text-white"
+        variant === "secondary" ? "text-secondary-900" : "text-white"
       } border ${
-        variant === "secondary" ? "border-primary-800" : "border-transparent"
+        variant === "secondary" ? "border-secondary-900" : "border-transparent"
       } font-semibold text-lg`}
       onClick={() => (disable ? {} : onClick?.())}
       type={type}

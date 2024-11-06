@@ -19,7 +19,9 @@ const PopularProducts: React.FC<IPopularProductProps> = (props) => {
 
   return (
     <div className="mt-16 flex flex-col justify-center w-full">
-      <h1 className="text-primary-600 font-bold text-3xl">Sản phẩm bán chạy</h1>
+      <h1 className="text-secondary-900 font-bold text-3xl">
+        Sản phẩm bán chạy
+      </h1>
       <Divider sx={{ marginY: 4 }} />
       {!!popularProducts && <ProductCarousel listProduct={popularProducts} />}
     </div>

@@ -70,7 +70,7 @@ const ProductComments: React.FC<IProductCommentsProps> = (props) => {
 
   return (
     <div className="mt-16 flex flex-col justify-center w-full">
-      <h1 className="text-primary-600 font-bold text-3xl">
+      <h1 className="text-secondary-900 font-bold text-3xl">
         Bình luận về sản phẩm
       </h1>
       <Divider sx={{ marginY: 4 }} />
@@ -112,8 +112,8 @@ const ProductComments: React.FC<IProductCommentsProps> = (props) => {
         ) : (
           <>
             <div className="flex items-center gap-x-1  mt-4">
-              <InformationCircleIcon className="text-primary-500 w-[20px] h-[20px]" />
-              <p className="text-primary-500 font-bold italic text-sm">
+              <InformationCircleIcon className="text-secondary-900 w-[20px] h-[20px]" />
+              <p className="text-secondary-900 font-bold italic text-sm">
                 Sản phẩm chưa có bình luận nào
               </p>
             </div>

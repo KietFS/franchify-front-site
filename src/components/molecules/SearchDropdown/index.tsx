@@ -49,7 +49,7 @@ const SearchDropdown: React.FC<IPopularSearchesProps> = (props) => {
                       />
                     </div>
                     <div>
-                      <p className="text-primary-600 text-sm text-regular">
+                      <p className="text-secondary-900 text-sm text-regular">
                         {item?.name}
                       </p>
                       <p className="mt-2 text-green-600 text-xs">
@@ -62,12 +62,12 @@ const SearchDropdown: React.FC<IPopularSearchesProps> = (props) => {
             </div>
           ) : (
             <>
-              <h2 className="text-md text-primary-600 font-bold mb-4">
+              <h2 className="text-md text-seconday-900 font-bold mb-4">
                 Các danh mục
               </h2>
               <div className="w-full flex flex-wrap gap-y-4 gap-x-2">
                 {listCategory?.map((cat: any) => (
-                  <div className="px-4 py-2 border-primary-300 border rounded-full text-sm text-primary-600 text-regular">
+                  <div className="px-4 py-2 border-secondary-600 border rounded-full text-sm text-seconday-900 text-regular">
                     {cat?.name}
                   </div>
                 ))}

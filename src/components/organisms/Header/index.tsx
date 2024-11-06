@@ -23,6 +23,7 @@ import useSearch from "@/hooks/useSearch";
 import useCategory from "@/hooks/useCategories";
 import useAuth from "@/hooks/useAuth";
 import AccountButton from "../AccountButton";
+import MobileDrawer from "@/components/molecules/MobileDrawer";
 
 interface IHeaderV2Props {}
 
@@ -56,17 +57,14 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
 
   return (
     <>
-      <div className="w-full shadow-lg pb-4  bg-primary-500 laptop:pb-0 border-b border-primary-200">
+      <div className="w-full shadow-lg pb-4  bg-primary-500 laptop:pb-0 border-b border-seconday-500">
         <div className="w-full flex space-x-4  tablet:space-x-6 laptop:space-x-6 desktop:space-x-8 items-center px-4 py-4  justify-between laptop:justify-around">
           <div className="flex laptop:hidden  w-1/3 laptop:w-0">
-            <button
-              className="bg-primary-100 p-2 rounded-lg active:bg-primary-300"
-              onClick={() => setOpenMobileDrawer(true)}
-            >
-              <Bars3Icon className="text-primary-500 font-bold w-5 h-5" />
+            <button className="" onClick={() => setOpenMobileDrawer(true)}>
+              <Bars3Icon className="text-secondary-500 font-bold w-8 h-8" />
             </button>
           </div>
-          <Logo />
+          <Logo variant="secondary" />
           <div className="flex w-1/3 laptop:hidden laptop:w-0 flex-row-reverse">
             <FulfillmentMangement />
           </div>
@@ -79,7 +77,7 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
             />
 
             {openSearchDropDown ? (
-              <div className="absolute min-h-[150px] z-50 max-h-[400px] overflow-auto bottom-auto top-[80px] left-auto ml-4 px-4 py-4 flex flex-col bg-white border-2 border-primary-50 shadow-md w-[600px] h-auto rounded-xl">
+              <div className="absolute min-h-[150px] z-50 max-h-[400px] overflow-auto bottom-auto top-[70px] left-auto px-4 py-4 flex flex-col bg-white border-2 border-secondary-50 shadow-md w-[600px] h-auto rounded-xl">
                 <SearchDropdown
                   open={openSearchDropDown}
                   onClose={() => setOpenSearchDropdown(false)}
@@ -93,10 +91,10 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
               <AccountButton />
               <FulfillmentMangement />
               <button
-                className=" rounded-xl px-4 py-2 text-center text-primary-600  text-sm w-fit flex space-x-1 items-center hover:bg-primary-100"
+                className=" rounded-xl px-4 py-2 text-center text-secondary-600  text-sm w-fit flex space-x-1 items-center"
                 onClick={() => router.replace("/cart")}
               >
-                <ShoppingCartIcon className="w-8 h-8 text-primary-600" />
+                <ShoppingCartIcon className="w-8 h-8 text-secondary-500" />
                 <div>{currentCart?.cartDetails?.length}</div>
               </button>
             </div>
@@ -120,6 +118,12 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
         <SearchSheet
           open={openSearchSheet}
           onClose={() => setOpenSearchSheet(false)}
+        />
+      )}
+      {openMobileDrawer && (
+        <MobileDrawer
+          open={openMobileDrawer}
+          onClose={() => setOpenMobileDrawer(false)}
         />
       )}
     </>

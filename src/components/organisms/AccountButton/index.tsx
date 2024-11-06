@@ -33,15 +33,23 @@ const AccountButton: React.FC<IAccountButtonProps> = (props) => {
           className=" rounded-xl px-4 py-2 text-center text-primary-600  text-sm w-fit flex space-x-1 items-center hover:bg-primary-100"
           onClick={() => router.replace("/login")}
         >
-          <UserIcon className="w-8 h-8 text-primary-600" />
+          <UserIcon className="w-8 h-8 text-secondary-500" />
         </button>
       ) : (
         <button
           onClick={handleClick}
           className="py-2 text-black-500 rounded-full w-fit px-4 bg-transparent justify-center items-center flex"
         >
-          <Avatar sx={{ bgcolor: "#475569" }}>
-            {user?.username?.[0] || "U"}
+          <Avatar
+            className="bg-primary-600"
+            sx={{
+              backgroundColor: "white",
+            }}
+          >
+            <p className="text-primary-600 font-bold">
+              {" "}
+              {user?.username?.[0]?.toUpperCase() || "U"}
+            </p>
           </Avatar>
         </button>
       )}
@@ -77,16 +85,16 @@ const AccountButton: React.FC<IAccountButtonProps> = (props) => {
           },
         }}
       >
-        <div className="w-[280px] border border-primary-100 min-h-[400px] shadow-sm bg-primary-50 px-4 py-8 rounded-lg flex flex-col gap-y-4">
+        <div className="w-[280px] border border-primary-100 min-h-[400px] shadow-sm bg-secondary-50 px-4 py-8 rounded-lg flex flex-col gap-y-4">
           <div>
-            <p className="text-primary-500 text-sm font-normal">Xin chào</p>
+            <p className="text-secondary-900 text-sm font-normal">Xin chào</p>
             <strong className="text-primary-600 text-lg">
               {user?.username}
             </strong>
           </div>
 
           <div className="flex flex-row items-center gap-x-2">
-            <p className="text-primary-500 text-sm font-normal">
+            <p className="text-secondary-900 text-sm font-normal">
               Điểm tích lũy
             </p>
             <strong className="text-green-600 text-lg">
@@ -98,7 +106,7 @@ const AccountButton: React.FC<IAccountButtonProps> = (props) => {
 
           <div></div>
 
-          <a className="no-underline text-primary-700 text-sm font-semibold cursor-pointer hover:underline">
+          <a className="no-underline text-secondary-900 text-sm font-semibold cursor-pointer hover:underline">
             Thông tin cá nhân
           </a>
 
@@ -106,9 +114,9 @@ const AccountButton: React.FC<IAccountButtonProps> = (props) => {
 
           <div>
             <div className="flex items-center gap-x-2 cursor-pointer">
-              <Cog6ToothIcon className="w-8 h-8 text-primary-500" />
+              <Cog6ToothIcon className="w-8 h-8 text-secondary-900" />
               <div>
-                <p className="text-primary-600 text-sm font-semibold">
+                <p className="text-secondary-900 text-sm font-semibold">
                   Cài đặt tài khoản
                 </p>
               </div>

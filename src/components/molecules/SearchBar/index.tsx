@@ -1,5 +1,9 @@
 import useDebounce from "@/hooks/useDebounce";
 import useSearch from "@/hooks/useSearch";
+import {
+  MagnifyingGlassCircleIcon,
+  MagnifyingGlassIcon,
+} from "@heroicons/react/24/outline";
 import { TextField, Box } from "@mui/material";
 import React, { forwardRef, useEffect } from "react";
 
@@ -26,7 +30,16 @@ const SearchBar = forwardRef<HTMLInputElement, ISearchBarProps>(
     }, [debounceKeyword]);
 
     return (
-      <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          width: "100%",
+          backgroundColor: "white",
+          paddingRight: "16px",
+          borderRadius: "20px",
+        }}
+      >
         <TextField
           autoFocus={autoFocus}
           inputRef={ref}
@@ -45,7 +58,7 @@ const SearchBar = forwardRef<HTMLInputElement, ISearchBarProps>(
             setKeyword(e.target.value);
           }}
           sx={{
-            backgroundColor: "#f6f7f9",
+            backgroundColor: "white",
             borderRadius: "20px",
             padding: "0px 16px",
             "& .MuiOutlinedInput-root": {
@@ -61,6 +74,8 @@ const SearchBar = forwardRef<HTMLInputElement, ISearchBarProps>(
             },
           }}
         />
+
+        <MagnifyingGlassIcon className="text-secondary-900 w-6 h-6" />
       </Box>
     );
   }

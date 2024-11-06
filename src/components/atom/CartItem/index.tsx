@@ -26,7 +26,7 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
   return (
     <div
       onClick={() => navigateToProductDetail(cartItem?.product)}
-      className="flex w-full justify-between items-center px-8 py-4 border-primary-200 rounded-lg border cursor-pointer"
+      className="flex w-full justify-between items-center px-8 py-4 border-secondary-600 rounded-lg border cursor-pointer"
     >
       <div className="flex w-fit gap-x-4">
         <Image
@@ -37,7 +37,7 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
           className="w-20 h-20 object-cover rounded-lg mr-4 box-border"
         />
         <div className="flex flex-col gap-y-1">
-          <p className="text-lg text-primary-600 font-bold">
+          <p className="text-lg text-secondary-900 font-bold">
             {cartItem?.product?.name}
           </p>
           <p className="text-md text-green-600 font-bold">
@@ -62,17 +62,17 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
             <>
               {currentQuantity > 1 ? (
                 <IconButton
-                  className="px-2 py-1 border-primary-300 rounded-l-lg"
+                  className="px-2 py-1 border-secondary-800 rounded-l-lg"
                   onClick={() => handleDecreaseQuantity()}
                 >
-                  <MinusIcon className="w-4 h-4 text-primary-800" />
+                  <MinusIcon className="w-4 h-4 text-secondary-900" />
                 </IconButton>
               ) : (
                 <IconButton
-                  className="px-2 py-1 border-primary-300 rounded-l-lg"
+                  className="px-2 py-1 border-secondary-800rounded-l-lg"
                   onClick={() => handleRemoveProduct()}
                 >
-                  <TrashIcon className="w-4 h-4 text-primary-800" />
+                  <TrashIcon className="w-4 h-4 text-secondary-900" />
                 </IconButton>
               )}
               <input
@@ -84,7 +84,7 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
                 className="px-2 py-1 rounded-r-lg "
                 onClick={() => handleIncreaseQuantity()}
               >
-                <PlusIcon className="w-4 h-4 text-primary-800" />
+                <PlusIcon className="w-4 h-4 text-secondary-900" />
               </IconButton>
             </>
           )}

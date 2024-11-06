@@ -3,7 +3,11 @@ import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-const Logo: React.FC = () => {
+interface ILogo {
+  variant?: "primary" | "secondary" | "error";
+}
+
+const Logo: React.FC<ILogo> = ({ variant = "primary" }) => {
   const route = useRouter();
   return (
     <Box
@@ -21,7 +25,9 @@ const Logo: React.FC = () => {
         style={{ width: 36, height: 36 }}
       /> */}
       <Typography
-        className="text-secondary-500"
+        className={`${
+          variant === "primary" ? "text-primary-500" : "text-white"
+        }`}
         sx={{
           margin: 0,
           padding: 0,
@@ -31,10 +37,11 @@ const Logo: React.FC = () => {
           },
         }}
         fontWeight="500"
-        variant="h4"
+        color="white"
+        variant="h6"
         gutterBottom
       >
-        Market
+        The Coffee House
       </Typography>
     </Box>
   );

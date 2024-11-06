@@ -70,7 +70,11 @@ const LoginPage: React.FC<ILoginPageProps> = (props) => {
         }}
       >
         <Box>
-          <Typography sx={{ fontWeight: "600" }} variant="h4">
+          <Typography
+            className="text-primary-500"
+            sx={{ fontWeight: "600" }}
+            variant="h4"
+          >
             Sign in
           </Typography>
           <Typography

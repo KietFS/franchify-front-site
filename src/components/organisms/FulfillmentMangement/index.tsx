@@ -72,10 +72,12 @@ const FulfillmentMangement: React.FC<IFulfillmentMangementProps> = (props) => {
     <>
       <button
         onClick={handleClick}
-        className="p-2 text-black-500 rounded-full w-full desktop:max-w-[250px] bg-transparent justify-center items-center flex border border-primary-100"
+        className="p-2 text-black-500 rounded-full w-fit desktop:max-w-[250px] bg-transparent justify-center items-center flex border border-primary-100"
       >
-        <TruckIcon className="w-8 h-8 text-primary-600 mr-1" />
-        <p>{currentStore?.name}</p>
+        <TruckIcon className="w-8 h-8 text-secondary-500 mr-1" />
+        <p className="text-secondary-500 hidden desktop:flex truncate">
+          {currentStore?.name}
+        </p>
       </button>
 
       <Popover
@@ -109,13 +111,13 @@ const FulfillmentMangement: React.FC<IFulfillmentMangementProps> = (props) => {
           },
         }}
       >
-        <div className="w-[280px] border border-primary-100 min-h-[400px] shadow-sm bg-primary-50 px-4 py-8 rounded-lg flex flex-col gap-y-4">
+        <div className="w-[280px] border border-secondary-100 min-h-[400px] shadow-sm bg-secondary-50 px-4 py-8 rounded-lg flex flex-col gap-y-4">
           <div>
-            <p className="text-primary-500 text-sm font-normal">
+            <p className="text-secondary-900 text-sm font-normal">
               Bạn đang mua sắm ở
             </p>
             <strong className="text-primary-600 text-lg">
-              Store {currentStore?.storeCode}
+              {currentStore?.name}
             </strong>
           </div>
 
@@ -137,12 +139,12 @@ const FulfillmentMangement: React.FC<IFulfillmentMangementProps> = (props) => {
                 </>
               )}
             </div>
-            <strong className="text-primary-500 font-normal text-sm">
+            <strong className="text-secondary-900 font-normal text-sm">
               5201 4th St #7, Lubbock, TX 79416
             </strong>
           </div>
 
-          <a className="no-underline text-primary-700 text-sm font-semibold cursor-pointer hover:underline">
+          <a className="no-underline text-secondary-900 text-sm font-semibold cursor-pointer hover:underline">
             Store Detail
           </a>
 
@@ -152,10 +154,10 @@ const FulfillmentMangement: React.FC<IFulfillmentMangementProps> = (props) => {
             <div className="flex items-center gap-x-2">
               <ShoppingBagIcon className="w-8 h-8 text-primary-500" />
               <div>
-                <p className="text-primary-600 text-sm font-semibold">
+                <p className="text-secondary-800 text-sm font-semibold">
                   Free for orders over $30{" "}
                 </p>
-                <p className="text-sm text-primary-500 font-normal">
+                <p className="text-sm text-secondary-800 font-normal">
                   Varies by location
                 </p>
               </div>

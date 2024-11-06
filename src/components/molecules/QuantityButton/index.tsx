@@ -100,7 +100,7 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
             mode == Mode.detail ? "px-6 py-3" : "px-2 py-2"
           } ${
             mode == Mode.detail ? "min-w-[300px]" : "min-w-[100px]"
-          }  justify-center text-center w-fit flex hover:opacity-50 bg-primary-600 text-white font-semibold text-lg `}
+          }  justify-center text-center w-fit flex hover:opacity-50 bg-primary-500 text-white font-semibold text-lg `}
         >
           <>
             {loading ? (
