@@ -24,6 +24,7 @@ import useCategory from "@/hooks/useCategories";
 import useAuth from "@/hooks/useAuth";
 import AccountButton from "../AccountButton";
 import MobileDrawer from "@/components/molecules/MobileDrawer";
+import Link from "next/link";
 
 interface IHeaderV2Props {}
 
@@ -113,6 +114,16 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
             }}
           />
         </div>
+      </div>
+
+      <div className="w-full shadow-lg bg-primary-600 h-[50px] laptop:pb-0 border-b border-seconday-500 flex justify-center gap-x-4 items-center">
+        {listCategory?.map((category: any) => (
+          <Link href="/">
+            <p className="text-md text-secondary-500 font-semibold">
+              {category?.name}
+            </p>
+          </Link>
+        ))}
       </div>
       {openSearchSheet && (
         <SearchSheet

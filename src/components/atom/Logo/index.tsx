@@ -19,11 +19,11 @@ const Logo: React.FC<ILogo> = ({ variant = "primary" }) => {
         cursor: "pointer",
       }}
     >
-      {/* <Image
+      <Image
         alt="/logo"
         src={require("@/assets/icons/logo.png")}
         style={{ width: 36, height: 36 }}
-      /> */}
+      />
       <Typography
         className={`${
           variant === "primary" ? "text-primary-500" : "text-white"
@@ -37,8 +37,7 @@ const Logo: React.FC<ILogo> = ({ variant = "primary" }) => {
           },
         }}
         fontWeight="500"
-        color="white"
-        variant="h6"
+        variant="h5"
         gutterBottom
       >
         The Coffee House
