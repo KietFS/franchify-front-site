@@ -11,12 +11,12 @@ const FooterSection: React.FC<IFooterSectionProps> = () => {
       <div className="w-full flex-shrink-0 max-w-[1570px] flex flex-col md:flex-row">
         <div className="w-full md:w-1/3">
           <Logo />
-          <div className="mt-3 pr-[100px]">
+          <div className="mt-3 pr-[30%]">
             <p className="flex-wrap text-secondary-900 font-bold">
               Sell anything, buy anything, and discover a world of endless
               possibilities. Whether you are looking to declutter your home,
               find unique treasures, or start a new business, our platform
-              provides the perfect marketplace for all your needs.
+              provides the perfect marketplace for all your needs
             </p>
             <div className="flex gap-4 py-6 mt-2"></div>
           </div>
