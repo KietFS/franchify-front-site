@@ -12,7 +12,8 @@ import "slick-carousel/slick/slick-theme.css";
 import { Provider } from "react-redux";
 import { store } from "@/redux";
 import "../utils/prototype";
-
+// In app directory
+import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 const inter = Lexend({ subsets: ["latin"] });
 
 export default function RootLayout({
@@ -28,8 +29,14 @@ export default function RootLayout({
             <ThemeProvider theme={theme}>
               <AppRouterCacheProvider>
                 <CssBaseline />
-                <Header />
 
+                <Header />
+                <ProgressBar
+                  height="400px"
+                  color="#fffd00"
+                  options={{ showSpinner: true }}
+                  shallowRouting
+                />
                 <div className="min-h-[70vh] bg-white">{children}</div>
 
                 <Footer />
