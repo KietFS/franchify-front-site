@@ -42,21 +42,18 @@ const ProductGrid: React.FC<IProductGridProps> = (props) => {
             ))}
           </div>
 
-          <div className="w-full flex justify-center mt-8">
+          {/* <div className="w-full flex justify-center mt-8">
             {loading ? (
               <CircularProgress size={36} sx={{ color: "black" }} />
             ) : (
-              <Button
-                variant="secondary"
-                className="max-w-[130px]"
-                onClick={() => {
-                  setCurrentPage((page) => page + 1);
-                }}
+              <button
+                onClick={() => setCurrentPage(currentPage + 1)}
+                className="text-md px-4 py-2 font-semibold text-center text-secondary-500 border-transparent bg-primary-500 rounded-full"
               >
                 Xem thêm
-              </Button>
+              </button>
             )}
-          </div>
+          </div> */}
         </div>
       )}
     </>

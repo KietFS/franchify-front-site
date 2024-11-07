@@ -40,17 +40,11 @@ const AccountButton: React.FC<IAccountButtonProps> = (props) => {
           onClick={handleClick}
           className="py-2 text-black-500 rounded-full w-fit px-4 bg-transparent justify-center items-center flex"
         >
-          <Avatar
-            className="bg-primary-600"
-            sx={{
-              backgroundColor: "white",
-            }}
-          >
-            <p className="text-primary-600 font-bold">
-              {" "}
+          <div className="bg-primary-600 w-[40px] h-[40px] cursor-pointer rounded-full flex items-center justify-center box-border">
+            <p className="text-secondary-600 font-bold">
               {user?.username?.[0]?.toUpperCase() || "U"}
             </p>
-          </Avatar>
+          </div>
         </button>
       )}
 
@@ -85,7 +79,7 @@ const AccountButton: React.FC<IAccountButtonProps> = (props) => {
           },
         }}
       >
-        <div className="w-[280px] border border-primary-100 min-h-[400px] shadow-sm bg-secondary-50 px-4 py-8 rounded-lg flex flex-col gap-y-4">
+        <div className="w-[280px] min-h-[400px] shadow-md bg-secondary-50 px-4 py-8 rounded-lg flex flex-col gap-y-4">
           <div>
             <p className="text-secondary-900 text-sm font-normal">Xin chào</p>
             <strong className="text-primary-600 text-lg">

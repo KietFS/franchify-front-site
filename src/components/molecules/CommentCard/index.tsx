@@ -1,6 +1,5 @@
 "use client";
 
-import { Avatar } from "@mui/material";
 import React, { useState } from "react";
 import axios from "axios";
 import CommentInput from "@/components/atom/CommentInput";
@@ -155,14 +154,14 @@ const CommentCard: React.FC<any> = (props) => {
           isConfirmLoadingButton={isDeleting}
         />
       )}
-      <div className="my-2 py-3 pl-4 rounded-xl bg-gray-100 h-fit">
+      <div className="my-2 py-3 pl-4 rounded-xl bg-secondary-100 h-fit">
         <>
           {commentMode == "view" ? (
             <div className="flex justify-between w-full">
               <div className="flex items-center gap-x-2">
-                <Avatar sx={{ bgcolor: "gray" }}>
+                <div className="bg-primary-600 text-center text-secondary-500 w-[40px] h-[40px] cursor-pointer rounded-full flex items-center justify-center box-border">
                   {commentUser?.username?.[0]}
-                </Avatar>
+                </div>
                 <div>
                   <div className="flex flex-col tablet:flex-row tablet:items-center">
                     <p className="text-sm tablet:text-lg font-semibold text-secondary-900">

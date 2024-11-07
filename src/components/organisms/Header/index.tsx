@@ -2,11 +2,7 @@
 
 import React, { useEffect, useState, useRef, use } from "react";
 import { useRouter } from "next/navigation";
-import {
-  Bars3Icon,
-  ShoppingCartIcon,
-  UserIcon,
-} from "@heroicons/react/24/solid";
+import { Bars3Icon, ShoppingCartIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
 import SearchBar from "../../molecules/SearchBar";
 import Logo from "@/components/atom/Logo";
@@ -16,7 +12,7 @@ import NextNProgress from "nextjs-progressbar";
 import { setCurrentCart } from "@/redux/slices/cart";
 import { useSelector } from "react-redux";
 import useCart from "@/hooks/useCart";
-import useNavigation from "@/hooks/useNavigation";
+
 import SearchSheet from "@/components/molecules/SearchSheet";
 import SearchDropdown from "@/components/molecules/SearchDropdown";
 import useSearch from "@/hooks/useSearch";
@@ -57,8 +53,8 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
   }, []);
 
   return (
-    <>
-      <div className="w-full shadow-lg pb-4  bg-primary-500 laptop:pb-0 border-b border-seconday-500">
+    <div className="w-full bg-primary-500">
+      <div className="shadow-lg max-w-[1560px] mx-auto pb-4 laptop:pb-0">
         <div className="w-full flex space-x-4  tablet:space-x-6 laptop:space-x-6 desktop:space-x-8 items-center px-4 py-4  justify-between laptop:justify-around">
           <div className="flex laptop:hidden  w-1/3 laptop:w-0">
             <button className="" onClick={() => setOpenMobileDrawer(true)}>
@@ -96,7 +92,9 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
                 onClick={() => router.replace("/cart")}
               >
                 <ShoppingCartIcon className="w-8 h-8 text-secondary-500" />
-                <div>{currentCart?.cartDetails?.length}</div>
+                <div className="text-secondary-500">
+                  {currentCart?.cartDetails?.length}
+                </div>
               </button>
             </div>
           </div>
@@ -137,7 +135,7 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
           onClose={() => setOpenMobileDrawer(false)}
         />
       )}
-    </>
+    </div>
   );
 };
 

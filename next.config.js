@@ -7,6 +7,11 @@ module.exports = {
         hostname: "res.cloudinary.com",
         pathname: "/**",
       },
+      {
+        hostname: "stg-mvpbeta-mvp.relationshop.net",
+        pathname: "/**",
+        protocol: "https",
+      },
     ],
   },
   eslint: {

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { BuildingStorefrontIcon, TruckIcon } from "@heroicons/react/24/solid";
+import { BuildingStorefrontIcon, TruckIcon } from "@heroicons/react/24/outline";
 import { Divider, Popover } from "@mui/material";
 import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 import useStore from "@/hooks/useStore";
@@ -72,12 +72,17 @@ const FulfillmentMangement: React.FC<IFulfillmentMangementProps> = (props) => {
     <>
       <button
         onClick={handleClick}
-        className="p-2 text-black-500 rounded-full w-fit desktop:max-w-[250px] bg-transparent justify-center items-center flex border border-primary-100"
+        className="p-2 text-black-500 rounded-full w-fit desktop:max-w-[250px] bg-transparent justify-center items-center flex gap-x-2"
       >
         <TruckIcon className="w-8 h-8 text-secondary-500 mr-1" />
-        <p className="text-secondary-500 hidden desktop:flex truncate">
-          {currentStore?.name}
-        </p>
+        <div>
+          <p className="text-secondary-500 font-regular hidden desktop:flex truncate">
+            Bạn đang chọn
+          </p>
+          <p className="text-secondary-500 font-regular hidden desktop:flex truncate max-w-[100px]">
+            Cửa hàng {currentStore?.storeCode}
+          </p>
+        </div>
       </button>
 
       <Popover

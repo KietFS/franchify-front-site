@@ -28,7 +28,7 @@ const RichTextInput: React.FC<IRichTextInputProps> = (props) => {
         return (
           <div
             className={`w-full rounded-sm ${
-              !!error ? "text-blue-500" : "text-neutral-300"
+              !!error ? "text-secondary-900" : "text-red-500"
             }  `}
           >
             <div className="flex items-center justify-between">
@@ -44,14 +44,14 @@ const RichTextInput: React.FC<IRichTextInputProps> = (props) => {
                 focus && !error
                   ? "border-2 border-secondary-900"
                   : !!error
-                  ? "border-2 border-red-500"
-                  : "border border-secondary-800"
+                    ? "border-2 border-red-500"
+                    : "border border-secondary-800"
               } ${
                 focus && !error
-                  ? "bg-blue-50"
+                  ? "bg-secondary-50"
                   : error
-                  ? "bg-red-50"
-                  : "bg-secondary-100"
+                    ? "bg-red-50"
+                    : "bg-secondary-100"
               } px-2 py-1 rounded-lg  ${className}`}
             >
               <textarea
@@ -63,10 +63,10 @@ const RichTextInput: React.FC<IRichTextInputProps> = (props) => {
                 onChange={(e) => onChange(e.target.value)}
                 className={`px-2 py-1 w-[100%] min-h-[100px]  ${
                   focus && !error
-                    ? "bg-blue-50"
+                    ? "bg-secondary-50 border-primary-500"
                     : error
-                    ? "bg-red-50"
-                    : "bg-secondary-100"
+                      ? "bg-red-50"
+                      : "bg-secondary-100"
                 } text-primary-700 rounded-lg w-80 h-8 text-sm  outline-none ring-0 border-transparent focus:border-transparent focus:ring-0 focus:outline-transparent`}
               />
             </div>
