@@ -18,16 +18,11 @@ const ProductGrid: React.FC<IProductGridProps> = (props) => {
   const { currentStore } = useStore();
 
   useEffect(() => {
-    currentStore &&
-      getAllProducts({ categoryId: category.id, page: currentPage });
-  }, [currentStore]);
-
-  useEffect(() => {
     if (currentPage >= 1) {
       currentStore &&
         getAllProducts({ categoryId: category.id, page: currentPage });
     }
-  }, [currentPage]);
+  }, [currentPage, currentStore]);
 
   return (
     <>

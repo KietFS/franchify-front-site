@@ -54,7 +54,7 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
 
   useEffect(() => {
     !currentCart && getCartById();
-  }, [currentCart]);
+  }, []);
 
   return (
     <>

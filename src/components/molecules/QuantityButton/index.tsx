@@ -2,7 +2,7 @@
 
 import { AddShoppingCart } from "@mui/icons-material";
 import { CircularProgress, IconButton } from "@mui/material";
-import React, { useEffect } from "react";
+import React from "react";
 
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/solid";
 import { TrashIcon } from "@heroicons/react/24/outline";
@@ -35,10 +35,6 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
   } = useCart(storeProduct?.product);
   const { isAuthenticated } = useAuth();
   const router = useRouter();
-
-  useEffect(() => {
-    !currentCart && getCartById();
-  }, []);
 
   return (
     <div className="flex items-center z-20">

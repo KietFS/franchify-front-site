@@ -78,7 +78,7 @@ const Cart: React.FC<ICartProps> = (props) => {
   };
 
   useEffect(() => {
-    getCartById();
+    !currentCart && getCartById();
   }, []);
 
   return (
