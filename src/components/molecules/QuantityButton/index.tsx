@@ -29,7 +29,7 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
     handleAddToCart,
     handleDecreaseQuantity,
     handleIncreaseQuantity,
-    getCartById,
+    getUserCart,
     loading,
     handleRemoveProduct,
   } = useCart(storeProduct?.product);

@@ -15,6 +15,7 @@ import { CircularProgress, Divider } from "@mui/material";
 
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -26,28 +27,12 @@ const Cart: React.FC<ICartProps> = (props) => {
   const dispatch = useDispatch();
   const toast = useToast();
   const { user } = useAuth();
-  const { loading } = useCart();
+  const { loading, getUserCart } = useCart();
   const { createOrder, actionLoading } = useOrder();
-  const [address, setAddress] = useState<any>(null);
+  const router = useRouter();
 
   //local state
   const [openAddress, setOpenAddress] = useState<boolean>(false);
-
-  const getCartById = async () => {
-    try {
-      const response = await axios.get(`${apiURL}/cart`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-
-      if (response?.data?.success) {
-        dispatch(setCurrentCart(response?.data?.data));
-      }
-    } catch (error) {
-      console.log("GET CART BY ID ERROR", error);
-    }
-  };
 
   const totalPrice = () => {
     let total = 0;
@@ -87,11 +72,14 @@ const Cart: React.FC<ICartProps> = (props) => {
   };
 
   useEffect(() => {
-    !currentCart && getCartById();
+    !currentCart && getUserCart();
   }, []);
 
   const handleClickCreateOrder = async (data: ICreateOrder) => {
-    await createOrder(data);
+    await createOrder(data, async () => {
+      await getUserCart();
+      router.push("/orders");
+    });
   };
 
   return (
@@ -152,7 +140,7 @@ const Cart: React.FC<ICartProps> = (props) => {
                         Phí giao hàng
                       </p>
                       <p className="text-md text-green-600 font-bold">
-                        +{50000?.toString().prettyMoney()}
+                        +{(50000)?.toString().prettyMoney()}
                       </p>
                     </div>
 
@@ -161,7 +149,7 @@ const Cart: React.FC<ICartProps> = (props) => {
                         Phí dịch vụ
                       </p>
                       <p className="text-md text-green-600 font-bold">
-                        +{1000?.toString()?.prettyMoney()}
+                        +{(1000)?.toString()?.prettyMoney()}
                       </p>
                     </div>
 
@@ -215,7 +203,6 @@ const Cart: React.FC<ICartProps> = (props) => {
         <AddressDialog
           open={openAddress}
           onSubmited={(data) => {
-            setAddress(data);
             setOpenAddress(false);
             handleClickCreateOrder({ orderAddress: data });
           }}

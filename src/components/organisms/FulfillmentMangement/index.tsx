@@ -59,7 +59,7 @@ const FulfillmentMangement: React.FC<IFulfillmentMangementProps> = (props) => {
           },
           (error) => {
             console.error("Error getting geolocation:", error);
-          }
+          },
         );
         await getListStore(lng, lat);
       } else {
@@ -80,7 +80,7 @@ const FulfillmentMangement: React.FC<IFulfillmentMangementProps> = (props) => {
             Bạn đang chọn
           </p>
           <p className="text-secondary-500 font-regular hidden desktop:flex truncate max-w-[100px]">
-            Cửa hàng {currentStore?.storeCode}
+            {`Cửa hàng: ${currentStore?.name}`}
           </p>
         </div>
       </button>

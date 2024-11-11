@@ -34,7 +34,7 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
   const [openSearchDropDown, setOpenSearchDropdown] = useState<boolean>(false);
   const [openSearchSheet, setOpenSearchSheet] = useState<boolean>(false);
 
-  const { currentCart, getCartById } = useCart();
+  const { currentCart, getUserCart } = useCart();
   const { listCategory, getCategories } = useCategory();
   const { isAuthenticated } = useAuth();
 
@@ -45,14 +45,14 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
   }, []);
 
   useEffect(() => {
-    !currentCart && getCartById();
+    !currentCart && getUserCart();
   }, []);
 
   return (
     <div className="w-full bg-primary-500">
       <div className="max-w-[1560px] mx-auto pb-4 laptop:pb-0">
         <TopBar />
-        <div className="w-full flex space-x-4  tablet:space-x-6 laptop:space-x-6 desktop:space-x-8 items-center px-4 py-4  justify-between laptop:justify-around">
+        <div className="w-full flex space-x-4 tablet:space-x-6 laptop:space-x-6 desktop:space-x-8 items-center px-4 py-4  justify-between laptop:justify-around">
           <div className="flex laptop:hidden  w-1/3 laptop:w-0">
             <button className="" onClick={() => setOpenMobileDrawer(true)}>
               <Bars3Icon className="text-secondary-500 font-bold w-8 h-8" />

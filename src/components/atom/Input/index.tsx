@@ -7,7 +7,7 @@ interface InputProps {
   control: any;
   name: string;
   label: string;
-  placeholder: string;
+  placeholder?: string;
   mode?: string;
   rules?: any;
 }
@@ -16,7 +16,7 @@ const Input: React.FC<InputProps> = ({
   control,
   name,
   label,
-  placeholder,
+  placeholder = "",
   mode = "text",
   rules,
 }) => {

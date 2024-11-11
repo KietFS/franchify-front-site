@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect } from "react";
-import Logo from "@/components/atom/Logo";
 import useConfig from "@/hooks/useConfig";
 
 interface IFooterSectionProps {}
@@ -10,7 +9,7 @@ const FooterSection: React.FC<IFooterSectionProps> = () => {
   const { tenantConfigs, getTenantConfig } = useConfig();
 
   useEffect(() => {
-    !tenantConfigs && getTenantConfig();
+    getTenantConfig();
   }, []);
 
   return (

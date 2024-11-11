@@ -14,7 +14,10 @@ const useOrder = () => {
   const dispatch = useDispatch();
   const toast = useToast();
 
-  const createOrder = async (createOrder: ICreateOrder) => {
+  const createOrder = async (
+    createOrder: ICreateOrder,
+    onSuccess?: () => void,
+  ) => {
     try {
       setActionLoading(true);
       const response = await axios.post(`${apiURL}/orders`, createOrder, {
@@ -24,7 +27,7 @@ const useOrder = () => {
       });
       if (response?.data?.success) {
         toast.sendToast("success", "Đặt hàng thành công");
-        dispatch(setCurrentOrder(response?.data?.data));
+        onSuccess && onSuccess();
       }
     } catch (error) {
       toast.sendToast("error", "Đặt hàng thất bại, vui lòng thử lại sau");
@@ -44,7 +47,6 @@ const useOrder = () => {
       });
       if (response?.data?.success) {
         toast.sendToast("success", "Xóa đơn hàng thành công");
-        dispatch(setCurrentOrder(response?.data?.data));
       }
     } catch (error) {
       toast.sendToast("error", "Xóa đơn hàng thất bại, vui lòng thử lại sau");
@@ -74,12 +76,33 @@ const useOrder = () => {
     }
   };
 
+  const getOrderById = async (orderId: number) => {
+    try {
+      setLoading(true);
+      const response = await axios.get(`${apiURL}/orders/${orderId}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      if (response?.data?.success) {
+        setLoading(false);
+        dispatch(setCurrentOrder(response?.data?.data));
+      }
+    } catch (error) {
+      setLoading(false);
+      console.error("Get order detail error", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return {
     createOrder,
     actionLoading,
     currentOrder,
     getAllOrders,
     cancelOrder,
+    getOrderById,
     orders,
   };
 };

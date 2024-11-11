@@ -74,12 +74,20 @@ interface IOrderDetail {
   updatedAt: string;
 }
 
+interface IOrderAddress {
+  address: string;
+  province: string;
+  district?: string;
+  ward?: string;
+  shippingFee: number;
+}
+
 interface IOrder {
   id: number;
   status: string;
   createdAt: string;
   updatedAt: string;
-  orderAddress: string | null;
+  orderAddress: IOrderAddress | null;
   totalAmount: string;
   orderDetails: IOrderDetail[];
   user: IUser;
@@ -87,7 +95,7 @@ interface IOrder {
 
 export interface ICreateOrderAddress {
   address: string;
-  city: string;
+  province: string;
   district?: string;
   ward?: string;
   shippingFee: number;
