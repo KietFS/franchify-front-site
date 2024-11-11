@@ -26,35 +26,50 @@ const ProductGrid: React.FC<IProductGridProps> = (props) => {
 
   return (
     <>
-      {storeProducts?.length > 0 && (
-        <div>
-          <h1 className="text-4xl font-bold text-secondary-900 mb-16">
-            Danh mục {category?.name}
-          </h1>
-          <div className="w-full grid tablet:grid-cols-2 laptop:grid-cols-4 gap-y-4 gap-x-4">
-            {storeProducts?.map((item: any, index: number) => (
-              <ProductCard
-                key={`card-${index}`}
-                handleItemClick={() => {}}
-                item={item}
-                index={index}
-              />
-            ))}
+      {loading ? (
+        <>
+          <div className="h-[40px] w-[300px] bg-secondary-600 animate-pulse mb-4"></div>
+          <div className="grid gap-x-4 gap-y-8 grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-4">
+            {Array(8)
+              .fill(1)
+              ?.map((item) => (
+                <div className="w-full h-[200px] animate-pulse bg-secondary-600"></div>
+              ))}
           </div>
+        </>
+      ) : (
+        <>
+          {storeProducts?.length > 0 && (
+            <div>
+              <h1 className="text-4xl font-bold text-secondary-900 mb-16">
+                Danh mục {category?.name}
+              </h1>
+              <div className="w-full grid tablet:grid-cols-2 laptop:grid-cols-4 gap-y-4 gap-x-4">
+                {storeProducts?.map((item: any, index: number) => (
+                  <ProductCard
+                    key={`card-${index}`}
+                    handleItemClick={() => {}}
+                    item={item}
+                    index={index}
+                  />
+                ))}
+              </div>
 
-          {/* <div className="w-full flex justify-center mt-8">
-            {loading ? (
-              <CircularProgress size={36} sx={{ color: "black" }} />
-            ) : (
-              <button
-                onClick={() => setCurrentPage(currentPage + 1)}
-                className="text-md px-4 py-2 font-semibold text-center text-secondary-500 border-transparent bg-primary-500 rounded-full"
-              >
-                Xem thêm
-              </button>
-            )}
-          </div> */}
-        </div>
+              <div className="w-full flex justify-center mt-8">
+                {loading ? (
+                  <CircularProgress size={36} sx={{ color: "black" }} />
+                ) : (
+                  <button
+                    onClick={() => setCurrentPage(currentPage + 1)}
+                    className="text-md px-4 py-2 font-semibold text-center text-secondary-500 border-transparent bg-primary-500 rounded-full"
+                  >
+                    Xem thêm
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
+        </>
       )}
     </>
   );

@@ -1,22 +1,25 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Logo from "@/components/atom/Logo";
+import useConfig from "@/hooks/useConfig";
 
 interface IFooterSectionProps {}
 
 const FooterSection: React.FC<IFooterSectionProps> = () => {
+  const { tenantConfigs, getTenantConfig } = useConfig();
+
+  useEffect(() => {
+    !tenantConfigs && getTenantConfig();
+  }, []);
+
   return (
     <div className="w-full flex flex-col items-center px-3 md:px-10 bg-secondary-500 py-14 text-[13px] border-t border-t-secondary-600">
       <div className="w-full flex-shrink-0 max-w-[1570px] flex flex-col md:flex-row">
         <div className="w-full md:w-1/3">
-          <Logo />
           <div className="mt-3 pr-[30%]">
             <p className="flex-wrap text-secondary-900 font-bold">
-              Sell anything, buy anything, and discover a world of endless
-              possibilities. Whether you are looking to declutter your home,
-              find unique treasures, or start a new business, our platform
-              provides the perfect marketplace for all your needs
+              {tenantConfigs?.fullDescription}
             </p>
             <div className="flex gap-4 py-6 mt-2"></div>
           </div>
@@ -241,7 +244,7 @@ const FooterSection: React.FC<IFooterSectionProps> = () => {
         <div className="flex flex-col items-center justify-between w-full gap-6 pt-2 mt-1 font-normal gap-x-4 md:flex-row">
           <div className="flex flex-col md:flex-row">
             <p className="md:mt-0 text-secondary-900">
-              © 2021-2024 Market Floor LLC
+              © 2021-2024 {tenantConfigs?.companyLegalName} LLC
             </p>
             <ul className="flex gap-2 md:ml-10">
               <li>

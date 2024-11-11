@@ -7,6 +7,7 @@ import { Cog6ToothIcon, UserIcon } from "@heroicons/react/24/solid";
 import Button from "@/components/atom/Button";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface IAccountButtonProps {}
 
@@ -30,7 +31,7 @@ const AccountButton: React.FC<IAccountButtonProps> = (props) => {
     <>
       {!isAuthenticated ? (
         <button
-          className=" rounded-xl px-4 py-2 text-center text-primary-600  text-sm w-fit flex space-x-1 items-center hover:bg-primary-100"
+          className=" rounded-xl px-4 py-2 text-center text-primary-600  text-sm w-fit flex space-x-1 items-center hover:opacity-80"
           onClick={() => router.replace("/login")}
         >
           <UserIcon className="w-8 h-8 text-secondary-500" />
@@ -98,11 +99,15 @@ const AccountButton: React.FC<IAccountButtonProps> = (props) => {
 
           <Divider sx={{ height: 4, width: "100%", margin: "4px 0" }} />
 
-          <div></div>
-
           <a className="no-underline text-secondary-900 text-sm font-semibold cursor-pointer hover:underline">
             Thông tin cá nhân
           </a>
+
+          <Link href="/orders" onClick={() => setOpenPopup(false)}>
+            <p className="no-underline text-secondary-900 text-sm font-semibold cursor-pointer hover:underline">
+              Đơn hàng của tôi
+            </p>
+          </Link>
 
           <Divider sx={{ height: 4, width: "100%", margin: "4px 0" }} />
 

@@ -32,13 +32,12 @@ export default function RootLayout({
 
                 <Header />
                 <ProgressBar
-                  height="400px"
-                  color="#fffd00"
-                  options={{ showSpinner: true }}
+                  height="4px"
+                  color="black"
                   shallowRouting
+                  options={{ showSpinner: false }}
                 />
                 <div className="min-h-[70vh] bg-white">{children}</div>
-
                 <Footer />
               </AppRouterCacheProvider>
             </ThemeProvider>

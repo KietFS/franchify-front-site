@@ -17,7 +17,7 @@ const ProductDetailTemplate: React.FC<IProductDetailTemplateProps> = (
   return (
     <>
       {!!product ? (
-        <div className="py-16 bg-white desktop:min-w-[1200px] laptop:min-w-[960px] mx-auto min-h-[800px]">
+        <>
           <div className="flex gap-y-8 gap-x-[80px] justify-center flex-col tablet:flex-row">
             <ProductLeftSide storeProduct={product} />
             {!!product ? <ProductRightSide storeProduct={product} /> : null}
@@ -25,7 +25,7 @@ const ProductDetailTemplate: React.FC<IProductDetailTemplateProps> = (
 
           <ProductComments productDetail={product} />
           <SimilarProducts listProduct={relatedProduct} />
-        </div>
+        </>
       ) : null}
     </>
   );

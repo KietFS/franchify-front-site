@@ -26,14 +26,14 @@ const ProductDetailPage = async (props: any) => {
   }
 
   return (
-    <div className="flex w-full justify-center">
+    <>
       {product && (
         <ProductDetailTemplate
           product={product}
           relatedProduct={relatedProducts}
         />
       )}
-    </div>
+    </>
   );
 };
 

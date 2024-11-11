@@ -6,10 +6,6 @@ function generateThemeSchema(primaryColor) {
   try {
     const color = new tinycolor(primaryColor);
 
-    if (color) {
-      console.log("color", color);
-    }
-
     const scheme = {
       100: color.clone().lighten(40).toHexString(),
       200: color.clone().lighten(30).toHexString(),

@@ -179,7 +179,7 @@ const CommentCard: React.FC<any> = (props) => {
                   <div className="items-center flex mt-1">
                     {!!isAuthenticated && (
                       <button
-                        className="text-secondary-800 hover:text-secondary-500 font-regular text-xs"
+                        className="text-secondary-900 hover:text-secondary-900 font-regular text-xs"
                         onClick={handleTurnOnReply}
                       >
                         Trả lời
@@ -187,7 +187,7 @@ const CommentCard: React.FC<any> = (props) => {
                     )}
                     {props.userName == user?.username && (
                       <button
-                        className="text-secondary-900 hover:text-red-500 font-regular text-xs ml-2"
+                        className="text-secondary-900 hover:opacity-80 font-regular text-xs ml-2"
                         onClick={() => setOpenConfirmDialog(true)}
                       >
                         Xóa bình luận
@@ -195,7 +195,7 @@ const CommentCard: React.FC<any> = (props) => {
                     )}
                     {props.userName == user?.username && (
                       <button
-                        className="text-secondary-500 hover:text-red-500 font-regular text-xs ml-2"
+                        className="text-secondary-900 hover:opacity-80 font-regular text-xs ml-2"
                         onClick={handleTurnOnEdit}
                       >
                         Chỉnh sửa
