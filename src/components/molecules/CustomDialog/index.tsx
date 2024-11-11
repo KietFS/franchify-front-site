@@ -24,9 +24,11 @@ const CustomDialog: React.FC<ICustomDialogProps> = (props) => {
       maxWidth={maxWidth}
       fullWidth={true}
     >
-      <DialogContent className="max-h-[1200px]">
+      <DialogContent className="max-h-[1200px] bg-white">
         <div className="flex justify-between pt-4 pb-6">
-          <h1 className="text-primary-600 font-bold text-2xl mb-2">{title}</h1>
+          <h1 className="text-secondary-900 font-bold text-2xl mb-2">
+            {title}
+          </h1>
           <IconButton onClick={onClose}>
             <XMarkIcon className="w-8 h-8 text-primary-800" />
           </IconButton>

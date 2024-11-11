@@ -19,30 +19,13 @@ const Logo: React.FC<ILogo> = ({ variant = "primary" }) => {
         cursor: "pointer",
       }}
     >
-      {/* <Image
+      <Image
         alt="/logo"
-        src={require("@/assets/icons/logo.png")}
-        style={{ width: 36, height: 36 }}
-      /> */}
-      <Typography
-        className={`${
-          variant === "primary" ? "text-primary-500" : "text-white"
-        }`}
-        sx={{
-          margin: 0,
-          padding: 0,
-          display: {
-            xs: "none",
-            md: "flex",
-          },
-        }}
-        fontWeight="500"
-        color="white"
-        variant="h6"
-        gutterBottom
-      >
-        The Coffee House
-      </Typography>
+        width={200}
+        height={100}
+        src="https://res.cloudinary.com/dfnuzzpe3/image/upload/v1731048054/logo_xrm6cx.webp"
+        // style={{ width: 36, height: 36 }}
+      />
     </Box>
   );
 };

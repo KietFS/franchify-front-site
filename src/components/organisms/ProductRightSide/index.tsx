@@ -1,7 +1,6 @@
 "use client";
 
 import QuantityButton from "@/components/molecules/QuantityButton";
-import { AddShoppingCart } from "@mui/icons-material";
 import React from "react";
 
 interface IProductRightSideProps {
@@ -20,7 +19,7 @@ const ProductRightSide: React.FC<IProductRightSideProps> = (props) => {
       <div className="flex flex-col">
         <div className="flex items-center">
           <h3 className="text-secondary-800 text-lg">Giá bán: </h3>
-          <h3 className="text-green-600 text-lg ml-2 cursor-pointer">
+          <h3 className="text-green-600 text-xl ml-2 cursor-pointer font-semibold">
             {storeProduct?.price.displayPrice}
           </h3>
         </div>
@@ -34,7 +33,7 @@ const ProductRightSide: React.FC<IProductRightSideProps> = (props) => {
           Object.entries(storeProduct?.product?.properties).map(
             ([key, value]: [string, any]) => (
               <div key={key} className="flex items-center">
-                <h3 className="text-primary-400 text-lg">
+                <h3 className="text-secondary-900 text-lg">
                   {storeProduct?.product?.category?.properties?.map(
                     (property: any) => {
                       if (property?.name == key) {
@@ -43,7 +42,7 @@ const ProductRightSide: React.FC<IProductRightSideProps> = (props) => {
                     }
                   )}
                 </h3>
-                <h3 className="text-primary-500 ml-2 text-lg cursor-pointer">
+                <h3 className="text-secondary-800 ml-2 text-lg cursor-pointer">
                   {value}
                 </h3>
               </div>

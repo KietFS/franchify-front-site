@@ -68,7 +68,7 @@ const ProductLeftSide: React.FC<ILeftSideProps> = ({ storeProduct }) => {
             carouselImages?.map((item: any, index: number) => (
               <div
                 key={index}
-                className="p-2 border border-primary-200 rounded-xl cursor-pointer hover:opacity-50"
+                className="p-2 border border-secondary-700 rounded-xl cursor-pointer hover:opacity-50"
                 onClick={() => (sliderRef.current as any)?.slickGoTo(index)}
               >
                 <img

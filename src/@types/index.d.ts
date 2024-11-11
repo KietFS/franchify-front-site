@@ -1,18 +1,30 @@
 declare module "@heroicons/react/outline";
 declare module "styled-components";
 
-interface ProductPrice {
+interface IProductPrice {
   price: number;
   displayPrice: string;
   salePrice?: number;
   displaySalePrice?: string;
 }
 
+interface IUser {
+  id: number;
+  username: string;
+  phoneNumber: string;
+  firstName: string;
+  lastName: string;
+  savePoints: number;
+  email: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 interface IProduct {
   id: string;
   upc: string;
   name: string;
-  price: ProductPrice;
+  price: IProductPrice;
   isOnSale?: boolean;
   fullDescription?: string;
   shortDescription?: string;
@@ -25,7 +37,7 @@ interface IProduct {
 
 interface IStoreProduct {
   product: IProduct;
-  price: ProductPrice;
+  price: IProductPrice;
   inventory: number;
 }
 
@@ -54,19 +66,39 @@ interface IProductCategoryProperty {
   options?: string[];
 }
 
-interface IProductHomePageResponse {
-  id: string;
-  name: string;
-  startPrice: number;
-  imagePath: string;
-  username: string;
+interface IOrderDetail {
+  id: number;
+  quantity: number;
+  price: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface IOrder {
+  id: number;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+  orderAddress: string | null;
+  totalAmount: string;
+  orderDetails: IOrderDetail[];
+  user: IUser;
+}
+
+export interface ICreateOrderAddress {
+  address: string;
+  city: string;
+  district?: string;
+  ward?: string;
+  shippingFee: number;
+}
+
+export interface ICreateOrder {
+  orderAddress: CreateOrderAddress;
 }
 
 declare interface String {
   truncate: (num: number) => string;
-}
-
-declare interface String {
   prettyMoney: () => string;
   prettyDate: () => string;
   prettyDateTime: () => string;

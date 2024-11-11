@@ -7,6 +7,7 @@ import { Cog6ToothIcon, UserIcon } from "@heroicons/react/24/solid";
 import Button from "@/components/atom/Button";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface IAccountButtonProps {}
 
@@ -30,7 +31,7 @@ const AccountButton: React.FC<IAccountButtonProps> = (props) => {
     <>
       {!isAuthenticated ? (
         <button
-          className=" rounded-xl px-4 py-2 text-center text-primary-600  text-sm w-fit flex space-x-1 items-center hover:bg-primary-100"
+          className=" rounded-xl px-4 py-2 text-center text-primary-600  text-sm w-fit flex space-x-1 items-center hover:opacity-80"
           onClick={() => router.replace("/login")}
         >
           <UserIcon className="w-8 h-8 text-secondary-500" />
@@ -40,17 +41,11 @@ const AccountButton: React.FC<IAccountButtonProps> = (props) => {
           onClick={handleClick}
           className="py-2 text-black-500 rounded-full w-fit px-4 bg-transparent justify-center items-center flex"
         >
-          <Avatar
-            className="bg-primary-600"
-            sx={{
-              backgroundColor: "white",
-            }}
-          >
-            <p className="text-primary-600 font-bold">
-              {" "}
+          <div className="bg-primary-600 w-[40px] h-[40px] cursor-pointer rounded-full flex items-center justify-center box-border">
+            <p className="text-secondary-600 font-bold">
               {user?.username?.[0]?.toUpperCase() || "U"}
             </p>
-          </Avatar>
+          </div>
         </button>
       )}
 
@@ -85,7 +80,7 @@ const AccountButton: React.FC<IAccountButtonProps> = (props) => {
           },
         }}
       >
-        <div className="w-[280px] border border-primary-100 min-h-[400px] shadow-sm bg-secondary-50 px-4 py-8 rounded-lg flex flex-col gap-y-4">
+        <div className="w-[280px] min-h-[400px] shadow-md bg-secondary-50 px-4 py-8 rounded-lg flex flex-col gap-y-4">
           <div>
             <p className="text-secondary-900 text-sm font-normal">Xin chào</p>
             <strong className="text-primary-600 text-lg">
@@ -104,11 +99,15 @@ const AccountButton: React.FC<IAccountButtonProps> = (props) => {
 
           <Divider sx={{ height: 4, width: "100%", margin: "4px 0" }} />
 
-          <div></div>
-
           <a className="no-underline text-secondary-900 text-sm font-semibold cursor-pointer hover:underline">
             Thông tin cá nhân
           </a>
+
+          <Link href="/orders" onClick={() => setOpenPopup(false)}>
+            <p className="no-underline text-secondary-900 text-sm font-semibold cursor-pointer hover:underline">
+              Đơn hàng của tôi
+            </p>
+          </Link>
 
           <Divider sx={{ height: 4, width: "100%", margin: "4px 0" }} />
 

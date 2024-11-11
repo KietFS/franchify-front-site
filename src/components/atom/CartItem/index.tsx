@@ -30,7 +30,7 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
     >
       <div className="flex w-fit gap-x-4">
         <Image
-          src={cartItem?.product?.thumbnail}
+          src={cartItem?.product?.thumbnail || EmptyImage}
           width={200}
           height={200}
           alt={name}

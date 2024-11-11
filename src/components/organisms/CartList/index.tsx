@@ -24,36 +24,6 @@ export interface ICartItem {
 }
 
 const CartList: React.FC<ICartList> = (props) => {
-  //   const { user } = useAppSelector((state: IRootState) => state.auth);
-  //   const [items, setItems] = useState<ICartItem[]>([]);
-  //   const dispatch = useDispatch();
-  //   const { accessToken } = useAuth();
-
-  //   const getItems = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         `${Config.API_URL}/orders/users/${user.id}?q=APPROVE`,
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${accessToken}`,
-  //           },
-  //         }
-  //       );
-  //       const { isSuccess, data, error } = configResponse(response);
-
-  //       if (isSuccess) {
-  //         setItems(data?.data);
-  //         dispatch(setGlobalCartItems(data?.data));
-  //       }
-  //     } catch (error) {
-  //       console.log("CART ERROR", error);
-  //     }
-  //   };
-
-  //   useEffect(() => {
-  //     user && getItems();
-  //   }, [user]);
-
   return (
     <div className="h-fit laptop:min-h-[600px] laptop:w-4/5 w-full bg-white rounded-lg border border-primary-200 shadow-lg px-8 py-4">
       <h3 className="text-xl laptop:text-2xl text-blue-500 font-bold">
@@ -75,34 +45,6 @@ const CartList: React.FC<ICartList> = (props) => {
             Giá
           </p>
         </div>
-        {/* {items.map((item, index) => (
-          <div
-            className="grid grid-cols-3 laptop:grid-cols-4 gap-x-10 py-2 px-4 border border-primary-200 rounded-lg items-center"
-            key={index.toString()}
-          >
-            <h3 className="text-primary-600 font-regular text-xs laptop:text-sm">
-              {item.product.name}
-            </h3>
-
-            <div className="flex laptop:flex">
-              <img
-                src={item.product.imagePath}
-                width={80}
-                height={60}
-                className="mx-auto"
-              />
-            </div>
-            <div className="hidden laptop:flex cursor-pointer">
-              <h3 className="text-blue-500 font-semibold text-sm">
-                {item.product.userName}
-              </h3>
-              <CheckBadgeIcon className="h-4 w-4 text-blue-500" />
-            </div>
-            <h3 className="text-primary-600 font-regular text-xs laptop:text-lg">
-              {item.priceWin.toString().prettyMoney()}$
-            </h3>
-          </div>
-        ))} */}
       </div>
     </div>
   );

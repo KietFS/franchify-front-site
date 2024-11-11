@@ -30,9 +30,9 @@ const CommentInput: React.FC<ICommentInputProps> = (props) => {
 
   return (
     <div className="flex w-full gap-x-3">
-      <Avatar sx={{ bgcolor: "gray", marginTop: 1 }}>
+      <div className="bg-primary-600 text-center text-secondary-500 w-[40px] h-[40px] cursor-pointer rounded-full flex items-center justify-center box-border">
         {(user?.username?.[0] as string)?.toUpperCase()}
-      </Avatar>
+      </div>
       <div className="w-full">
         <div>
           <RichTextInput

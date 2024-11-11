@@ -34,18 +34,20 @@ const StoreList: React.FC<IStoreListProps> = ({ onSelectedStore }) => {
             onSelectedStore(store);
           }}
           key={store.id}
-          className="flex flex-col gap-y-2 p-4 border border-primary-400 rounded-lg cursor-pointer hover:shadow-md"
+          className="flex flex-col gap-y-2 p-4 border border-secondary-600 rounded-lg cursor-pointer hover:shadow-md"
         >
           <h1 className="text-lg font-bold text-primary-800">{store.name}</h1>
 
           <div className="w-full flex gap-x-2 items-center">
             <ClockIcon className="w-4 h-4 text-primary-800 font-bold" />
-            <p className="text-sm text-primary-800 font-bold">Giờ hoạt động</p>
-            <p className="text-sm text-primary-600">
+            <p className="text-sm text-secondary-900 font-bold">
+              Giờ hoạt động
+            </p>
+            <p className="text-sm text-secondary-900">
               {formatTime(store?.openTime)}
             </p>
             -{" "}
-            <p className="text-sm text-primary-600">
+            <p className="text-sm text-seoncary-900">
               {formatTime(store?.closeTime)}
             </p>
           </div>
@@ -68,7 +70,7 @@ const StoreList: React.FC<IStoreListProps> = ({ onSelectedStore }) => {
             <p className="text-sm text-primary-800 w-[80px] font-bold">
               Địa chỉ
             </p>
-            <span className="text-primary-600 text-sm">
+            <span className="text-secondary-900 text-sm">
               124 Đường Hoàng Diệu 2, Lich Chiểu, Thủ Đức thành phố Hồ Chí Minh{" "}
             </span>
           </div>
