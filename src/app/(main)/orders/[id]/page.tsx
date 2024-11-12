@@ -1,6 +1,6 @@
 "use client";
 
-import OrderDetailTemplate from "@/components/template/OrderDetail";
+import CreateOrder from "@/components/template/CreateOrder";
 import useOrder from "@/hooks/useOrder";
 import React, { useEffect } from "react";
 
@@ -13,7 +13,7 @@ const OrderDetailPage: React.FC<IOrderDetailPageProps> = (props) => {
     !currentOrder && getOrderById((props as any)?.params?.id);
   }, []);
 
-  return <OrderDetailTemplate orderDetail={currentOrder} />;
+  return <CreateOrder initialValue={currentOrder} />;
 };
 
 export default OrderDetailPage;

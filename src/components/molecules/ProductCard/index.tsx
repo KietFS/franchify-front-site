@@ -2,15 +2,10 @@
 
 import React from "react";
 import Image from "next/image";
-import { Dialog, DialogContent, IconButton } from "@mui/material";
 import EmptyImage from "@/assets/images/EmptyImage.png";
 import useNavigation from "@/hooks/useNavigation";
 import QuantityButton from "../QuantityButton";
-import {
-  Bars3BottomLeftIcon,
-  Bars3Icon,
-  HeartIcon,
-} from "@heroicons/react/24/outline";
+import { Bars3Icon } from "@heroicons/react/24/outline";
 import { IProduct, IStoreProduct } from "@/@types";
 
 interface IProductCardProps {
@@ -26,36 +21,36 @@ const ProductCard: React.FC<IProductCardProps> = (props) => {
 
   return (
     <div
-      className="flex h-auto min-h-[500px]  border-gray-200 flex-col justify-between items-center my-8 laptop:my-2  p-4 cursor-pointer z-0"
+      className="h-aut o z-0 my-8 flex min-h-[500px] cursor-pointer flex-col items-center justify-between border-gray-200 p-4 laptop:my-2"
       onClick={() => navigateToProductDetail(item?.product)}
     >
-      <div className="h-[50px] ml-auto">
-        <Bars3Icon className="text-secondary-800 w-8 h-8" />
+      <div className="ml-auto h-[50px]">
+        <Bars3Icon className="h-8 w-8 text-secondary-800" />
       </div>
       {!!item?.product?.thumbnail ? (
         <img
           src={item.product?.thumbnail}
-          className="w-full  h-auto desktop:min-h-[200px] desktop:max-w-[250px] rounded-xl object-cover"
+          className="h-auto w-full rounded-xl object-cover desktop:min-h-[200px] desktop:max-w-[250px]"
           alt={`Product ${index + 1}`}
         />
       ) : (
         <Image
           src={EmptyImage}
-          className="w-full h-auto desktop:h-[200px] desktop:max-w-[250px] rounded-xl object-cover"
+          className="h-auto w-full rounded-xl object-cover desktop:h-[200px] desktop:max-w-[250px]"
           alt={`Product ${index + 1}`}
         />
       )}
-      <div className="w-full flex flex-col gap-y-4 gap-x-4 mt-6">
+      <div className="mt-6 flex w-full flex-col gap-x-4 gap-y-4">
         <div className="w-[200px]">
           <QuantityButton storeProduct={item} mode={"card" as any} />
         </div>
         <div className="h-[100px]">
           <div>
-            <p className="text-md text-gray-600 font-bold text-left w-full">
+            <p className="w-full text-left text-lg font-bold text-gray-600">
               {item?.product?.name}
             </p>
             <p
-              className={`text-sm text-green-500 font-bold text-left w-full ${
+              className={`text-sxs w-full text-left font-bold text-gray-600 ${
                 item?.price?.salePrice ? "line-through" : ""
               }`}
             >
@@ -63,7 +58,7 @@ const ProductCard: React.FC<IProductCardProps> = (props) => {
             </p>
             {item.price?.salePrice && (
               <p
-                className={`text-md text-red-500 font-bold text-left w-full mt-2`}
+                className={`text-md mt-2 w-full text-left font-bold text-red-500`}
               >
                 {item?.price?.displaySalePrice}
               </p>

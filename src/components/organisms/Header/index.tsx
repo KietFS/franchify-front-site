@@ -46,21 +46,21 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
 
   return (
     <div className="w-full bg-primary-500">
-      <div className="max-w-[1560px] mx-auto pb-4 laptop:pb-0">
+      <div className="mx-auto max-w-[1560px] pb-4 laptop:pb-0">
         {/* <TopBar /> */}
-        <div className="w-full flex space-x-4  tablet:space-x-6 laptop:space-x-6 desktop:space-x-8 items-center px-4 py-4  justify-between laptop:justify-around">
-          <div className="flex laptop:hidden  w-1/3 laptop:w-0">
+        <div className="flex w-full items-center justify-between space-x-4 px-4 py-4 tablet:space-x-6 laptop:justify-around laptop:space-x-6 desktop:space-x-8">
+          <div className="flex w-1/3 laptop:hidden laptop:w-0">
             <button className="" onClick={() => setOpenMobileDrawer(true)}>
-              <Bars3Icon className="text-secondary-500 font-bold w-8 h-8" />
+              <Bars3Icon className="h-8 w-8 font-bold text-secondary-500" />
             </button>
           </div>
           <div className="flex w-full justify-center laptop:w-fit laptop:justify-start">
-            <Logo variant="secondary" />
+            <Logo variant="primary" />
           </div>
-          <div className="flex w-1/3 laptop:hidden laptop:w-0 flex-row-reverse">
+          <div className="flex w-1/3 flex-row-reverse laptop:hidden laptop:w-0">
             <FulfillmentMangement />
           </div>
-          <div className="laptop:w-[500px] desktop:w-[700px] hidden laptop:flex">
+          <div className="hidden laptop:flex laptop:w-[500px] desktop:w-[700px]">
             <SearchBar
               key="desktop-search-bar"
               placeholder="Search for anything, any words"
@@ -69,7 +69,7 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
             />
 
             {openSearchDropDown ? (
-              <div className="absolute min-h-[150px] z-50 max-h-[400px] overflow-auto bottom-auto top-[110px] left-auto px-4 py-4 flex flex-col bg-white border-2 border-secondary-50 shadow-md w-[600px] h-auto rounded-xl">
+              <div className="absolute bottom-auto left-auto top-[70px] z-50 flex h-auto max-h-[400px] min-h-[150px] w-[600px] flex-col overflow-auto rounded-xl border-2 border-secondary-50 bg-white px-4 py-4 shadow-md">
                 <SearchDropdown
                   open={openSearchDropDown}
                   onClose={() => setOpenSearchDropdown(false)}
@@ -79,14 +79,14 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
           </div>
 
           <div className="hidden laptop:flex">
-            <div className="hidden laptop:flex flex-end space-x-1 items-center justify-between w-fit">
+            <div className="flex-end hidden w-fit items-center justify-between space-x-1 laptop:flex">
               <AccountButton />
               <FulfillmentMangement />
               <button
-                className=" rounded-xl px-4 py-2 text-center text-secondary-600  text-sm w-fit flex space-x-1 items-center"
+                className="flex w-fit items-center space-x-1 rounded-xl px-4 py-2 text-center text-sm text-secondary-600"
                 onClick={() => router.replace("/cart")}
               >
-                <ShoppingCartIcon className="w-8 h-8 text-secondary-500" />
+                <ShoppingCartIcon className="h-8 w-8 text-secondary-500" />
                 <div className="text-secondary-500">
                   {currentCart?.cartDetails?.length}
                 </div>
@@ -94,7 +94,7 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
             </div>
           </div>
         </div>
-        <div className="flex laptop:hidden px-2">
+        <div className="flex px-2 laptop:hidden">
           <SearchBar
             ref={searchInputRef}
             placeholder="Search for anything, any words"
@@ -109,10 +109,10 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
         </div>
       </div>
 
-      <div className="w-full shadow-lg bg-primary-600 h-[50px] laptop:pb-0 border-b border-seconday-500 flex justify-center gap-x-4 items-center">
+      <div className="border-seconday-500 flex h-[50px] w-full items-center justify-center gap-x-4 border-b bg-primary-600 shadow-lg laptop:pb-0">
         {listCategory?.map((category: any) => (
           <Link href="/">
-            <p className="text-md text-secondary-500 font-semibold">
+            <p className="text-md font-semibold text-secondary-500">
               {category?.name}
             </p>
           </Link>

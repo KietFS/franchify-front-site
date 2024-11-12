@@ -93,6 +93,13 @@ interface IOrder {
   user: IUser;
 }
 
+export interface ICreateOrderUserInfo {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  email?: string;
+}
+
 export interface ICreateOrderAddress {
   address: string;
   province: string;
@@ -103,6 +110,7 @@ export interface ICreateOrderAddress {
 
 export interface ICreateOrder {
   orderAddress: CreateOrderAddress;
+  orderUserInfo: CreateOrderUserInfo;
 }
 
 declare interface String {

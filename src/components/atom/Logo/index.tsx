@@ -29,7 +29,9 @@ const Logo: React.FC<ILogo> = ({ variant = "primary" }) => {
         src={tenantConfigs?.logoUrl}
         // style={{ width: 36, height: 36 }}
       /> */}
-      <h1 className="text-secondary-500 text-xl  laptop:text-2xl font-bold w-full tablet:max-w-[300px]">
+      <h1
+        className={`text-xl ${variant == "primary" ? "text-secondary-500" : "text-secondary-900"} w-full font-bold tablet:max-w-[300px] laptop:text-2xl`}
+      >
         {tenantConfigs?.name}
       </h1>
     </Box>

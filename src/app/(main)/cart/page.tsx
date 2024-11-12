@@ -1,98 +1,47 @@
 "use client";
 
-import { ICreateOrder } from "@/@types";
 import Button from "@/components/atom/Button";
 import CartItem from "@/components/atom/CartItem";
-import AddressDialog from "@/components/molecules/AddressDialog";
-import { apiURL } from "@/constanst";
+import OrderSummary from "@/components/organisms/OrderSummary";
 import useAuth from "@/hooks/useAuth";
 import useCart from "@/hooks/useCart";
 import useOrder from "@/hooks/useOrder";
-import { useToast } from "@/hooks/useToast";
-import { setCurrentCart } from "@/redux/slices/cart";
 import { ShoppingBagIcon } from "@heroicons/react/24/solid";
 import { CircularProgress, Divider } from "@mui/material";
 
-import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 interface ICartProps {}
 
 const Cart: React.FC<ICartProps> = (props) => {
-  const { accessToken } = useSelector((state: any) => state.auth);
   const { currentCart } = useSelector((state: any) => state.cart);
-  const dispatch = useDispatch();
-  const toast = useToast();
   const { user } = useAuth();
-  const { loading, getUserCart } = useCart();
-  const { createOrder, actionLoading } = useOrder();
+  const { getUserCart } = useCart();
+  const { actionLoading } = useOrder();
   const router = useRouter();
-
-  //local state
-  const [openAddress, setOpenAddress] = useState<boolean>(false);
-
-  const totalPrice = () => {
-    let total = 0;
-    currentCart?.cartDetails?.map((item: any, index: number) => {
-      total = total + item?.product?.price?.price * item?.quantity;
-    });
-
-    return `${total}000`?.prettyMoney();
-  };
-
-  const afterTotalPrice = () => {
-    let afterTotal = 0;
-    currentCart?.cartDetails?.map((item: any, index: number) => {
-      afterTotal = afterTotal + item?.product?.price?.price * item?.quantity;
-    });
-
-    if (user.savePoints > 0) {
-      afterTotal = afterTotal - user?.savePoints;
-    }
-
-    return `${afterTotal}000`?.prettyMoney();
-  };
-
-  const finalPrice = () => {
-    let finalPrice = 0;
-    currentCart?.cartDetails?.map((item: any, index: number) => {
-      finalPrice = finalPrice + item?.product?.price?.price * item?.quantity;
-    });
-
-    if (user.savePoints > 0) {
-      finalPrice = finalPrice - user?.savePoints;
-    }
-
-    finalPrice = finalPrice + 50 + 1;
-
-    return `${finalPrice}000`?.prettyMoney();
-  };
 
   useEffect(() => {
     !currentCart && getUserCart();
   }, []);
 
-  const handleClickCreateOrder = async (data: ICreateOrder) => {
-    await createOrder(data, async () => {
-      await getUserCart();
-      router.push("/orders");
-    });
+  const handleClickCreateOrder = async () => {
+    router.push("/create-order");
   };
 
   return (
     <>
-      <div className="w-full flex justify-center py-20 px-8">
+      <div className="flex min-h-[700px] w-full justify-center px-8 py-20">
         {currentCart?.cartDetails?.length > 0 ? (
-          <div className="w-[1200px] h-fit">
-            <h1 className="text-secondary-900 font-bold text-3xl">
+          <div className="h-fit w-[1200px]">
+            <h1 className="text-3xl font-bold text-secondary-900">
               Giỏ hàng của bạn
             </h1>
             <Divider sx={{ marginY: 4 }} />
-            <div className="flex gap-x-4 gap-y-4 flex-col laptop:flex-row">
-              <div className="flex flex-col gap-y-4 w-full  laptop:w-2/3 max-h-[700px] overflow-auto ">
+            <div className="flex flex-col gap-x-4 gap-y-4 laptop:flex-row">
+              <div className="flex max-h-[700px] w-full flex-col gap-y-4 overflow-auto laptop:w-2/3">
                 {currentCart?.cartDetails?.map((item: any, index: number) => (
                   <CartItem key={index} cartItem={item} />
                 ))}
@@ -100,75 +49,11 @@ const Cart: React.FC<ICartProps> = (props) => {
 
               <div className="h-full w-[10px] bg-primary-200"></div>
 
-              <div className="flex flex-col w-full gap-y-8 laptop:w-1/3 justify-between">
-                <div className="flex flex-col">
-                  <h1 className="text-secondary-900 font-bold text-2xl">
-                    Thông tin đơn hàng
-                  </h1>
-                  <div className="flex flex-col gap-y-4 mt-8">
-                    <div className="w-full justify-between flex items-center">
-                      <p className="text-md text-secondary-900 font-bold">
-                        Tạm tính
-                      </p>
-                      <p className="text-md text-green-600 font-bold">
-                        {totalPrice()}
-                      </p>
-                    </div>
-                    <div className="w-full justify-between flex items-center">
-                      <p className="text-md text-secondary-900 font-bold">
-                        Giảm giá ( Bằng điểm tích lũy )
-                      </p>
-                      <p className="text-md text-red-600 font-bold">
-                        -{(user?.savePoints * 1000)?.toString()?.prettyMoney()}
-                      </p>
-                    </div>
-                    <Divider />
-
-                    <div className="w-full justify-between flex items-center">
-                      <p className="text-md text-secondary-900 font-bold">
-                        Tạm tính sau giảm giá
-                      </p>
-                      <p className="text-md text-green-600 font-bold">
-                        {afterTotalPrice()}
-                      </p>
-                    </div>
-
-                    <Divider />
-
-                    <div className="w-full justify-between flex items-center">
-                      <p className="text-md text-secondary-900 font-bold">
-                        Phí giao hàng
-                      </p>
-                      <p className="text-md text-green-600 font-bold">
-                        +{(50000)?.toString().prettyMoney()}
-                      </p>
-                    </div>
-
-                    <div className="w-full justify-between flex items-center">
-                      <p className="text-md text-secondary-900 font-bold">
-                        Phí dịch vụ
-                      </p>
-                      <p className="text-md text-green-600 font-bold">
-                        +{(1000)?.toString()?.prettyMoney()}
-                      </p>
-                    </div>
-
-                    <Divider />
-
-                    <div className="w-full justify-between flex items-center">
-                      <p className="text-md text-secondary-900 font-bold">
-                        Tổng ước tính
-                      </p>
-                      <p className="text-md text-green-600 font-bold">
-                        {finalPrice()}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
+              <div className="flex w-full flex-col justify-between gap-y-8 laptop:w-1/3">
+                <OrderSummary />
                 <Button
+                  onClick={() => handleClickCreateOrder()}
                   isLoading={actionLoading}
-                  onClick={() => setOpenAddress(true)}
                   title="Tiếp tục đặt hàng"
                 >
                   Tiếp tục đặt hàng
@@ -179,17 +64,17 @@ const Cart: React.FC<ICartProps> = (props) => {
         ) : (
           <>
             {true ? (
-              <div className="w-full h-full flex items-center justify-center">
+              <div className="flex h-full w-full items-center justify-center">
                 <CircularProgress size={24} />
               </div>
             ) : (
-              <div className="w-full h-full flex items-center justify-center flex-col">
-                <ShoppingBagIcon className="w-20 h-20 text-primary-500" />
-                <h1 className="text-3xl text-primary-600 font-bold mt-4">
+              <div className="flex h-full w-full flex-col items-center justify-center">
+                <ShoppingBagIcon className="h-20 w-20 text-primary-500" />
+                <h1 className="mt-4 text-3xl font-bold text-primary-600">
                   Giỏ hàng đang trống
                 </h1>
                 <Link href="/">
-                  <p className="text-md text-primary-600 font-bold mt-4 underline">
+                  <p className="text-md mt-4 font-bold text-primary-600 underline">
                     Quay lại trang chủ
                   </p>
                 </Link>
@@ -198,17 +83,6 @@ const Cart: React.FC<ICartProps> = (props) => {
           </>
         )}
       </div>
-
-      {openAddress && (
-        <AddressDialog
-          open={openAddress}
-          onSubmited={(data) => {
-            setOpenAddress(false);
-            handleClickCreateOrder({ orderAddress: data });
-          }}
-          onClose={() => setOpenAddress(false)}
-        />
-      )}
     </>
   );
 };
