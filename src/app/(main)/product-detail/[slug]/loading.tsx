@@ -4,23 +4,23 @@ interface ILoadingProps {}
 
 const Loading: React.FC<ILoadingProps> = (props) => {
   return (
-    <div className="max-w-[1200px] w-full mx-auto px-4 pb-20">
-      <div className="flex flex-col md:flex-row py-10 gap-5">
-        <div className="animate-pulse bg-secondary-600 mt-10 pt-20 w-full md:w-[480px] h-[480px]"></div>
-        <div className="flex flex-col gap-5 w-full">
-          <div className="animate-pulse bg-secondary-600 mt-10 pt-20 w-full h-[80px]"></div>
-          <div className="animate-pulse bg-secondary-600 mt-10 pt-20 w-full h-[30px]"></div>
-          <div className="animate-pulse bg-secondary-600 mt-10 pt-20 w-full h-[120px]"></div>
+    <div className="mx-auto w-full max-w-[1200px] px-4 pb-20">
+      <div className="flex flex-col gap-5 py-10 md:flex-row">
+        <div className="mt-10 h-[480px] w-full animate-pulse bg-secondary-600 pt-20 md:w-[480px]"></div>
+        <div className="flex w-full flex-col gap-5">
+          <div className="mt-10 h-[80px] w-full animate-pulse bg-secondary-600 pt-20"></div>
+          <div className="mt-10 h-[30px] w-full animate-pulse bg-secondary-600 pt-20"></div>
+          <div className="mt-10 h-[120px] w-full animate-pulse bg-secondary-600 pt-20"></div>
         </div>
       </div>
 
       <div>
-        <div className="animate-pulse bg-secondary-600 mt-10 w-full h-[40px]"></div>
-        <div className="flex flex-col md:flex-row gap-5 mt-10">
-          <div className="animate-pulse bg-secondary-600 mt-10 pt-20 w-full md:w-[280px] h-[280px]"></div>
-          <div className="animate-pulse bg-secondary-600 mt-10 pt-20 w-full md:w-[280px] h-[280px]"></div>
-          <div className="animate-pulse bg-secondary-600 mt-10 pt-20 w-full md:w-[280px] h-[280px]"></div>
-          <div className="animate-pulse bg-secondary-600 mt-10 pt-20 w-full md:w-[280px] h-[280px]"></div>
+        <div className="mt-10 h-[40px] w-full animate-pulse bg-secondary-600"></div>
+        <div className="mt-10 flex flex-col gap-5 md:flex-row">
+          <div className="mt-10 h-[450px] w-full animate-pulse bg-secondary-600 pt-20 md:w-[280px]"></div>
+          <div className="mt-10 h-[450px] w-full animate-pulse bg-secondary-600 pt-20 md:w-[280px]"></div>
+          <div className="mt-10 h-[450px] w-full animate-pulse bg-secondary-600 pt-20 md:w-[280px]"></div>
+          <div className="mt-10 h-[450px] w-full animate-pulse bg-secondary-600 pt-20 md:w-[280px]"></div>
         </div>
       </div>
     </div>

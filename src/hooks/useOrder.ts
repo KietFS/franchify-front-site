@@ -26,11 +26,15 @@ const useOrder = () => {
         },
       });
       if (response?.data?.success) {
-        toast.sendToast("success", "Đặt hàng thành công");
+        toast.sendToast("Thành công", "Đặt hàng thành công");
         onSuccess && onSuccess();
       }
     } catch (error) {
-      toast.sendToast("error", "Đặt hàng thất bại, vui lòng thử lại sau");
+      toast.sendToast(
+        "Thất bại",
+        "Đặt hàng thất bại, vui lòng thử lại sau",
+        "error",
+      );
       console.error("Create order ereor", error);
     } finally {
       setActionLoading(false);
@@ -98,6 +102,7 @@ const useOrder = () => {
 
   return {
     createOrder,
+    loading,
     actionLoading,
     currentOrder,
     getAllOrders,

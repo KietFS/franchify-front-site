@@ -13,6 +13,7 @@ import useAuth from "@/hooks/useAuth";
 import OrderSummary from "@/components/organisms/OrderSummary";
 import useOrder from "@/hooks/useOrder";
 import Button from "@/components/atom/Button";
+import { useRouter } from "next/navigation";
 
 interface ICreateOrderProps {}
 
@@ -21,6 +22,7 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
   const [openAddress, setOpenAddress] = React.useState<boolean>(false);
   const { createOrder } = useOrder();
   const { user } = useAuth();
+  const router = useRouter();
 
   const [orderUserInfo, setOrderUserInfo] =
     useState<ICreateOrderUserInfo | null>(null);
@@ -28,9 +30,8 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
     null,
   );
 
-  const handleClickCreateOrder = async () => {
-    console.log("data", data);
-    // await createOrder(data);
+  const handleClickCreateOrder = async (data: ICreateOrder) => {
+    await createOrder(data, () => router.push("/orders"));
   };
 
   return (
@@ -82,7 +83,7 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
             </p>
 
             <div className="flex flex-col gap-y-2">
-              <p className="text-secondary-900">Tiền mặt</p>
+              <p className="text-secondary-900">Thanh toán khi nhận hàng</p>
             </div>
 
             <button
@@ -96,7 +97,17 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
         <div className="w-full cursor-pointer flex-col gap-y-4 rounded-lg border border-secondary-600 px-8 py-4 tablet:w-[30%] laptop:flex">
           <OrderSummary />
 
-          <Button className="mt-6">Đặt hàng</Button>
+          <Button
+            onClick={() => {
+              handleClickCreateOrder({
+                orderAddress: orderAddress,
+                orderUserInfo: orderUserInfo,
+              });
+            }}
+            className="mt-6"
+          >
+            Đặt hàng
+          </Button>
         </div>
       </div>
 
@@ -108,7 +119,7 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
         />
       ) : null}
 
-      {openAddress && (
+      {openAddress ? (
         <AddressDialog
           open={openAddress}
           onSubmited={(data) => {
@@ -117,7 +128,7 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
           }}
           onClose={() => setOpenAddress(false)}
         />
-      )}
+      ) : null}
     </>
   );
 };

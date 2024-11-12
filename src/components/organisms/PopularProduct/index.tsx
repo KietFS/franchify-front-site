@@ -20,21 +20,20 @@ const PopularProducts: React.FC<IPopularProductProps> = (props) => {
   return (
     <>
       {popularProducts?.length > 0 ? (
-        <div className="mt-16 flex flex-col justify-center w-full">
-          <h1 className="text-secondary-900 font-bold text-3xl">
+        <div className="mt-16 flex w-full flex-col justify-center">
+          <h1 className="mb-8 text-3xl font-bold text-secondary-900">
             Sản phẩm bán chạy
           </h1>
-          <Divider sx={{ marginY: 4 }} />
           <ProductCarousel listProduct={popularProducts} />
         </div>
       ) : (
         <>
-          <div className="h-[40px] w-[300px] bg-secondary-600 animate-pulse"></div>
-          <div className="grid gap-x-4 gap-y-8 grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-4">
+          <div className="h-[40px] w-[300px] animate-pulse bg-secondary-600"></div>
+          <div className="grid grid-cols-1 gap-x-4 gap-y-8 tablet:grid-cols-2 laptop:grid-cols-4">
             {Array(4)
               .fill(1)
               ?.map((item) => (
-                <div className="w-full h-[200px] animate-pulse bg-secondary-600"></div>
+                <div className="h-[450px] w-full animate-pulse bg-secondary-600"></div>
               ))}
           </div>
         </>

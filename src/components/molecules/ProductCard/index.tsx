@@ -7,6 +7,7 @@ import useNavigation from "@/hooks/useNavigation";
 import QuantityButton from "../QuantityButton";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { IProduct, IStoreProduct } from "@/@types";
+import { IconButton } from "@mui/material";
 
 interface IProductCardProps {
   handleItemClick: (product: IProduct) => void;
@@ -25,7 +26,9 @@ const ProductCard: React.FC<IProductCardProps> = (props) => {
       onClick={() => navigateToProductDetail(item?.product)}
     >
       <div className="ml-auto h-[50px]">
-        <Bars3Icon className="h-8 w-8 text-secondary-800" />
+        <IconButton>
+          <Bars3Icon className="h-8 w-8 text-secondary-900" />
+        </IconButton>
       </div>
       {!!item?.product?.thumbnail ? (
         <img

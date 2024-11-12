@@ -11,92 +11,117 @@ interface IOrderPageProps {}
 
 const Orders: React.FC<IOrderPageProps> = (props) => {
   const {} = props;
-  const { getAllOrders, orders } = useOrder();
+  const { getAllOrders, orders, loading } = useOrder();
 
   useEffect(() => {
     getAllOrders();
   }, []);
 
   return (
-    <div className="flex flex-col tablet:flex-row w-full gap-10">
-      <div className="flex flex-col gap-y-4 w-full tablet:w-[70%] ">
-        {orders?.map((item: any, index: number) => (
-          <Link href={`/orders/${item.id}`} key={index}>
-            <OrderItem key={index} orderItem={item} />
-          </Link>
-        ))}
+    <div className="flex w-full flex-col gap-10 tablet:flex-row">
+      <div className="flex w-full flex-col gap-y-4 tablet:w-[70%]">
+        {loading ? (
+          <>
+            <div className="h-[200px] w-full animate-pulse bg-gray-100"></div>
+            <div className="h-[200px] w-full animate-pulse bg-gray-100"></div>
+            <div className="h-[200px] w-full animate-pulse bg-gray-100"></div>
+          </>
+        ) : (
+          <>
+            {orders?.map((item: any, index: number) => (
+              <Link href={`/orders/${item.id}`} key={index}>
+                <OrderItem key={index} orderItem={item} />
+              </Link>
+            ))}
+          </>
+        )}
       </div>
-      <div
-        className="tablet:w-[30%] w-full laptop:flex 
-      border-secondary-600 rounded-lg border cursor-pointer px-8 py-4 flex-col gap-y-4"
-      >
-        <h1 className="text-secondary-900 text-2xl font-bold">Thống kê</h1>
-        <Divider />
-        <div className="flex w-full justify-between">
-          <p className="text-green-600 font-semibold">Số đơn hàng đã mua</p>
-          <p className="text-gray-600 font-regular">{orders?.length}</p>
-        </div>
+      {loading ? (
+        <div className="h-[500px] w-[30%] animate-pulse bg-gray-100"></div>
+      ) : (
+        <>
+          {orders?.length > 0 && (
+            <div className="w-full cursor-pointer flex-col gap-y-4 rounded-lg border border-secondary-600 px-8 py-4 tablet:w-[30%] laptop:flex">
+              <h1 className="text-2xl font-bold text-secondary-900">
+                Thống kê
+              </h1>
+              <Divider />
+              <div className="flex w-full justify-between">
+                <p className="font-semibold text-green-600">
+                  Số đơn hàng đã mua
+                </p>
+                <p className="font-regular text-gray-600">{orders?.length}</p>
+              </div>
 
-        <div className="flex w-full justify-between">
-          <p className="text-yellow-600 font-semibold">Đang đợi</p>
-          <p className="text-gray-600 font-regular">
-            {
-              orders.filter((order: IOrder) => order?.status === "processing")
-                ?.length
-            }
-          </p>
-        </div>
+              <div className="flex w-full justify-between">
+                <p className="font-semibold text-yellow-600">Đang đợi</p>
+                <p className="font-regular text-gray-600">
+                  {
+                    orders.filter(
+                      (order: IOrder) => order?.status === "processing",
+                    )?.length
+                  }
+                </p>
+              </div>
 
-        <div className="flex w-full justify-between">
-          <p className="text-blue-600 font-semibold">Cửa hàng đã nhận</p>
-          <p className="text-gray-600 font-regular">
-            {
-              orders.filter((order: IOrder) => order?.status === "received")
-                ?.length
-            }
-          </p>
-        </div>
+              <div className="flex w-full justify-between">
+                <p className="font-semibold text-blue-600">Cửa hàng đã nhận</p>
+                <p className="font-regular text-gray-600">
+                  {
+                    orders.filter(
+                      (order: IOrder) => order?.status === "received",
+                    )?.length
+                  }
+                </p>
+              </div>
 
-        <div className="flex w-full justify-between">
-          <p className="text-red-600 font-semibold">Đang xử lý</p>
-          <p className="text-gray-600 font-regular">
-            {
-              orders.filter((order: IOrder) => order?.status === "processing")
-                ?.length
-            }
-          </p>
-        </div>
+              <div className="flex w-full justify-between">
+                <p className="font-semibold text-red-600">Đang xử lý</p>
+                <p className="font-regular text-gray-600">
+                  {
+                    orders.filter(
+                      (order: IOrder) => order?.status === "processing",
+                    )?.length
+                  }
+                </p>
+              </div>
 
-        <div className="flex w-full justify-between">
-          <p className="text-cyan-600 font-semibold">Đang vận chuyển</p>
-          <p className="text-gray-600 font-regular">
-            {
-              orders.filter((order: IOrder) => order?.status === "shipping")
-                ?.length
-            }
-          </p>
-        </div>
+              <div className="flex w-full justify-between">
+                <p className="font-semibold text-cyan-600">Đang vận chuyển</p>
+                <p className="font-regular text-gray-600">
+                  {
+                    orders.filter(
+                      (order: IOrder) => order?.status === "shipping",
+                    )?.length
+                  }
+                </p>
+              </div>
 
-        <div className="flex w-full justify-between">
-          <p className="text-green-600 font-semibold">Đã giao hàng</p>
-          <p className="text-gray-600 font-regular">
-            {
-              orders.filter((order: IOrder) => order?.status === "delivered")
-                ?.length
-            }
-          </p>
-        </div>
+              <div className="flex w-full justify-between">
+                <p className="font-semibold text-green-600">Đã giao hàng</p>
+                <p className="font-regular text-gray-600">
+                  {
+                    orders.filter(
+                      (order: IOrder) => order?.status === "delivered",
+                    )?.length
+                  }
+                </p>
+              </div>
 
-        <div className="flex w-full justify-between">
-          <p className="text-cyan-600 font-semibold">Đã hủy</p>
-          <p className="text-gray-600 font-regular">
-            {
-              orders.filter((order: IOrder) => order?.status === "cacelled")
-                ?.length
-            }
-          </p>
-        </div>
-      </div>
+              <div className="flex w-full justify-between">
+                <p className="font-semibold text-cyan-600">Đã hủy</p>
+                <p className="font-regular text-gray-600">
+                  {
+                    orders.filter(
+                      (order: IOrder) => order?.status === "cacelled",
+                    )?.length
+                  }
+                </p>
+              </div>
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 };

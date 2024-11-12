@@ -28,14 +28,14 @@ const ProductGrid: React.FC<IProductGridProps> = (props) => {
     <>
       {loading ? (
         <>
-          <div className="h-[40px] w-[300px] bg-secondary-600 animate-pulse mb-4"></div>
-          <div className="grid gap-x-4 gap-y-8 grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-4">
+          <div className="h-[40px] w-[300px] animate-pulse bg-secondary-600"></div>
+          <div className="grid grid-cols-1 gap-x-4 gap-y-8 tablet:grid-cols-2 laptop:grid-cols-4">
             {Array(8)
               .fill(1)
               ?.map((item, index) => (
                 <div
                   key={`loading-${index}`}
-                  className="w-full h-[200px] animate-pulse bg-secondary-600"
+                  className="h-[450px] w-full animate-pulse bg-secondary-600"
                 ></div>
               ))}
           </div>
@@ -44,14 +44,14 @@ const ProductGrid: React.FC<IProductGridProps> = (props) => {
         <>
           {storeProducts?.length > 0 && (
             <div>
-              <h1 className="text-4xl font-bold text-secondary-900 mb-16">
+              <h1 className="mb-16 text-4xl font-bold text-secondary-900">
                 Danh mục {category?.name}
               </h1>
-              <div className="w-full grid tablet:grid-cols-2 laptop:grid-cols-4">
+              <div className="grid w-full tablet:grid-cols-2 laptop:grid-cols-4">
                 {storeProducts?.map((item: any, index: number) => (
                   <div
                     key={`card-${index}`}
-                    className="border-r border-b border-t border-gray-300 p-2"
+                    className="border-b border-r border-t border-gray-300 p-2"
                   >
                     <ProductCard
                       handleItemClick={() => {}}
@@ -62,13 +62,13 @@ const ProductGrid: React.FC<IProductGridProps> = (props) => {
                 ))}
               </div>
 
-              <div className="w-full flex justify-center mt-8">
+              <div className="mt-8 flex w-full justify-center">
                 {loading ? (
                   <CircularProgress size={36} sx={{ color: "black" }} />
                 ) : (
                   <button
                     onClick={() => setCurrentPage(currentPage + 1)}
-                    className="text-md px-4 py-2 font-semibold text-center text-secondary-500 border-transparent bg-primary-500 rounded-full"
+                    className="text-md rounded-full border-transparent bg-primary-500 px-4 py-2 text-center font-semibold text-secondary-500"
                   >
                     Xem thêm
                   </button>
