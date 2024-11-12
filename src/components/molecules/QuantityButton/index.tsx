@@ -103,8 +103,8 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
               <CircularProgress size={32} />
             ) : (
               <>
-                <AddShoppingCart />
-                <p>{mode == Mode.detail ? "Thêm vào giỏ hàng" : ""}</p>
+                {mode == Mode.detail && <AddShoppingCart />}
+                <p>{mode == Mode.detail ? "Thêm vào giỏ hàng" : "+ Add"}</p>
               </>
             )}
           </>

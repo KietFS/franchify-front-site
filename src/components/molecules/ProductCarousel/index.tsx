@@ -7,6 +7,7 @@ import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import EmptyImage from "@/assets/images/EmptyImage.png";
 import Image from "next/image";
 import ProductCard from "@/components/molecules/ProductCard";
+import { IStoreProduct } from "@/@types";
 
 interface ISimilarProduct {
   listProduct: IStoreProduct[];
@@ -113,17 +114,22 @@ const ProductCarousel: React.FC<ISimilarProduct> = ({ listProduct }) => {
   };
 
   return (
-    <div className="max-w-[360px] tablet:max-w-[600px] laptop:max-w-[960px] desktop:max-w-[1200px] mx-auto mb-10">
+    <div className="max-w-[360px] tablet:max-w-[600px] laptop:max-w-[960px] h-[600px] desktop:max-w-[1200px] mx-auto mb-10">
       {listProduct?.length > 4 && (
-        <div className="h-fit rounded-lg bg-white w-full px-8 pt-4">
+        <div className="h-full rounded-lg bg-white w-full px-8 pt-4 grid grid-cols-1">
           <Slider {...settings}>
             {listProduct.map((item, index) => (
-              <ProductCard
-                item={item}
-                index={index}
+              <div
                 key={`card-${index}`}
-                handleItemClick={() => handleItemClick(item)}
-              />
+                className="border-r border-b border-t border-gray-300 p-2 h-full flex items-stretch"
+              >
+                <ProductCard
+                  item={item}
+                  index={index}
+                  key={`card-${index}`}
+                  handleItemClick={() => handleItemClick(item)}
+                />
+              </div>
             ))}
           </Slider>
         </div>

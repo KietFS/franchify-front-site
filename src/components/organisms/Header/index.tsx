@@ -17,6 +17,7 @@ import AccountButton from "../AccountButton";
 import MobileDrawer from "@/components/molecules/MobileDrawer";
 import Link from "next/link";
 import TopBar from "@/components/molecules/TopBar";
+import useConfig from "@/hooks/useConfig";
 
 interface IHeaderV2Props {}
 
@@ -24,11 +25,6 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
   const router = useRouter();
 
   //state
-  const [openLogin, setOpenLogin] = useState<boolean>(false);
-  const [isGettingProductCategory, setIsGettingProductCategory] =
-    useState<boolean>(false);
-  const [displayMenu, setDisplayMenu] = useState<boolean>(false);
-  const [openRegister, setOpenRegister] = useState<boolean>(false);
   const [openMobileDrawer, setOpenMobileDrawer] = useState<boolean>(false);
 
   const [openSearchDropDown, setOpenSearchDropdown] = useState<boolean>(false);
@@ -51,14 +47,16 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
   return (
     <div className="w-full bg-primary-500">
       <div className="max-w-[1560px] mx-auto pb-4 laptop:pb-0">
-        <TopBar />
-        <div className="w-full flex space-x-4 tablet:space-x-6 laptop:space-x-6 desktop:space-x-8 items-center px-4 py-4  justify-between laptop:justify-around">
+        {/* <TopBar /> */}
+        <div className="w-full flex space-x-4  tablet:space-x-6 laptop:space-x-6 desktop:space-x-8 items-center px-4 py-4  justify-between laptop:justify-around">
           <div className="flex laptop:hidden  w-1/3 laptop:w-0">
             <button className="" onClick={() => setOpenMobileDrawer(true)}>
               <Bars3Icon className="text-secondary-500 font-bold w-8 h-8" />
             </button>
           </div>
-          <Logo variant="secondary" />
+          <div className="flex w-full justify-center laptop:w-fit laptop:justify-start">
+            <Logo variant="secondary" />
+          </div>
           <div className="flex w-1/3 laptop:hidden laptop:w-0 flex-row-reverse">
             <FulfillmentMangement />
           </div>

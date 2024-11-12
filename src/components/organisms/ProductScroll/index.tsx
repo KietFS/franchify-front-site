@@ -51,14 +51,19 @@ const ProductScroll: React.FC<IProductScrollProps> = (props) => {
           <h1 className="text-4xl font-bold text-secondary-900 mb-16">
             Tất cả sản phẩm
           </h1>
-          <div className="w-full grid tablet:grid-cols-2 laptop:grid-cols-4 gap-y-4 gap-x-4">
+          <div className="w-full grid tablet:grid-cols-2 laptop:grid-cols-4">
             {storeProducts?.map((item: any, index: number) => (
-              <ProductCard
+              <div
                 key={`card-${index}`}
-                handleItemClick={() => {}}
-                item={item}
-                index={index}
-              />
+                className="border-r border-b border-t border-gray-300 p-2"
+              >
+                <ProductCard
+                  key={`card-${index}`}
+                  handleItemClick={() => {}}
+                  item={item}
+                  index={index}
+                />
+              </div>
             ))}
           </div>
 
