@@ -1,16 +1,11 @@
-"use client";
-
-import { IOrder } from "@/@types";
 import CreateOrder from "@/components/template/CreateOrder";
-import useOrder from "@/hooks/useOrder";
-import React, { useEffect } from "react";
 
-interface ICreateOrderPageProps {
-  initalValue: Partial<IOrder>;
-}
+import React from "react";
+
+interface ICreateOrderPageProps {}
 
 const CreateOrderPage: React.FC<ICreateOrderPageProps> = (props) => {
-  return <CreateOrder initialValue={props?.initalValue} />;
+  return <CreateOrder />;
 };
 
 export default CreateOrderPage;

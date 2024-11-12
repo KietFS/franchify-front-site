@@ -2,7 +2,7 @@
 
 import Button from "@/components/atom/Button";
 import CartItem from "@/components/atom/CartItem";
-import OrderSummary from "@/components/organisms/OrderSummary";
+import CartSummary from "@/components/organisms/CartSummary";
 import useAuth from "@/hooks/useAuth";
 import useCart from "@/hooks/useCart";
 import useOrder from "@/hooks/useOrder";
@@ -50,7 +50,7 @@ const Cart: React.FC<ICartProps> = (props) => {
               <div className="h-full w-[10px] bg-primary-200"></div>
 
               <div className="flex w-full flex-col justify-between gap-y-8 laptop:w-1/3">
-                <OrderSummary />
+                <CartSummary />
                 <Button
                   onClick={() => handleClickCreateOrder()}
                   isLoading={actionLoading}

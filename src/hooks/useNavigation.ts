@@ -1,5 +1,6 @@
 "use client";
 
+import { IProduct } from "@/@types";
 import { useRouter } from "next/navigation";
 
 const useNavigation = () => {

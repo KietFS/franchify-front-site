@@ -82,15 +82,14 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
             <div className="flex-end hidden w-fit items-center justify-between space-x-1 laptop:flex">
               <AccountButton />
               <FulfillmentMangement />
-              <button
-                className="flex w-fit items-center space-x-1 rounded-xl px-4 py-2 text-center text-sm text-secondary-600"
-                onClick={() => router.replace("/cart")}
-              >
-                <ShoppingCartIcon className="h-8 w-8 text-secondary-500" />
-                <div className="text-secondary-500">
-                  {currentCart?.cartDetails?.length}
-                </div>
-              </button>
+              <Link href="/cart">
+                <button className="flex w-fit items-center space-x-1 rounded-xl px-4 py-2 text-center text-sm text-secondary-600">
+                  <ShoppingCartIcon className="h-8 w-8 text-secondary-500" />
+                  <div className="text-secondary-500">
+                    {currentCart?.cartDetails?.length}
+                  </div>
+                </button>
+              </Link>
             </div>
           </div>
         </div>

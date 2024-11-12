@@ -1,28 +1,33 @@
+"use client";
+
 import React, { useState } from "react";
 import {
   ICreateOrder,
   ICreateOrderAddress,
   ICreateOrderUserInfo,
-  IOrder,
 } from "@/@types";
-import { Divider } from "@mui/material";
 import PersonalInformationDialog from "@/components/molecules/PeronsalInformationDialog";
 import AddressDialog from "@/components/molecules/AddressDialog";
-import useCart from "@/hooks/useCart";
 import useAuth from "@/hooks/useAuth";
-import OrderSummary from "@/components/organisms/OrderSummary";
 import useOrder from "@/hooks/useOrder";
 import Button from "@/components/atom/Button";
 import { useRouter } from "next/navigation";
+import OrderSummary from "@/components/organisms/OrderSummary";
+import CartSummary from "@/components/organisms/CartSummary";
+import { useToast } from "@/hooks/useToast";
+import { Radio } from "@mui/material";
 
 interface ICreateOrderProps {}
 
 const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
   const [openUserInfo, setOpenUserInfo] = React.useState<boolean>(false);
   const [openAddress, setOpenAddress] = React.useState<boolean>(false);
+  const [isApplyUserSavePoints, setIsApplyUserSavePoints] =
+    useState<boolean>(false);
   const { createOrder } = useOrder();
   const { user } = useAuth();
   const router = useRouter();
+  const toast = useToast();
 
   const [orderUserInfo, setOrderUserInfo] =
     useState<ICreateOrderUserInfo | null>(null);
@@ -44,9 +49,18 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
             </p>
 
             <div className="flex flex-col gap-y-2">
-              <p className="text-secondary-900">Lucas Viera</p>
-              <p className="text-secondary-900">heysir@yopmail.com</p>
-              <p className="text-secondary-900">0819190227</p>
+              <p className="text-secondary-900">
+                {orderUserInfo?.firstName || user?.firstName}
+              </p>
+              <p className="text-secondary-900">
+                {orderUserInfo?.lastName || user?.lastName}
+              </p>
+              <p className="text-secondary-900">
+                {orderUserInfo?.email || user?.email}
+              </p>
+              <p className="text-secondary-900">
+                {orderUserInfo?.phoneNumber || user?.phoneNumber}
+              </p>
               <button
                 onClick={() => setOpenUserInfo(true)}
                 border-none
@@ -63,9 +77,18 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
             </p>
 
             <div className="flex flex-col gap-y-2">
-              <p className="text-secondary-900">Tỉnh Thanh Hóa</p>
-              <p className="text-secondary-900">Thành phố Việt Trì</p>
-              <p className="text-secondary-900">heysir@yopmail.com</p>
+              <p className="text-secondary-900">
+                {orderAddress?.province || "Tỉnh: Không rõ"}
+              </p>
+              <p className="text-secondary-900">
+                {orderAddress?.district || "Huyện: Không rõ"}
+              </p>
+              <p className="text-secondary-900">
+                {orderAddress?.ward || "Quận: Không rõ"}
+              </p>
+              <p className="text-secondary-900">
+                {orderAddress?.address || "Địa chỉ: Không rõ"}
+              </p>
             </div>
 
             <button
@@ -95,14 +118,40 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
           </div>
         </div>
         <div className="w-full cursor-pointer flex-col gap-y-4 rounded-lg border border-secondary-600 px-8 py-4 tablet:w-[30%] laptop:flex">
-          <OrderSummary />
+          <CartSummary
+            isApplyUserSavePoints={isApplyUserSavePoints}
+            shippingFee={orderAddress?.shippingFee}
+          />
+
+          <button className="ml-[-4px] flex items-center text-left text-secondary-900">
+            <Radio
+              onBlur={() => setIsApplyUserSavePoints(false)}
+              checked={isApplyUserSavePoints}
+              onChange={() => setIsApplyUserSavePoints(!isApplyUserSavePoints)}
+            />
+            Sử dụng điểm tích lũy: {user?.savePoints}
+          </button>
 
           <Button
             onClick={() => {
-              handleClickCreateOrder({
-                orderAddress: orderAddress,
-                orderUserInfo: orderUserInfo,
-              });
+              if (!orderAddress) {
+                toast.sendToast(
+                  "Thất bại",
+                  "Vui lòng chọn địa chỉ nhận hàng",
+                  "error",
+                );
+              } else {
+                handleClickCreateOrder({
+                  orderAddress: orderAddress,
+                  orderUserInfo: orderUserInfo || {
+                    firstName: user?.firstName,
+                    lastName: user?.lastName,
+                    email: user?.email,
+                    phoneNumber: user?.phoneNumber,
+                  },
+                  isApplyUserSavePoints: isApplyUserSavePoints,
+                });
+              }
             }}
             className="mt-6"
           >

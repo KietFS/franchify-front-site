@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import PersonalInformationDialog from "@/components/molecules/PeronsalInformationDialog";
 import AddressDialog from "@/components/molecules/AddressDialog";
-import OrderSummary from "@/components/organisms/OrderSummary";
+import CartSummary from "@/components/organisms/CartSummary";
 import useOrder from "@/hooks/useOrder";
 import Button from "@/components/atom/Button";
 
@@ -108,7 +108,7 @@ const OrderDetailTemplate: React.FC<IOrderDetailTemplateProps> = (props) => {
           </div>
         </div>
         <div className="w-[100%] cursor-pointer flex-col gap-y-4 rounded-lg border border-secondary-600 px-8 py-4 laptop:flex laptop:w-[30%]">
-          <OrderSummary />
+          <CartSummary />
         </div>
       </div>
     </div>

@@ -111,6 +111,7 @@ export interface ICreateOrderAddress {
 export interface ICreateOrder {
   orderAddress: CreateOrderAddress;
   orderUserInfo: CreateOrderUserInfo;
+  isApplyUserSavePoints?: boolean;
 }
 
 declare interface String {
