@@ -25,7 +25,7 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
   const [isApplyUserSavePoints, setIsApplyUserSavePoints] =
     useState<boolean>(false);
   const { createOrder } = useOrder();
-  const { user } = useAuth();
+  const { user } = useAuth() || {}
   const router = useRouter();
   const toast = useToast();
 
@@ -123,14 +123,16 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
             shippingFee={orderAddress?.shippingFee}
           />
 
-          <button className="ml-[-4px] flex items-center text-left text-secondary-900">
+          {user?.savePoints && <button className="ml-[-4px] flex items-center text-left text-secondary-900">
             <Radio
               onBlur={() => setIsApplyUserSavePoints(false)}
               checked={isApplyUserSavePoints}
               onChange={() => setIsApplyUserSavePoints(!isApplyUserSavePoints)}
             />
-            Sử dụng điểm tích lũy: {user?.savePoints}
-          </button>
+            Sử dụng điểm tích lũy: {user?.savePoints || 0}
+          </button>}
+
+     
 
           <Button
             onClick={() => {

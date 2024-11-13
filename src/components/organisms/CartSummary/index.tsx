@@ -1,5 +1,6 @@
 "use client";
 
+import useAuth from "@/hooks/useAuth";
 import useCart from "@/hooks/useCart";
 import { Divider } from "@mui/material";
 import React from "react";
@@ -13,7 +14,7 @@ interface ICartSummaryProps {
 const CartSummary: React.FC<ICartSummaryProps> = (props) => {
   const { isApplyUserSavePoints = false } = props;
   const { currentCart } = useCart();
-  const { user } = useSelector((state: any) => state.auth);
+  const { user } = useAuth() || {}
 
   const totalPrice = () => {
     let total = 0;
@@ -30,7 +31,7 @@ const CartSummary: React.FC<ICartSummaryProps> = (props) => {
       afterTotal = afterTotal + item?.product?.price?.price * item?.quantity;
     });
 
-    if (user.savePoints > 0) {
+    if (user?.savePoints > 0) {
       if (isApplyUserSavePoints) {
         afterTotal = afterTotal - user?.savePoints;
       }
@@ -45,7 +46,7 @@ const CartSummary: React.FC<ICartSummaryProps> = (props) => {
       finalPrice = finalPrice + item?.product?.price?.price * item?.quantity;
     });
 
-    if (user.savePoints > 0) {
+    if (user?.savePoints > 0) {
       if (isApplyUserSavePoints) {
         finalPrice = finalPrice - user?.savePoints;
       }
