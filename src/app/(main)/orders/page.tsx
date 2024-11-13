@@ -3,6 +3,7 @@
 import { IOrder } from "@/@types";
 import OrderItem from "@/components/atom/OrderItem";
 import useOrder from "@/hooks/useOrder";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { Divider } from "@mui/material";
 import Link from "next/link";
 import React, { useEffect } from "react";
@@ -28,11 +29,20 @@ const Orders: React.FC<IOrderPageProps> = (props) => {
           </>
         ) : (
           <>
-            {orders?.map((item: any, index: number) => (
-              <Link href={`/orders/${item.id}`} key={index}>
-                <OrderItem key={index} orderItem={item} />
-              </Link>
-            ))}
+          {orders?.length > 0 ?  
+             <>
+              {orders?.map((item: any, index: number) => (
+                <Link href={`/orders/${item.id}`} key={index}>
+                  <OrderItem key={index} orderItem={item} />
+                </Link>
+               ))}
+            </> : 
+            <div className="flex flex-col w-screen   h-[700px] items-center justify-center">
+              <InformationCircleIcon className="w-32 h-32 text-secondary-900" />
+              <p className="text-secondary-800 text-2xl mt-4">Không có đơn hàng nào</p>
+            </div>
+          }
+       
           </>
         )}
       </div>
@@ -41,7 +51,7 @@ const Orders: React.FC<IOrderPageProps> = (props) => {
       ) : (
         <>
           {orders?.length > 0 && (
-            <div className="w-full cursor-pointer flex-col gap-y-4 rounded-lg border border-secondary-600 px-8 py-4 tablet:w-[30%] laptop:flex">
+            <div className="w-full h-fit cursor-pointer flex-col gap-y-4 rounded-lg border border-secondary-600 px-8 py-4 tablet:w-[30%] laptop:flex">
               <h1 className="text-2xl font-bold text-secondary-900">
                 Thống kê
               </h1>

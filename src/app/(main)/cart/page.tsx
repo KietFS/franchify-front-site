@@ -19,7 +19,7 @@ interface ICartProps {}
 const Cart: React.FC<ICartProps> = (props) => {
   const { currentCart } = useSelector((state: any) => state.cart);
   const { user } = useAuth();
-  const { getUserCart } = useCart();
+  const { getUserCart, loading } = useCart();
   const { actionLoading } = useOrder();
   const router = useRouter();
 
@@ -63,18 +63,18 @@ const Cart: React.FC<ICartProps> = (props) => {
           </div>
         ) : (
           <>
-            {true ? (
+            {loading ? (
               <div className="flex h-full w-full items-center justify-center">
                 <CircularProgress size={24} />
               </div>
             ) : (
               <div className="flex h-full w-full flex-col items-center justify-center">
-                <ShoppingBagIcon className="h-20 w-20 text-primary-500" />
-                <h1 className="mt-4 text-3xl font-bold text-primary-600">
+                <ShoppingBagIcon className="h-20 w-20 text-secondary-800" />
+                <h1 className="mt-4 text-3xl font-bold text-secondary-900">
                   Giỏ hàng đang trống
                 </h1>
                 <Link href="/">
-                  <p className="text-md mt-4 font-bold text-primary-600 underline">
+                  <p className="text-md mt-4 font-bold text-secondary-900 underline">
                     Quay lại trang chủ
                   </p>
                 </Link>

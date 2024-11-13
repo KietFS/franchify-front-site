@@ -40,7 +40,7 @@ const ProductLeftSide: React.FC<ILeftSideProps> = ({ storeProduct }) => {
                 {item ? (
                   <img
                     src={item}
-                    className="w-full h-full object-cover rounded-xl"
+                    className="w-full h-full object-cover rounded-xl border border-gray-300"
                     alt={`Product image ${index + 1}`}
                   />
                 ) : (

@@ -24,6 +24,8 @@ const useAuth = () => {
     }
   }, [accessToken]);
 
+  console.log("accessToken", accessToken);
+
   return {
     isAuthenticated,
     accessToken,
