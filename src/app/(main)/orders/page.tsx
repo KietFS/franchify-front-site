@@ -28,7 +28,7 @@ const Orders: React.FC<IOrderPageProps> = (props) => {
             <div className="h-[200px] w-full animate-pulse bg-gray-100"></div>
           </>
         ) : (
-          <>
+          <div className="h-[600px] overflow-auto flex flex-col gap-y-4">
           {orders?.length > 0 ?  
              <>
               {orders?.map((item: any, index: number) => (
@@ -43,7 +43,7 @@ const Orders: React.FC<IOrderPageProps> = (props) => {
             </div>
           }
        
-          </>
+          </div>
         )}
       </div>
       {loading ? (

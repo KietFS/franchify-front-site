@@ -33,7 +33,7 @@ const CartSummary: React.FC<ICartSummaryProps> = (props) => {
 
     if (user?.savePoints > 0) {
       if (isApplyUserSavePoints) {
-        afterTotal = afterTotal - user?.savePoints;
+        afterTotal = afterTotal - (Number(( user?.savePoints * 70/100)?.toFixed(0)));
       }
     }
 
@@ -48,7 +48,7 @@ const CartSummary: React.FC<ICartSummaryProps> = (props) => {
 
     if (user?.savePoints > 0) {
       if (isApplyUserSavePoints) {
-        finalPrice = finalPrice - user?.savePoints;
+        finalPrice = finalPrice - (Number(( user?.savePoints * 70/100)?.toFixed(0)))
       }
     }
 
@@ -78,7 +78,7 @@ const CartSummary: React.FC<ICartSummaryProps> = (props) => {
               Giảm giá ( bằng điểm )
             </p>
             <p className="text-md font-bold text-red-600">
-              -{(user?.savePoints * 1000)?.toString()?.prettyMoney()}
+              -{((user?.savePoints * 70/100 * 1000)?.toFixed(0))?.toString()?.prettyMoney()}
             </p>
           </div>
         )}
