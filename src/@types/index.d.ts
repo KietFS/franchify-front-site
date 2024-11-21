@@ -88,19 +88,19 @@ interface IOrder {
   createdAt: string;
   updatedAt: string;
   orderAddress: IOrderAddress | null;
-  totalAmount: string;
+  totalAmount: number;
   orderDetails: IOrderDetail[];
   user: IUser;
 }
 
-export interface ICreateOrderUserInfo {
+interface ICreateOrderUserInfo {
   firstName: string;
   lastName: string;
   phoneNumber: string;
   email?: string;
 }
 
-export interface ICreateOrderAddress {
+interface ICreateOrderAddress {
   address: string;
   province: string;
   district?: string;
@@ -108,7 +108,7 @@ export interface ICreateOrderAddress {
   shippingFee: number;
 }
 
-export interface ICreateOrder {
+interface ICreateOrder {
   orderAddress: CreateOrderAddress;
   orderUserInfo: CreateOrderUserInfo;
   isApplyUserSavePoints?: boolean;

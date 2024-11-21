@@ -1,11 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import {
-  ICreateOrder,
-  ICreateOrderAddress,
-  ICreateOrderUserInfo,
-} from "@/@types";
 import PersonalInformationDialog from "@/components/molecules/PeronsalInformationDialog";
 import AddressDialog from "@/components/molecules/AddressDialog";
 import useAuth from "@/hooks/useAuth";
