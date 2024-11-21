@@ -42,7 +42,7 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
           </p>
           <p className="text-md text-green-600 font-bold">
             {`${
-              cartItem?.product?.price?.price * cartItem?.quantity * 1000
+              cartItem?.product?.price?.price * cartItem?.quantity 
             }`.prettyMoney()}
           </p>
         </div>

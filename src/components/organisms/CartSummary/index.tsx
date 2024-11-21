@@ -22,7 +22,7 @@ const CartSummary: React.FC<ICartSummaryProps> = (props) => {
       total = total + item?.product?.price?.price * item?.quantity;
     });
 
-    return `${total}000`?.prettyMoney();
+    return `${total}`?.prettyMoney();
   };
 
   const afterTotalPrice = () => {
@@ -37,7 +37,7 @@ const CartSummary: React.FC<ICartSummaryProps> = (props) => {
       }
     }
 
-    return `${afterTotal}000`?.prettyMoney();
+    return `${afterTotal}`?.prettyMoney();
   };
 
   const finalPrice = () => {
@@ -53,12 +53,11 @@ const CartSummary: React.FC<ICartSummaryProps> = (props) => {
     }
 
     if (props?.shippingFee) {
-      finalPrice = finalPrice + props?.shippingFee / 1000;
+      finalPrice = finalPrice + props?.shippingFee;
     }
 
-    finalPrice = finalPrice + 1;
 
-    return `${finalPrice}000`?.prettyMoney();
+    return `${finalPrice}`?.prettyMoney();
   };
 
   return (
@@ -107,14 +106,7 @@ const CartSummary: React.FC<ICartSummaryProps> = (props) => {
 
         <Divider />
 
-        <div className="flex w-full items-center justify-between">
-          <p className="text-md font-bold text-secondary-900">Phí dịch vụ</p>
-          <p className="text-md font-bold text-green-600">
-            +{(1000)?.toString()?.prettyMoney()}
-          </p>
-        </div>
-
-        <Divider />
+   
 
         <div className="flex w-full items-center justify-between">
           <p className="text-md font-bold text-secondary-900">Tổng ước tính</p>
