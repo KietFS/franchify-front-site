@@ -2,6 +2,10 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Porject Description
 Market Floor is an multi-tenant application using multi-tenant logic. Every tenant manage their own resources, data, ensuring stable and security for their customer. This project is written with various tech stacks like: NextJS14, React, NestJS, TailwindCSS, Redux, Redux-Persist, ElasticSearch, Redis cache,...
+Visit at: https://tea-market.vercel.app/
+![Uploading Screenshot 2024-11-26 at 08.18.41.png…]()
+
+
 
 Advisor: Mr Nguyen Huu Trung, HCMUTE.
 
