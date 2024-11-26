@@ -1,5 +1,25 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Porject Description
+Market Floor is an multi-tenant application using multi-tenant logic. Every tenant manage their own resources, data, ensuring stable and security for their customer. This project is written with various tech stacks like: NextJS14, React, NestJS, TailwindCSS, Redux, Redux-Persist, ElasticSearch, Redis cache,...
+
+Advisor: Mr Nguyen Huu Trung, HCMUTE.
+
+## Key Features
+* Tenant Managment
+* Store Management
+* Product Management
+* Order Management
+* User Management
+* Elastic service.
+* Tracking order service using mailer notification.
+
+## Applications:
+* User front page: This repo.
+* User admin page: https://github.com/KietFS/market-floor-admin-dev
+* Back-end REST API: https://github.com/kietute/market-floor-be-dev
+
+
 ## Getting Started
 
 First, run the development server:
