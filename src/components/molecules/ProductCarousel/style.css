@@ -1,0 +1,14 @@
+.slick-slide {
+    border-top: 1px solid #d1d5db;
+    border-right: 1px solid #d1d5db;
+    outline: unset;
+    height: 100% !important;
+}
+
+.slick-list{
+    border-bottom: 1px solid #d1d5db;
+}
+
+.slick-slider .slick-track {
+    height: 540px;
+}

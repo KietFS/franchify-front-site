@@ -4,10 +4,9 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
-import EmptyImage from "@/assets/images/EmptyImage.png";
-import Image from "next/image";
 import ProductCard from "@/components/molecules/ProductCard";
-import { IStoreProduct } from "@/@types";
+import "./style.css"
+import Link from "next/link";
 
 interface ISimilarProduct {
   listProduct: IStoreProduct[];
@@ -63,6 +62,7 @@ const ProductCarousel: React.FC<ISimilarProduct> = ({ listProduct }) => {
     ),
     arrows: true,
     dot: false,
+    height: 540,
     speed: 500,
     dots: false,
     slidesToShow: slidesToShow,
@@ -98,37 +98,31 @@ const ProductCarousel: React.FC<ISimilarProduct> = ({ listProduct }) => {
   };
 
   const handleItemClick = (item: any) => {
-    let splits = (item?.name as string)?.split(" ");
-    let final = "";
 
-    const prefix = splits?.map((key: any, index: number) => {
-      if (index == splits?.length - 1) {
-        final = final + `${key}`;
-      } else {
-        final = final + `${key}-`;
-      }
-    });
+    let final = "";
 
     router.push(`/product-detail/${final}-${item?.upc}`, { scroll: true });
     window.scrollTo(0, 0);
   };
 
   return (
-    <div className="max-w-[360px] tablet:max-w-[600px] laptop:max-w-[960px] h-[600px] desktop:max-w-[1200px] mx-auto mb-10">
+    <div className="max-w-[360px] tablet:max-w-[600px] laptop:max-w-[960px] h-full desktop:max-w-[1200px] mx-auto mb-10">
       {listProduct?.length > 4 && (
         <div className="h-full rounded-lg bg-white w-full px-8 pt-4 grid grid-cols-1">
           <Slider {...settings}>
             {listProduct.map((item, index) => (
               <div
                 key={`card-${index}`}
-                className="border-r border-b border-t border-gray-300 p-2 h-full flex items-stretch"
+                className="p-2 h-full flex items-stretch h-[540px]"
               >
+                <Link href={`/product-detail/${item?.product?.upc}`}>
                 <ProductCard
                   item={item}
                   index={index}
                   key={`card-${index}`}
-                  handleItemClick={() => handleItemClick(item)}
+                  handleItemClick={() => {}}
                 />
+                </Link>
               </div>
             ))}
           </Slider>

@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+
+//@ts-ignore
 import EmptyImage from "@/assets/images/EmptyImage.png";
 import Image from "next/image";
 import useCart from "@/hooks/useCart";
@@ -26,7 +28,7 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
   return (
     <div
       onClick={() => navigateToProductDetail(cartItem?.product)}
-      className="flex w-full justify-between items-center px-8 py-4 border-secondary-600 rounded-lg border cursor-pointer"
+      className="flex w-full justify-between items-center z-1 px-8 py-4 border-secondary-600 rounded-lg border cursor-pointer"
     >
       <div className="flex w-fit gap-x-4">
         <Image
@@ -62,15 +64,21 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
             <>
               {currentQuantity > 1 ? (
                 <IconButton
-                  className="px-2 py-1 border-secondary-800 rounded-l-lg"
-                  onClick={() => handleDecreaseQuantity()}
+                  className="px-2 py-1 border-secondary-800 rounded-l-lg z-2"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    handleDecreaseQuantity();
+                  }}
                 >
                   <MinusIcon className="w-4 h-4 text-secondary-900" />
                 </IconButton>
               ) : (
                 <IconButton
-                  className="px-2 py-1 border-secondary-800rounded-l-lg"
-                  onClick={() => handleRemoveProduct()}
+                  className="px-2 py-1 border-secondary-800 rounded-l-lg z-2"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    handleRemoveProduct();
+                  }}
                 >
                   <TrashIcon className="w-4 h-4 text-secondary-900" />
                 </IconButton>
@@ -81,8 +89,12 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
                 className="text-center w-12 bg-white disabled:cursor-not-allowed"
               />
               <IconButton
-                className="px-2 py-1 rounded-r-lg "
-                onClick={() => handleIncreaseQuantity()}
+
+                className="px-2 py-1 rounded-r-lg z-2"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  handleIncreaseQuantity();
+                }}
               >
                 <PlusIcon className="w-4 h-4 text-secondary-900" />
               </IconButton>

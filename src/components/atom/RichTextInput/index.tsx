@@ -67,7 +67,7 @@ const RichTextInput: React.FC<IRichTextInputProps> = (props) => {
                     : error
                       ? "bg-red-50"
                       : "bg-secondary-100"
-                } text-primary-700 rounded-lg w-80 h-8 text-sm  outline-none ring-0 border-transparent focus:border-transparent focus:ring-0 focus:outline-transparent`}
+                } text-secondary-900 rounded-lg w-80 h-8 text-sm  outline-none ring-0 border-transparent focus:border-transparent focus:ring-0 focus:outline-transparent`}
               />
             </div>
             {error && (

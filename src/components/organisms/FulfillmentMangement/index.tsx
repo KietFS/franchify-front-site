@@ -82,7 +82,7 @@ const FulfillmentMangement: React.FC<IFulfillmentMangementProps> = (props) => {
                 Bạn đang chọn
               </p>
               <p className="text-secondary-500 font-regular hidden desktop:flex truncate max-w-[100px]">
-                {`Cửa hàng: ${currentStore?.name}`}
+                {`Cửa hàng: ${currentStore?.id}`}
               </p>
             </div>
           </button>

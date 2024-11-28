@@ -10,6 +10,8 @@ import { useSelector } from "react-redux";
 import ConfirmDialog from "@/components/molecules/ConfirmDialog";
 import { apiURL } from "@/constanst";
 import useAuth from "@/hooks/useAuth";
+import {TrashIcon} from "@heroicons/react/24/outline";
+import {PencilSquareIcon} from "@heroicons/react/16/solid";
 
 interface IProductCommentCardProps {
   productDetail: any;
@@ -40,6 +42,7 @@ const CommentCard: React.FC<any> = (props) => {
   const [commentMode, setCommentMode] = useState<ICommentMode>("view");
   const toast = useToast();
   const { isAuthenticated } = useAuth();
+  const [showMore, setShowMore] = React.useState(false);
 
   const handlePostReply = async () => {
     try {
@@ -154,54 +157,64 @@ const CommentCard: React.FC<any> = (props) => {
           isConfirmLoadingButton={isDeleting}
         />
       )}
-      <div className="my-2 py-3 pl-4 rounded-xl bg-secondary-100 h-fit">
+      <div className="my-2 h-fit rounded-xl bg-secondary-100 py-3 pl-4">
         <>
           {commentMode == "view" ? (
-            <div className="flex justify-between w-full">
-              <div className="flex items-center gap-x-2">
-                <div className="bg-primary-600 text-center text-secondary-500 w-[40px] h-[40px] cursor-pointer rounded-full flex items-center justify-center box-border">
+            <div className="flex w-full ">
+              <div className="flex items-center gap-x-2 w-full">
+                <div className="box-border flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full bg-primary-600 text-center text-secondary-500">
                   {commentUser?.username?.[0]}
                 </div>
-                <div>
-                  <div className="flex flex-col tablet:flex-row tablet:items-center">
-                    <p className="text-sm tablet:text-lg font-semibold text-secondary-900">
+                <div className="bg-gray-100 w-full rounded-lg pl-6 py-3 min-h-[115px]">
+                  <div className="flex flex-col  gap-y-4 tablet:flex-row tablet:items-center">
+                    <p className="text-sm font-semibold text-secondary-900 tablet:text-lg">
                       {commentUser?.username}
                     </p>
                     {props?.createdAt && (
-                      <p className="text-secondary-800 text-[10px] tablet:text-xs text-sm tablet:ml-1">
+                      <p className="text-[10px] text-sm text-secondary-800 tablet:ml-1 tablet:text-xs">
                         vào ngày{" "}
                         {props.createdAt?.toString()?.prettyDateTime() || ""}
                       </p>
                     )}
                   </div>
 
-                  <p className="text-secondary-900 text-sm">{content}</p>
-                  <div className="items-center flex mt-1">
-                    {!!isAuthenticated && (
+                  <p className="text-sm text-secondary-900">{content}</p>
+                  <div className="mt-4 flex items-center gap-x-1">
+                    {isAuthenticated && (
                       <button
-                        className="text-secondary-900 hover:text-secondary-900 font-regular text-xs"
+                          className="font-regular hover:font-semibold hover:text-primary-500 text-xs flex items-center"
                         onClick={handleTurnOnReply}
                       >
                         Trả lời
                       </button>
                     )}
-                    {props.userName == user?.username && (
+                    {props?.user.username == user?.username && (
                       <button
-                        className="text-secondary-900 hover:opacity-80 font-regular text-xs ml-2"
+                        className="font-regular hover:font-bold hover:text-red-600 ml-2 text-xs text-secondary-900 flex gap-x-1 items-center"
                         onClick={() => setOpenConfirmDialog(true)}
                       >
                         Xóa bình luận
+                        <TrashIcon className="w-3 h-3 text-secondary-900 font-bold group-hover:text-red-600 text-inherit"  />
                       </button>
                     )}
-                    {props.userName == user?.username && (
+                    {props?.user?.username == user?.username && (
                       <button
-                        className="text-secondary-900 hover:opacity-80 font-regular text-xs ml-2"
+                        className="font-regular hover:font-semibold hover:text-primary-500 ml-2 text-xs flex gap-x-1 items-center"
                         onClick={handleTurnOnEdit}
                       >
                         Chỉnh sửa
+                        <PencilSquareIcon className="w-3 h-3 text-secondary-900 font-semibold group-hover:text-primary-500 text-inherit" />
                       </button>
                     )}
                   </div>
+                  {replies.length > 0 && (
+                    <button
+                      onClick={() => setShowMore(!showMore)}
+                      className="bold border-none hover:opacity-50 bg-none text-sm text-gray-600 mt-2"
+                    >
+                      {showMore ? "Ẩn" : "Xem"} {replies?.length} trả lời
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
@@ -225,7 +238,7 @@ const CommentCard: React.FC<any> = (props) => {
         </>
 
         {isTurningOnReply && commentMode == "view" ? (
-          <div className="ml-12 mt-4 ease-in duration-300">
+          <div className="ml-12 mt-4 duration-300 ease-in">
             <CommentInput
               key={id}
               {...register("reply", {
@@ -244,34 +257,36 @@ const CommentCard: React.FC<any> = (props) => {
           </div>
         ) : null}
 
-        <div>
-          {replies?.map((reply: any, replyIndex: number) => {
-            return (
-              <div className="relative ml-2" key={`reply-${replyIndex}`}>
-                <svg
-                  className="absolute left-0 top-0 h-full"
-                  width="40"
-                  height="100%"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M10 0 v50 M10 50 h30"
-                    stroke="#cbd5e0"
-                    strokeWidth="0.5"
-                  />
-                </svg>
-                <div className="ml-8 mt-2 border-t border-secondary-200 pl-4">
-                  <CommentCard
-                    key={replyIndex}
-                    productDetail={productDetail}
-                    {...reply}
-                    onReplyingSuccess={() => onReplyingSuccess?.()}
-                  />
+        {showMore && (
+          <div>
+            {replies?.map((reply: any, replyIndex: number) => {
+              return (
+                <div className="relative ml-2" key={`reply-${replyIndex}`}>
+                  <svg
+                    className="absolute left-0 top-0 h-full"
+                    width="40"
+                    height="100%"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M10 0 v70 M10 70 h30"
+                      stroke="#374151"
+                      strokeWidth="0.3"
+                    />
+                  </svg>
+                  <div className="ml-8 mt-2 border-t border-secondary-200 pl-4">
+                    <CommentCard
+                      key={replyIndex}
+                      productDetail={productDetail}
+                      {...reply}
+                      onReplyingSuccess={() => onReplyingSuccess?.()}
+                    />
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </>
   );

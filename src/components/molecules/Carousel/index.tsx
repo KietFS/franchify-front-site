@@ -5,12 +5,17 @@ import Slider from "react-slick";
 import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import Image from "next/image";
+
+//@ts-ignore
 import FirstCarousel from "@/assets/images/Carousel1.png";
+//@ts-ignore
 import SecondCarousel from "@/assets/images/Carousel2.png";
+//@ts-ignore
 import ThirdCarousel from "@/assets/images/Carousel3.png";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import './style.css'
 
 interface ISimilarProduct {}
 
@@ -49,12 +54,12 @@ const Carousel: React.FC<ISimilarProduct> = ({}) => {
   };
 
   return (
-    <div className="h-fit w-full overflow-hidden rounded-lg bg-white px-8 pt-4">
+    <div className="h-full w-full overflow-hidden rounded-lg bg-white px-8 pt-4">
       <Slider {...settings}>
         <div>
           <Image
             src={FirstCarousel}
-            className="w-full h-[400px] rounded-xl object-cover"
+            className="w-full h-full rounded-xl object-cover"
             alt={`Product `}
             layout="responsive"
             width={1200}
