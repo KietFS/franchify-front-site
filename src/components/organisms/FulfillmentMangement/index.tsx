@@ -34,7 +34,7 @@ const FulfillmentMangement: React.FC<IFulfillmentMangementProps> = (props) => {
   };
 
   useEffect(() => {
-    getStoreByLocation();
+     getStoreByLocation();
   }, []);
 
   useEffect(() => {

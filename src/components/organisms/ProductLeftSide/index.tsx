@@ -3,6 +3,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import Image from "next/image";
+
+//@ts-ignore
 import EmptyImage from "@/assets/images/EmptyImage.png";
 
 interface ILeftSideProps {
@@ -40,7 +42,7 @@ const ProductLeftSide: React.FC<ILeftSideProps> = ({ storeProduct }) => {
                 {item ? (
                   <img
                     src={item}
-                    className="w-full h-full object-cover rounded-xl border border-gray-300"
+                    className="w-full h-full object-cover rounded-xl"
                     alt={`Product image ${index + 1}`}
                   />
                 ) : (
@@ -67,7 +69,7 @@ const ProductLeftSide: React.FC<ILeftSideProps> = ({ storeProduct }) => {
           {carouselImages?.length > 1 &&
             carouselImages?.map((item: any, index: number) => (
               <div
-                key={index}
+                key={`carousel-${index}`}
                 className="p-2 border border-secondary-700 rounded-xl cursor-pointer hover:opacity-50"
                 onClick={() => (sliderRef.current as any)?.slickGoTo(index)}
               >

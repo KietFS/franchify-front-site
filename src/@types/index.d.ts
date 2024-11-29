@@ -1,5 +1,6 @@
 declare module "@heroicons/react/outline";
 declare module "styled-components";
+declare  module "./user.d.ts"
 
 interface IProductPrice {
   price: number;
@@ -8,17 +9,6 @@ interface IProductPrice {
   displaySalePrice?: string;
 }
 
-interface IUser {
-  id: number;
-  username: string;
-  phoneNumber: string;
-  firstName: string;
-  lastName: string;
-  savePoints: number;
-  email: string;
-  createdAt: string;
-  updatedAt: string;
-}
 
 interface IProduct {
   id: string;
@@ -109,8 +99,8 @@ interface ICreateOrderAddress {
 }
 
 interface ICreateOrder {
-  orderAddress: CreateOrderAddress;
-  orderUserInfo: CreateOrderUserInfo;
+  orderAddress: ICreateOrderAddress;
+  orderUserInfo: ICreateOrderUserInfo;
   isApplyUserSavePoints?: boolean;
   storeId: number;
 }

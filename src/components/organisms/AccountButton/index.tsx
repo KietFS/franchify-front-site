@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import { Avatar, Divider, Popover } from "@mui/material";
-import { ShoppingBagIcon } from "@heroicons/react/24/outline";
+import { Divider, Popover } from "@mui/material";
 import { Cog6ToothIcon, UserIcon } from "@heroicons/react/24/solid";
 import Button from "@/components/atom/Button";
 import useAuth from "@/hooks/useAuth";

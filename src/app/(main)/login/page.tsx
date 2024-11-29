@@ -5,7 +5,7 @@ import Input from "@/components/atom/Input";
 import { Typography, Box, Divider, CircularProgress } from "@mui/material";
 import Image from "next/image";
 import { set, useForm } from "react-hook-form";
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 import React from "react";
 import { useToast } from "@/hooks/useToast";
 import { useRouter } from "next/navigation";
@@ -23,10 +23,10 @@ const LoginPage: React.FC<ILoginPageProps> = (props) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const handlePressLogin = async (values: any) => {
+  const handlePressLogin = async (values: IUserLoginPayload) => {
     try {
       setLoading(true);
-      const response = await axios.post(`${apiURL}/auth/signin`, values);
+      const response = await axios.post<any, AxiosResponse<any>, IUserLoginPayload>(`${apiURL}/auth/signin`, values);
       const { success, data, error } = response.data;
       if (success) {
         dispatch(setAccessToken(data?.accessToken));

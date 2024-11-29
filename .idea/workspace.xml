@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="302b29d5-7d3b-414b-bb5e-095d7af04a6d" name="Changes" comment="" />
+    <list default="true" id="302b29d5-7d3b-414b-bb5e-095d7af04a6d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/organisms/ProductLeftSide/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/molecules/ProductCarousel/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/ProductCarousel/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/molecules/ProductCarousel/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/ProductCarousel/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/organisms/PopularProduct/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/organisms/PopularProduct/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/organisms/ProductLeftSide/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/organisms/ProductLeftSide/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/useProducts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useProducts.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/slices/product.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/slices/product.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,9 +25,9 @@
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2pLGPAEiSnfEMCP4CqeNi3hdbBB" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -36,6 +45,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "yarn",
     "npm.dev.executor": "Run",
+    "ts.external.directory.path": "/Users/admin/Documents/Personal/market-floor-platform/market-floor-user-dev/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -66,8 +76,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="npm.dev" />
       <item itemvalue="Shell Script.run server" />
+      <item itemvalue="npm.dev" />
     </list>
   </component>
   <component name="SharedIndexes">
@@ -86,6 +96,9 @@
       <option name="presentableId" value="Default" />
       <updated>1732537915662</updated>
       <workItem from="1732537918303" duration="980000" />
+      <workItem from="1732859800715" duration="227000" />
+      <workItem from="1732860031860" duration="57000" />
+      <workItem from="1732873814828" duration="16000" />
     </task>
     <servers />
   </component>

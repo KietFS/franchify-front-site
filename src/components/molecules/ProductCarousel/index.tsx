@@ -113,7 +113,7 @@ const ProductCarousel: React.FC<ISimilarProduct> = ({ listProduct }) => {
             {listProduct.map((item, index) => (
               <div
                 key={`card-${index}`}
-                className="p-2 h-full flex items-stretch h-[540px]"
+                className="p-2 h-[540px] flex items-stretch border-r  border-gray-300"
               >
                 <Link href={`/product-detail/${item?.product?.upc}`}>
                 <ProductCard

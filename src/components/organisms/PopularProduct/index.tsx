@@ -14,7 +14,7 @@ const PopularProducts: React.FC<IPopularProductProps> = (props) => {
 
   useEffect(() => {
     currentStore && getAllPopularProducts({ page: currentPage });
-  }, []);
+  }, [currentStore]);
 
   return (
     <>
