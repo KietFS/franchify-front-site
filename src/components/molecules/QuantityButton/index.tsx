@@ -32,7 +32,7 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
     getUserCart,
     loading,
     handleRemoveProduct,
-  } = useCart(storeProduct?.product);
+  } = useCart(storeProduct?.product as any);
   const { isAuthenticated } = useAuth();
   const router = useRouter();
 
@@ -45,7 +45,10 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
           } ${
             mode == Mode.detail ? "min-w-[300px]" : "min-w-[130px]"
           } justify-center text-center w-fit flex hover:opacity-50 bg-white text-black border border-secondary-800 font-semibold text-lg opactiy-50`}
-          onClick={(e) => e.stopPropagation()}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation()
+          }}
         >
           <>
             {loading ? (
@@ -54,6 +57,7 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
               <div className="w-full flex justify-between items-center">
                 <IconButton
                   onClick={(e) => {
+                    e?.preventDefault();
                     e.stopPropagation();
                     if (currentQuantity > 1) {
                       handleDecreaseQuantity();
@@ -72,6 +76,7 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
                 <IconButton
                   className="z-20"
                   onClick={(e) => {
+                    e?.preventDefault();
                     e.stopPropagation();
                     handleIncreaseQuantity();
                   }}
@@ -86,6 +91,7 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
         <button
           onClick={(e) => {
             e.stopPropagation();
+            e?.preventDefault();
             if (isAuthenticated) {
               handleAddToCart();
             } else {

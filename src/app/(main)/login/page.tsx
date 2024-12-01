@@ -75,19 +75,17 @@ const LoginPage: React.FC<ILoginPageProps> = (props) => {
             sx={{ fontWeight: "600" }}
             variant="h4"
           >
-            Sign in
+            Đăng nhập
           </Typography>
           <Typography
             sx={{ marginTop: "16px", fontSize: "14px", color: "GrayText" }}
           >
-            Welcome to Market Floor, a market places connects retailer and
-            customers. Here, you can find a wide variety of products from
-            trusted sellers. Enjoy a seamless shopping experience with us.
+            Đăng nhập vào The Coffee House để trải nghiệm mua sắm tốt nhất
           </Typography>
         </Box>
 
         <Button variant="secondary">
-          <span>Sign in with Google </span>
+          <span>Đăng nhập bằng Google</span>
           <Image
             alt="google-logo"
             src={require("../../../assets/icons/google.png")}
@@ -106,17 +104,17 @@ const LoginPage: React.FC<ILoginPageProps> = (props) => {
           <Input
             name="phoneNumber"
             control={control}
-            label="Phone number"
-            placeholder="Enter your phone number"
-            rules={{ required: "Phone number is required" }}
+            label="Số điện thoại"
+            placeholder="Nhập số điện thoại của bạn"
+            rules={{ required: "Số điện thoại không được để trống" }}
           />
           <Input
             control={control}
             name="password"
-            label="Password"
-            placeholder="Enter your password"
+            label="Mật khẩu"
+            placeholder="Nhập mật khẩu của bạn"
             mode="password"
-            rules={{ required: "Password is required" }}
+            rules={{ required: "Mật khẩu không được để trống" }}
           />
           <Button
             type="submit"
@@ -124,7 +122,7 @@ const LoginPage: React.FC<ILoginPageProps> = (props) => {
             className="mt-2"
             isLoading={loading}
           >
-            Continue with phone number
+            Tiếp tục với số điện thoại
           </Button>
 
           <CircularProgress size={24} />
@@ -132,8 +130,7 @@ const LoginPage: React.FC<ILoginPageProps> = (props) => {
 
         <Box>
           <Typography sx={{ fontSize: "14px", color: "GrayText" }}>
-            By sign in, you agree to Market Floors Terms of Service and Privacy
-            Policy, as well as the Cookie Policy
+            Bằng cách tiếp tục, bạn đã đồng ý với The Coffee House về Điều khoản sử dụng và Chính sách bảo mật
           </Typography>
         </Box>
         <Divider sx={{ height: 4, width: "100%" }} />
@@ -147,12 +144,12 @@ const LoginPage: React.FC<ILoginPageProps> = (props) => {
               columnGap: "2px",
             }}
           >
-            Dont have an account?
+              Chưa có tài khoản?
             <Link
               style={{ marginLeft: "4px", textDecoration: "underline" }}
               href="/create-account"
             >
-              Create one
+              Tạo tài khoản
             </Link>
           </Typography>
         </Box>

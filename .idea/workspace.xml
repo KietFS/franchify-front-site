@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="302b29d5-7d3b-414b-bb5e-095d7af04a6d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/organisms/ProductLeftSide/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/molecules/ProductCarousel/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/ProductCarousel/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/molecules/ProductCarousel/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/ProductCarousel/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/organisms/PopularProduct/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/organisms/PopularProduct/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/organisms/ProductLeftSide/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/organisms/ProductLeftSide/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/useProducts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useProducts.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/slices/product.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/slices/product.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(main)/cart/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(main)/cart/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(main)/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(main)/login/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/molecules/CommentCard/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/CommentCard/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/molecules/QuantityButton/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/QuantityButton/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,26 +26,34 @@
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="2pLGPAEiSnfEMCP4CqeNi3hdbBB" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Shell Script.run server.executor": "Run",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "npm.dev.executor": "Run",
-    "ts.external.directory.path": "/Users/admin/Documents/Personal/market-floor-platform/market-floor-user-dev/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Shell Script.run server.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/admin/Documents/Personal/market-floor-platform/market-floor-user-dev/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/@types" />
+    </key>
+  </component>
   <component name="RunManager" selected="npm.dev">
     <configuration name="run server" type="ShConfigurationType">
       <option name="SCRIPT_TEXT" value="cd .. &amp;&amp; cd market-floor-be &amp;&amp; nvm use 20 &amp;&amp; yarn start:dev" />
@@ -76,8 +81,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Shell Script.run server" />
       <item itemvalue="npm.dev" />
+      <item itemvalue="Shell Script.run server" />
     </list>
   </component>
   <component name="SharedIndexes">
@@ -99,6 +104,8 @@
       <workItem from="1732859800715" duration="227000" />
       <workItem from="1732860031860" duration="57000" />
       <workItem from="1732873814828" duration="16000" />
+      <workItem from="1732874005859" duration="2158000" />
+      <workItem from="1733050886245" duration="4490000" />
     </task>
     <servers />
   </component>

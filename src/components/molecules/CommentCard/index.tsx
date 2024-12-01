@@ -12,6 +12,7 @@ import { apiURL } from "@/constanst";
 import useAuth from "@/hooks/useAuth";
 import {TrashIcon} from "@heroicons/react/24/outline";
 import {PencilSquareIcon} from "@heroicons/react/16/solid";
+import Link from "next/link";
 
 interface IProductCommentCardProps {
   productDetail: any;
@@ -165,7 +166,7 @@ const CommentCard: React.FC<any> = (props) => {
                 <div className="box-border flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full bg-primary-600 text-center text-secondary-500">
                   {commentUser?.username?.[0]}
                 </div>
-                <div className="bg-gray-100 w-full rounded-lg pl-6 py-3 min-h-[115px]">
+                <div className="bg-gray-100 w-full rounded-lg pl-6 py-3 min-h-[80 px]">
                   <div className="flex flex-col  gap-y-4 tablet:flex-row tablet:items-center">
                     <p className="text-sm font-semibold text-secondary-900 tablet:text-lg">
                       {commentUser?.username}
@@ -179,19 +180,25 @@ const CommentCard: React.FC<any> = (props) => {
                   </div>
 
                   <p className="text-sm text-secondary-900">{content}</p>
-                  <div className="mt-4 flex items-center gap-x-1">
-                    {isAuthenticated && (
+                  <div className="mt-2 flex items-center gap-x-1">
+                    {isAuthenticated ? (
+                        <button
+                            className="font-regular hover:font-semibold hover:text-primary-500 text-xs flex items-center"
+                            onClick={handleTurnOnReply}
+                        >
+                          Trả lời
+                        </button>
+                    ) : <Link href="/login" >
                       <button
-                          className="font-regular hover:font-semibold hover:text-primary-500 text-xs flex items-center"
-                        onClick={handleTurnOnReply}
+                          className="font-regular text-sm hover:font-semibold text-primary-500"
                       >
-                        Trả lời
+                        Đăng nhập để trả lời
                       </button>
-                    )}
+                    </Link>}
                     {props?.user.username == user?.username && (
-                      <button
-                        className="font-regular hover:font-bold hover:text-red-600 ml-2 text-xs text-secondary-900 flex gap-x-1 items-center"
-                        onClick={() => setOpenConfirmDialog(true)}
+                        <button
+                            className="font-regular hover:font-bold hover:text-red-600 ml-2 text-xs text-secondary-900 flex gap-x-1 items-center"
+                            onClick={() => setOpenConfirmDialog(true)}
                       >
                         Xóa bình luận
                         <TrashIcon className="w-3 h-3 text-secondary-900 font-bold group-hover:text-red-600 text-inherit"  />

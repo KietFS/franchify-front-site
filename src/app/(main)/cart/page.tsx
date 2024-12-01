@@ -6,7 +6,8 @@ import CartSummary from "@/components/organisms/CartSummary";
 import useAuth from "@/hooks/useAuth";
 import useCart from "@/hooks/useCart";
 import useOrder from "@/hooks/useOrder";
-import { ShoppingBagIcon } from "@heroicons/react/24/solid";
+import { ShoppingBagIcon, InformationCircleIcon } from "@heroicons/react/24/solid";
+
 import { CircularProgress, Divider } from "@mui/material";
 
 import Link from "next/link";
@@ -18,7 +19,7 @@ interface ICartProps {}
 
 const Cart: React.FC<ICartProps> = (props) => {
   const { currentCart } = useSelector((state: any) => state.cart);
-  const { user } = useAuth();
+  const { user, isAuthenticated } = useAuth();
   const { getUserCart, loading } = useCart();
   const { actionLoading } = useOrder();
   const router = useRouter();
@@ -63,23 +64,40 @@ const Cart: React.FC<ICartProps> = (props) => {
           </div>
         ) : (
           <>
-            {loading ? (
-              <div className="flex h-full w-full items-center justify-center">
-                <CircularProgress size={24} />
-              </div>
-            ) : (
-              <div className="flex h-full w-full flex-col items-center justify-center">
-                <ShoppingBagIcon className="h-20 w-20 text-secondary-800" />
-                <h1 className="mt-4 text-3xl font-bold text-secondary-900">
-                  Giỏ hàng đang trống
-                </h1>
-                <Link href="/">
-                  <p className="text-md mt-4 font-bold text-secondary-900 underline">
-                    Quay lại trang chủ
-                  </p>
-                </Link>
-              </div>
-            )}
+            {isAuthenticated ?
+                <>
+              {loading ? (
+                  <div className="flex h-full w-full items-center justify-center">
+                    <CircularProgress size={24} />
+                  </div>
+              ) : (
+                  <div className="flex h-full w-full flex-col items-center justify-center">
+                    <ShoppingBagIcon className="h-20 w-20 text-secondary-800" />
+                    <h1 className="mt-4 text-3xl font-bold text-secondary-900">
+                      Giỏ hàng đang trống
+                    </h1>
+                    <Link href="/">
+                      <p className="text-md mt-4 font-bold text-secondary-900 underline">
+                        Quay lại trang chủ
+                      </p>
+                    </Link>
+                  </div>
+              )}
+            </> :
+                <>
+                  <div className="flex h-full w-full flex-col items-center justify-center">
+                    <InformationCircleIcon className="h-20 w-20 text-secondary-800"/>
+                    <h1 className="mt-4 text-3xl font-bold text-secondary-900">
+                        Bạn chưa đăng nhập
+                    </h1>
+                    <Link href="/login">
+                      <p className="text-md mt-4 font-bold text-secondary-900 underline">
+                            Vui lòng đăng nhập để xem giỏ hàng
+                      </p>
+                    </Link>
+                  </div>
+                </>
+            }
           </>
         )}
       </div>
