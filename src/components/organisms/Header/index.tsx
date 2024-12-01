@@ -19,9 +19,9 @@ import Link from "next/link";
 import TopBar from "@/components/molecules/TopBar";
 import useConfig from "@/hooks/useConfig";
 
-interface IHeaderV2Props {}
+interface IHeaderProps {}
 
-const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
+const Header: React.FC<IHeaderProps> = (props) => {
   const router = useRouter();
 
   //state
@@ -133,4 +133,4 @@ const HeaderV2: React.FC<IHeaderV2Props> = (props) => {
   );
 };
 
-export default HeaderV2;
+export default Header;

@@ -5,7 +5,6 @@ import { Divider } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import ProductCarousel from "@/components/molecules/ProductCarousel";
 import useStore from "@/hooks/useStore";
-
 interface IPopularProductProps {}
 
 const PopularProducts: React.FC<IPopularProductProps> = (props) => {
@@ -15,7 +14,7 @@ const PopularProducts: React.FC<IPopularProductProps> = (props) => {
 
   useEffect(() => {
     currentStore && getAllPopularProducts({ page: currentPage });
-  }, []);
+  }, [currentStore]);
 
   return (
     <>

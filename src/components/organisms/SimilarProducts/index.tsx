@@ -16,7 +16,7 @@ const SimilarProducts: React.FC<ISimilarProductProps> = (props) => {
         Sản phẩm tương tự
       </h1>
       <Divider sx={{ marginY: 4 }} />
-      {!!relatedProduct && <ProductCarousel listProduct={relatedProduct} />}
+      {relatedProduct?.length >0  && <ProductCarousel listProduct={relatedProduct} />}
     </div>
   );
 };
