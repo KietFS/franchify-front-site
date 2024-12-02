@@ -5,6 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="302b29d5-7d3b-414b-bb5e-095d7af04a6d" name="Changes" comment="">
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+>>>>>>> dee0a26 (add gitignore)
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,6 +38,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;Shell Script.run server.executor&quot;: &quot;Run&quot;,
+<<<<<<< HEAD
     &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -50,6 +55,24 @@
       <recent name="$PROJECT_DIR$/src/@types" />
     </key>
   </component>
+=======
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/huynhngoctuankiet/Documents/school/Project/market-floor-user-dev/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.typescriptcompiler&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/huynhngoctuankiet/Documents/school/Project/market-floor-user-dev/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+>>>>>>> dee0a26 (add gitignore)
   <component name="RunManager" selected="npm.dev">
     <configuration name="run server" type="ShConfigurationType">
       <option name="SCRIPT_TEXT" value="cd .. &amp;&amp; cd market-floor-be &amp;&amp; nvm use 20 &amp;&amp; yarn start:dev" />
@@ -72,7 +95,7 @@
       <scripts>
         <script value="dev" />
       </scripts>
-      <node-interpreter value="$USER_HOME$/.nvm/versions/node/v21.7.1/bin/node" />
+      <node-interpreter value="$USER_HOME$/.nvm/versions/node/v21.7.3/bin/node" />
       <envs />
       <method v="2" />
     </configuration>
@@ -97,11 +120,16 @@
       <option name="presentableId" value="Default" />
       <updated>1732537915662</updated>
       <workItem from="1732537918303" duration="980000" />
+<<<<<<< HEAD
       <workItem from="1732859800715" duration="227000" />
       <workItem from="1732860031860" duration="57000" />
       <workItem from="1732873814828" duration="16000" />
       <workItem from="1732874005859" duration="2158000" />
       <workItem from="1733050886245" duration="5330000" />
+=======
+      <workItem from="1732807581085" duration="7489000" />
+      <workItem from="1732946179473" duration="730000" />
+>>>>>>> dee0a26 (add gitignore)
     </task>
     <servers />
   </component>
