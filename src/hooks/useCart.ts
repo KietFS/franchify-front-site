@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useToast } from "./useToast";
 import { setCurrentCart } from "@/redux/slices/cart";
 import { apiURL } from "@/constanst";
-import { IProduct } from "@/@types";
 
 const useCart = (currentProduct?: IProduct) => {
   const { accessToken } = useSelector((state: any) => state.auth);
