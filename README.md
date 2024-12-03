@@ -4,7 +4,7 @@ Market Floor is an multi-tenant application using multi-tenant logic. Every tena
 * **For User site**: NextJS14 with App Router, TailwindCSS, Next Caching.
 * **For Admin site**:  React, TailwindCSS, Redux, Redux-Persist.
 * **For Rest API Server**: NestJS, TypeOrm, PostgreSQL, Redis Cache, ElasticSearch, Twillio Service, Mail Service.
-Visit at: https://tea-market.vercel.app/
+
 Advisor: Mr Nguyen Huu Trung, HCMUTE.
 
 
