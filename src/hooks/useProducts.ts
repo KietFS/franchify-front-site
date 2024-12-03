@@ -54,9 +54,9 @@ const useProducts = () => {
   };
 
   const getAllPopularProducts = async (payload: { page?: number }) => {
-    if (popularProducts?.length > 0) {
-      return Promise.resolve();
-    }
+    // if (popularProducts?.length > 0) {
+    //   return Promise.resolve();
+    // }
     try {
       setLoading(true);
       let url = `${apiURL}/products/by-store/popular?storeId=${currentStore?.id}&pageSize=100`;
@@ -69,6 +69,7 @@ const useProducts = () => {
         },
       });
       if (response?.data?.success) {
+        console.log('RESPONSE DATA', response?.data);
         dispatch(setPopularProducts(response?.data?.data?.results))
       } else {
         dispatch(setPopularProducts([]))

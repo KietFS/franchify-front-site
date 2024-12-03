@@ -8,6 +8,8 @@ import QuantityButton from "../QuantityButton";
 import { IconButton } from "@mui/material";
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import Link from "next/link";
+import useAuth from "@/hooks/useAuth";
+import useStore from "@/hooks/useStore";
 
 interface IProductCardProps {
   handleItemClick: (product: IProduct) => void;
@@ -17,10 +19,10 @@ interface IProductCardProps {
 
 const ProductCard: React.FC<IProductCardProps> = (props) => {
   const { handleItemClick, item, index } = props;
-
+  const {currentStore} = useStore()
 
   return (
-      <Link href={`/product-detail/${item?.product?.upc || (item as any)?.upc}`}>
+      <Link href={`/product-detail/${currentStore?.id}-${item?.product?.upc || (item as any)?.upc}`}>
         <div
           className="z-0 my-8 flex min-h-[500px] h-full
           cursor-pointer flex-col items-center justify-between border-gray-200 p-4 laptop:my-2"

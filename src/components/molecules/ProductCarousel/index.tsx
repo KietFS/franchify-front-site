@@ -107,7 +107,7 @@ const ProductCarousel: React.FC<ISimilarProduct> = ({ listProduct }) => {
 
   return (
     <div className="max-w-[360px] tablet:max-w-[600px] laptop:max-w-[960px] h-full desktop:max-w-[1200px] mx-auto mb-10">
-      {listProduct?.length > 4 && (
+      {listProduct?.length > 0 && (
         <div className="h-full rounded-lg bg-white w-full px-8 pt-4 grid grid-cols-1">
           <Slider {...settings}>
             {listProduct.map((item, index) => (
