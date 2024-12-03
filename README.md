@@ -16,16 +16,19 @@ Advisor: Mr Nguyen Huu Trung, HCMUTE.
 
 
 ## Key Features
-* Tenant Managment
-* Store Management
-* Product Management
-* Order Management
-* User Management
-* Elastic service.
-* Tracking order service using mailer notification.
+* Tenant Managment ( Built-in )
+* Store Management ( Built-in )
+* Product Management ( Built-in )
+* Order Management ( Built-in )
+* User Management  ( Built-in )
+* Elastic service. ( Add - on service )
+* Order tracking service ( Add - on service )
+* Notification service ( Add - on service )
+
 
 ## Applications:
 * User front page: This repo.
+* User mobile application.
 * User admin page: https://github.com/KietFS/market-floor-admin-dev
 * Back-end REST API: https://github.com/kietute/market-floor-be-dev
 
