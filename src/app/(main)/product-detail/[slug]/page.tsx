@@ -4,14 +4,15 @@ import ProductDetailTemplate from "@/components/template/ProductDetail";
 import { apiURL } from "@/constanst";
 
 const ProductDetailPage = async (props: any) => {
-  const upc = props?.params?.slug?.split("-").pop();
+  const upc =props?.params?.slug?.split("-")[1]
+  const storeId = props?.params?.slug?.split("-")[0];
 
   let product: IStoreProduct | null = null;
   let relatedProducts = null;
 
   try {
     const response = await axios.get(
-      `${apiURL}/products/detail?upc=${upc}&storeId=6`
+      `${apiURL}/products/detail?upc=${upc}&storeId=8`
     );
     if (response?.data?.success) {
       product = response?.data?.data?.storeProduct;

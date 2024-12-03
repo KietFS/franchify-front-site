@@ -25,7 +25,6 @@ const useAuth = () => {
   }, [accessToken]);
 
 
-
   return {
     isAuthenticated,
     accessToken,

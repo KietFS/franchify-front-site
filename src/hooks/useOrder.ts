@@ -4,7 +4,6 @@ import axios from "axios";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useToast } from "./useToast";
-import { ICreateOrder } from "@/@types";
 
 const useOrder = () => {
   const [actionLoading, setActionLoading] = useState<boolean>(false);
