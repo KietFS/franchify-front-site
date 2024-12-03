@@ -16,14 +16,14 @@ Advisor: Mr Nguyen Huu Trung, HCMUTE.
 
 
 ## Key Features
-* Tenant Managment ( Built-in )
-* Store Management ( Built-in )
-* Product Management ( Built-in )
-* Order Management ( Built-in )
-* User Management  ( Built-in )
-* Elastic service. ( Add - on service )
-* Order tracking service ( Add - on service )
-* Notification service ( Add - on service )
+* Tenant Managment 
+* Store Management 
+* Product Management 
+* Order Management
+* User Management  
+* Elastic service. 
+* Order tracking service 
+* Notification service 
 
 
 ## Applications:
