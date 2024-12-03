@@ -8,7 +8,11 @@ Visit at: https://tea-market.vercel.app/
 Advisor: Mr Nguyen Huu Trung, HCMUTE.
 
 
-![image](https://github.com/user-attachments/assets/fa17ef7e-d7fb-43c3-b651-e1d8cad010c0)
+![Screenshot 2024-12-03 at 08 33 31](https://github.com/user-attachments/assets/b91a49de-c12c-4e56-bcb7-387ac5b1fa74)
+![Screenshot 2024-12-03 at 08 34 07](https://github.com/user-attachments/assets/494ccb12-11c0-4229-9f0a-0e4f2cb425fd)
+![Screenshot 2024-12-03 at 08 34 45](https://github.com/user-attachments/assets/5d337153-5169-4046-9711-33920d1ca986)
+![Screenshot 2024-12-03 at 08 35 18](https://github.com/user-attachments/assets/2d68e81f-6cd3-498e-99cd-1971a97204dd)
+
 
 
 ## Key Features
