@@ -16,12 +16,12 @@ const ProductScroll: React.FC<IProductScrollProps> = (props) => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    currentStore && getAllProducts({ page: currentPage });
+    currentStore && getAllProducts({ page: currentPage, pageSize: 100 });
   }, [currentStore]);
 
   useEffect(() => {
     if (currentPage >= 1) {
-      currentStore && getAllProducts({ page: currentPage });
+      currentStore && getAllProducts({ page: currentPage, pageSize: 100 });
     }
   }, [currentPage]);
 
@@ -48,14 +48,14 @@ const ProductScroll: React.FC<IProductScrollProps> = (props) => {
     <div ref={scrollRef}>
       {storeProducts?.length > 0 && (
         <div>
-          <h1 className="text-4xl font-bold text-secondary-900 mb-16">
+          <h1 className="mb-16 text-4xl font-bold text-secondary-900">
             Tất cả sản phẩm
           </h1>
-          <div className="w-full grid tablet:grid-cols-2 laptop:grid-cols-4">
+          <div className="grid w-full tablet:grid-cols-2 laptop:grid-cols-4">
             {storeProducts?.map((item: any, index: number) => (
               <div
                 key={`card-${index}`}
-                className="border-r border-b border-t border-gray-300 p-2"
+                className="border-b border-r border-t border-gray-300 p-2"
               >
                 <ProductCard
                   key={`card-${index}`}
@@ -68,13 +68,13 @@ const ProductScroll: React.FC<IProductScrollProps> = (props) => {
           </div>
 
           {loading && (
-            <div className="w-full grid grid-cols-4 gap-4">
+            <div className="grid w-full grid-cols-4 gap-4">
               {Array(total - storeProducts?.length)
                 .fill(1)
                 ?.map((item, index) => (
                   <div
                     key={`loading-${index}`}
-                    className="bg-primary-200 animate-pulse w-full h-[360px]"
+                    className="h-[360px] w-full animate-pulse bg-primary-200"
                   ></div>
                 ))}
             </div>

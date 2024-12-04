@@ -12,22 +12,19 @@ const PopularProducts: React.FC<IPopularProductProps> = (props) => {
   const [currentPage, setCurrentPage] = useState<number>(0);
 
   useEffect(() => {
-    if (!!currentStore){
-      console.log('HI')
-      getAllPopularProducts({ page: currentPage });
-    }
-  }, [currentStore]);
-
-  console.log('HELLO', popularProducts)
+    getAllPopularProducts({ page: currentPage });
+  }, []);
 
   return (
     <>
-    {popularProducts?.length > 0 &&       <div className="mt-16 flex w-full flex-col justify-center">
-    <h1 className="mb-8 text-4xl font-bold text-secondary-900">
-      Sản phẩm bán chạy
-    </h1>
-    <ProductCarousel listProduct={popularProducts} />
-  </div>}
+      {popularProducts?.length > 0 && (
+        <div className="mt-16 flex w-full flex-col justify-center">
+          <h1 className="mb-8 text-4xl font-bold text-secondary-900">
+            Sản phẩm bán chạy
+          </h1>
+          <ProductCarousel listProduct={popularProducts} />
+        </div>
+      )}
     </>
   );
 };

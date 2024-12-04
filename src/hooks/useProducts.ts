@@ -11,7 +11,7 @@ const useProducts = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [total, setTotal] = useState<number>(0);
   const { accessToken } = useSelector((state: any) => state.auth);
-  const {popularProducts} = useSelector((state: any) => state.product);
+  const { popularProducts } = useSelector((state: any) => state.product);
   const { currentStore } = useStore();
 
   const [storeProducts, setStoreProducts] = useState<any[]>([]);
@@ -20,11 +20,12 @@ const useProducts = () => {
   const getAllProducts = async (payload?: {
     categoryId?: number;
     page?: number;
+    pageSize?: number;
   }) => {
     try {
       setLoading(true);
 
-      let url = `${apiURL}/products/by-store?storeId=${currentStore?.id}&pageSize=8`;
+      let url = `${apiURL}/products/by-store?storeId=${currentStore?.id}&pageSize=${payload?.pageSize || 8}`;
 
       if (payload?.page) {
         url += `&page=${payload.page}`;
@@ -69,10 +70,10 @@ const useProducts = () => {
         },
       });
       if (response?.data?.success) {
-        console.log('RESPONSE DATA', response?.data);
-        dispatch(setPopularProducts(response?.data?.data?.results))
+        console.log("RESPONSE DATA", response?.data);
+        dispatch(setPopularProducts(response?.data?.data?.results));
       } else {
-        dispatch(setPopularProducts([]))
+        dispatch(setPopularProducts([]));
       }
     } catch (error) {
       console.warn("GET PRODUCT RESPONSE", error);

@@ -12,6 +12,11 @@ module.exports = {
         pathname: "/**",
         protocol: "https",
       },
+      {
+        hostname: "cooponline.vn",
+        pathname: "/**",
+        protocol: "https",
+      },
     ],
   },
   eslint: {

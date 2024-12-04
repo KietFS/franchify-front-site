@@ -15,7 +15,7 @@ import ThirdCarousel from "@/assets/images/Carousel3.png";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import './style.css'
+import "./style.css";
 
 interface ISimilarProduct {}
 
@@ -54,12 +54,12 @@ const Carousel: React.FC<ISimilarProduct> = ({}) => {
   };
 
   return (
-    <div className="h-full w-full overflow-hidden rounded-lg bg-white px-8 pt-4">
+    <div className="h-full w-full max-w-[1200px] overflow-hidden rounded-lg bg-white px-8 pt-4">
       <Slider {...settings}>
         <div>
           <Image
             src={FirstCarousel}
-            className="w-full h-full rounded-xl object-cover"
+            className="h-full w-full rounded-xl object-cover"
             alt={`Product `}
             layout="responsive"
             width={1200}
@@ -69,7 +69,7 @@ const Carousel: React.FC<ISimilarProduct> = ({}) => {
         <div>
           <Image
             src={SecondCarousel}
-            className="w-full h-[400px] rounded-xl object-cover"
+            className="h-[400px] w-full rounded-xl object-cover"
             alt={`Product `}
             layout="responsive"
             width={1200}
@@ -79,7 +79,7 @@ const Carousel: React.FC<ISimilarProduct> = ({}) => {
         <div>
           <Image
             src={ThirdCarousel}
-            className="w-full h-[400px] rounded-xl object-cover"
+            className="h-[400px] w-full rounded-xl object-cover"
             alt={`Product `}
             layout="responsive"
             width={1200}
