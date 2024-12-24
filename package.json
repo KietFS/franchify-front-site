@@ -7,6 +7,7 @@
     "dev": "npm run generate-style && next dev",
     "build": "next build",
     "start": "next start",
+    "test:e2e": "playwright test test/app.e2e-spec.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -37,6 +38,7 @@
     "tinycolor2": "^1.6.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.49.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
