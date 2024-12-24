@@ -89,6 +89,14 @@ const ProductCarousel: React.FC<ISimilarProduct> = ({ listProduct }) => {
       {
         breakpoint: 768,
         settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
@@ -106,14 +114,14 @@ const ProductCarousel: React.FC<ISimilarProduct> = ({ listProduct }) => {
   };
 
   return (
-    <div className="max-w-[360px] tablet:max-w-[600px] laptop:max-w-[960px] h-full desktop:max-w-[1200px] mx-auto mb-10">
+    <div className="max-w-[600px] tablet:max-w-[720px] laptop:max-w-[960px] h-full desktop:max-w-[1200px] mx-auto mb-10">
       {listProduct?.length > 0 && (
         <div className="h-full rounded-lg bg-white w-full px-8 pt-4 grid grid-cols-1">
           <Slider {...settings}>
             {listProduct.map((item, index) => (
               <div
                 key={`card-${index}`}
-                className="p-2 h-[540px] flex items-stretch border-r  border-gray-300"
+                className="p-2  max-h-[540px] flex items-stretch border-r  border-gray-300"
               >
                 <Link href={`/product-detail/${item?.product?.upc}`}>
                 <ProductCard

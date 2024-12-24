@@ -7,11 +7,11 @@ import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import Image from "next/image";
 
 //@ts-ignore
-import FirstCarousel from "@/assets/images/Carousel1.png";
+import FirstCarousel from "@/assets/images/FirstCarousel.jpg";
 //@ts-ignore
-import SecondCarousel from "@/assets/images/Carousel2.png";
+import SecondCarousel from "@/assets/images/SecondCarousel.jpg";
 //@ts-ignore
-import ThirdCarousel from "@/assets/images/Carousel3.png";
+import ThirdCarousel from "@/assets/images/ThirdCarousel.jpg";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -54,7 +54,11 @@ const Carousel: React.FC<ISimilarProduct> = ({}) => {
   };
 
   return (
-    <div className="h-full w-full max-w-[1200px] overflow-hidden rounded-lg bg-white px-8 pt-4">
+    <div className="mt-16 w-full laptop:max-w-[1200px]">
+      <h1 className="mb-8 text-4xl text-left font-bold text-secondary-900 px-4">
+          Tết đến rồi, mua sắm thôi
+      </h1>
+      <div className="h-full w-auto max-w-[1200px] overflow-hidden rounded-lg bg-white px-8 pt-4">
       <Slider {...settings}>
         <div>
           <Image
@@ -87,6 +91,7 @@ const Carousel: React.FC<ISimilarProduct> = ({}) => {
           />
         </div>
       </Slider>
+    </div>
     </div>
   );
 };
