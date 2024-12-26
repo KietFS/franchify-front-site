@@ -22,7 +22,7 @@ const SearchDropdown: React.FC<IPopularSearchesProps> = (props) => {
   return (
     <>
       {isLoading ? (
-        <div className="w-full flex justify-center">
+        <div className="flex w-full justify-center">
           <CircularProgress size={30} sx={{ color: "black" }} />
         </div>
       ) : (
@@ -39,20 +39,20 @@ const SearchDropdown: React.FC<IPopularSearchesProps> = (props) => {
 
                       onClose();
                     }}
-                    className="flex items-center gap-x-4 cursor-pointer hover:opacity-80"
+                    className="flex cursor-pointer items-center gap-x-4 hover:opacity-80"
                   >
                     <div>
                       <img
                         src={item?.thumbnail}
-                        className="w-[40px] h-[40px]"
+                        className="h-[40px] w-[40px]"
                         alt={item?.name}
                       />
                     </div>
                     <div>
-                      <p className="text-secondary-900 text-sm text-regular">
+                      <p className="text-regular text-sm text-secondary-900">
                         {item?.name}
                       </p>
-                      <p className="mt-2 text-green-600 text-xs">
+                      <p className="mt-2 text-xs text-green-600">
                         {item?.price?.displayPrice}
                       </p>
                     </div>
@@ -62,12 +62,15 @@ const SearchDropdown: React.FC<IPopularSearchesProps> = (props) => {
             </div>
           ) : (
             <>
-              <h2 className="text-md text-seconday-900 font-bold mb-4">
+              <h2 className="text-md text-seconday-900 mb-4 font-bold">
                 Các danh mục
               </h2>
-              <div className="w-full flex flex-wrap gap-y-4 gap-x-2">
-                {listCategory?.map((cat: any) => (
-                  <div className="px-4 py-2 border-secondary-600 border rounded-full text-sm text-seconday-900 text-regular">
+              <div className="flex w-full flex-wrap gap-x-2 gap-y-4">
+                {listCategory?.map((cat: any, index: number) => (
+                  <div
+                    key={`cat-${index}`}
+                    className="text-seconday-900 text-regular rounded-full border border-secondary-600 px-4 py-2 text-sm"
+                  >
                     {cat?.name}
                   </div>
                 ))}

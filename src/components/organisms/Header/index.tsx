@@ -110,7 +110,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
 
       <div className="border-seconday-500 flex h-[50px] w-full items-center justify-center gap-x-4 border-b bg-primary-600 shadow-lg laptop:pb-0">
         {listCategory?.map((category: any) => (
-          <Link href="/">
+          <Link key={`link-${category}`} href="/">
             <p className="text-md font-semibold text-secondary-500">
               {category?.name}
             </p>
