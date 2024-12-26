@@ -1,9 +1,12 @@
 
 ## Project Description
-Market Floor is an multi-tenant application using multi-tenant logic. Every tenant manage their own resources, data, ensuring stable and security for their customer. This project is written with various tech stacks:
-* **For User site**: NextJS14 with App Router, TailwindCSS, Next Caching.
-* **For Admin site**:  React, TailwindCSS, Redux, Redux-Persist.
-* **For Rest API Server**: NestJS, TypeOrm, PostgreSQL, Redis Cache, ElasticSearch, Twillio Service, Mail Service.
+Franchsify is an multi-tenant application using multi-tenant logic. Every tenant manage their own resources, data, ensuring stable and security for their customer. This project is written with various tech stacks. This repo is the user front-site of m
+
+* **Framework**: NextJS 14 with App Router with optimization for fetching data and caching, type ensurance with a sub-repo that have all the interfaces, hooks generated base on the backend code base with a CLI which is written my myself.
+* **Styling**: Using TailwindCSS with dynamic tailwind config file base on the color scheme of the tenant setting on the admin application, beside that using some MUI component.
+* **State and Data Mangement**: Using Redux toolkit, redux persistent, using technique with custom hooks to prevent unecessary fetching data.
+* **Testing**: Using playwright for end-to-end testing before deploy, consider adding more unique techs to ensure stability of the code base.
+* **CI/CD**: Using github workflow for CI/CD, run jobs like check types, run end-to-end & unit test
 
 Advisor: Mr Nguyen Huu Trung, HCMUTE.
 
@@ -14,21 +17,14 @@ Advisor: Mr Nguyen Huu Trung, HCMUTE.
 
 
 ## Key Features
-* Tenant Managment 
-* Store Management 
-* Product Management 
-* Order Management
-* User Management  
-* Elastic service. 
-* Order tracking service 
-* Notification service 
+* Search Product.
+* Filter, Sort Product.
+* View Product, Add to Cart.
+* View Cart.
+* Orders, tracking orders
+* Checkout.
+* Order tracking service.
 
-
-## Applications:
-* User front page: This repo.
-* User mobile application.
-* User admin page: https://github.com/KietFS/market-floor-admin-dev
-* Back-end REST API: https://github.com/kietute/market-floor-be-dev
 
 
 ## Getting Started
