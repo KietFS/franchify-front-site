@@ -1,6 +1,6 @@
 import React from "react";
 import { CircularProgress } from "@mui/material";
-import "./ripple.css"; // Import the ripple effect CSS
+import "./ripple.css";
 
 type IButtonVariant = "primary" | "secondary" | "error";
 type IButtonType = "button" | "submit";
@@ -30,16 +30,15 @@ const Button: React.FC<IButtonProps> = (props) => {
 
   return (
     <button
-      className={`ripple items-center min-w-[120px] justify-center rounded-lg px-4 py-2 text-center w-full flex ${
+      className={`ripple flex w-full min-w-[120px] items-center justify-center rounded-lg px-4 py-2 text-center ${
         disable ? "opacity-10" : ""
       } ${className} ${
         variant === "primary" && "bg-primary-500 hover:bg-primary-600"
-      } ${variant === "secondary" && "bg-white hover:bg-secondary-500"}
-      ${variant === "error" && "bg-red-500 hover:bg-red-400"} ${
+      } ${variant === "secondary" && "bg-white hover:bg-secondary-500"} ${variant === "error" && "bg-red-500 hover:bg-red-400"} ${
         variant === "secondary" ? "text-secondary-900" : "text-white"
       } border ${
         variant === "secondary" ? "border-secondary-900" : "border-transparent"
-      } font-semibold text-lg`}
+      } text-lg font-semibold`}
       onClick={() => (disable ? {} : onClick?.())}
       type={type}
       disabled={disable}

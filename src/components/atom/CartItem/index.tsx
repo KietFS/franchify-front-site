@@ -28,7 +28,7 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
   return (
     <div
       onClick={() => navigateToProductDetail(cartItem?.product)}
-      className="flex w-full justify-between items-center z-1 px-8 py-4 border-secondary-600 rounded-lg border cursor-pointer"
+      className="z-1 flex w-full cursor-pointer items-center justify-between rounded-lg border border-secondary-600 px-8 py-4"
     >
       <div className="flex w-fit gap-x-4">
         <Image
@@ -36,25 +36,25 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
           width={200}
           height={200}
           alt={name}
-          className="w-20 h-20 object-cover rounded-lg mr-4 box-border"
+          className="mr-4 box-border h-20 w-20 rounded-lg object-cover"
         />
         <div className="flex flex-col gap-y-1">
-          <p className="text-lg text-secondary-900 font-bold">
+          <p className="text-lg font-bold text-secondary-900">
             {cartItem?.product?.name}
           </p>
-          <p className="text-md text-green-600 font-bold">
+          <p className="text-md font-bold text-green-600">
             {`${
-              cartItem?.product?.price?.price * cartItem?.quantity 
+              cartItem?.product?.price?.price * cartItem?.quantity
             }`.prettyMoney()}
           </p>
         </div>
       </div>
       <div className="">
-        <h2 className="text-lg font-semibold text-primary-800 max-w-2/3 w-2/3">
+        <h2 className="max-w-2/3 w-2/3 text-lg font-semibold text-primary-800">
           {name}
         </h2>
         <p className="text-primary-600">{price}</p>
-        <div className="flex items-center mt-2">
+        <div className="mt-2 flex items-center">
           {loading ? (
             <CircularProgress
               size={24}
@@ -64,39 +64,38 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
             <>
               {currentQuantity > 1 ? (
                 <IconButton
-                  className="px-2 py-1 border-secondary-800 rounded-l-lg z-2"
+                  className="z-2 rounded-l-lg border-secondary-800 px-2 py-1"
                   onClick={(event) => {
                     event.stopPropagation();
                     handleDecreaseQuantity();
                   }}
                 >
-                  <MinusIcon className="w-4 h-4 text-secondary-900" />
+                  <MinusIcon className="h-4 w-4 text-secondary-900" />
                 </IconButton>
               ) : (
                 <IconButton
-                  className="px-2 py-1 border-secondary-800 rounded-l-lg z-2"
+                  className="z-2 rounded-l-lg border-secondary-800 px-2 py-1"
                   onClick={(event) => {
                     event.stopPropagation();
                     handleRemoveProduct();
                   }}
                 >
-                  <TrashIcon className="w-4 h-4 text-secondary-900" />
+                  <TrashIcon className="h-4 w-4 text-secondary-900" />
                 </IconButton>
               )}
               <input
                 value={currentQuantity}
                 disabled
-                className="text-center w-12 bg-white disabled:cursor-not-allowed"
+                className="w-12 bg-white text-center disabled:cursor-not-allowed"
               />
               <IconButton
-
-                className="px-2 py-1 rounded-r-lg z-2"
+                className="z-2 rounded-r-lg px-2 py-1"
                 onClick={(event) => {
                   event.stopPropagation();
                   handleIncreaseQuantity();
                 }}
               >
-                <PlusIcon className="w-4 h-4 text-secondary-900" />
+                <PlusIcon className="h-4 w-4 text-secondary-900" />
               </IconButton>
             </>
           )}
