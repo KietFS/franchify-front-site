@@ -15,12 +15,8 @@ const useComments = (productDetail: any) => {
     try {
       setLoadComments(true);
       const response = await axios.get(
-        `${apiURL}/products/${productDetail?.id}/comments`
+        `${apiURL}/products/${productDetail?.id}/comments`,
       );
-
-      if (response) {
-        console.log(response?.data?.data);
-      }
       if (response?.data?.success) {
         setLoadComments(false);
         let comments = response?.data?.data;
@@ -28,7 +24,7 @@ const useComments = (productDetail: any) => {
       }
     } catch (error) {
       setLoadComments(false);
-      console.log(error);
+      console.warn("Get list comments error:", error);
     } finally {
       setLoadComments(false);
     }

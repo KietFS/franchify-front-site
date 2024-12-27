@@ -1,5 +1,8 @@
 "use client";
 
+import useAuth from "@/hooks/useAuth";
+import useCategory from "@/hooks/useCategories";
+import { ICategory } from "@/types/models";
 import {
   Box,
   Divider,
@@ -7,7 +10,9 @@ import {
   List,
   ListItem,
   ListItemButton,
+  ListSubheader,
 } from "@mui/material";
+import Link from "next/link";
 
 interface IMobileDrawerProps {
   open: boolean;
@@ -16,6 +21,8 @@ interface IMobileDrawerProps {
 
 const MobileDrawer: React.FC<IMobileDrawerProps> = (props) => {
   const { open, onClose } = props;
+  const { logOut, user } = useAuth();
+  const { listCategory } = useCategory();
 
   const toggleDrawer =
     (inOpen: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -32,6 +39,17 @@ const MobileDrawer: React.FC<IMobileDrawerProps> = (props) => {
       }
     };
 
+  const userRoutes = user
+    ? [
+        { name: "Quản lý tài khoản", to: "/accont" },
+        { name: "Giỏ hàng", to: "cart" },
+        { name: "Đăng xuất", to: "/", onClick: logOut },
+      ]
+    : [
+        { name: "Đăng nhập", to: "/login" },
+        { name: "Đăng ký", to: "/register" },
+      ];
+
   return (
     <Drawer open={open} onClose={() => onClose()}>
       <Box
@@ -41,17 +59,37 @@ const MobileDrawer: React.FC<IMobileDrawerProps> = (props) => {
         onKeyDown={toggleDrawer(false)}
       >
         <List>
-          {["Quản lý tài khoản", "Giỏ hàng"].map((text) => (
-            <ListItem key={text}>
-              <ListItemButton>{text}</ListItemButton>
+          <ListSubheader sx={{ fontSize: 20, color: "black" }}>
+            Tài khoản
+          </ListSubheader>
+          {userRoutes?.map((item) => (
+            <ListItem key={item?.to}>
+              {item?.to !== "/" ? (
+                <Link href={item?.to} onClick={() => onClose()}>
+                  <ListItemButton>{item?.name}</ListItemButton>
+                </Link>
+              ) : (
+                <Link
+                  href={item?.to}
+                  onClick={() => {
+                    onClose();
+                    item?.onClick && item.onClick();
+                  }}
+                >
+                  <ListItemButton>{item?.name}</ListItemButton>
+                </Link>
+              )}
             </ListItem>
           ))}
         </List>
         <Divider />
         <List>
-          {["Đăng xuất"].map((text) => (
-            <ListItem key={text}>
-              <ListItemButton>{text}</ListItemButton>
+          <ListSubheader sx={{ fontSize: 20, color: "black" }}>
+            Các danh mục
+          </ListSubheader>
+          {listCategory.map((item: ICategory) => (
+            <ListItem key={item?.id}>
+              <ListItemButton onClick={() => {}}>{item?.name}</ListItemButton>
             </ListItem>
           ))}
         </List>

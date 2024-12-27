@@ -37,24 +37,24 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
   const router = useRouter();
 
   return (
-    <div className="flex items-center z-20">
+    <div className="z-20 flex items-center">
       {currentQuantity > 0 ? (
         <button
           className={`items-center rounded-full ${
             mode == Mode.detail ? "px-6 py-3" : "px-2 py-1"
           } ${
             mode == Mode.detail ? "min-w-[300px]" : "min-w-[130px]"
-          } justify-center text-center w-fit flex hover:opacity-50 bg-white text-black border border-secondary-800 font-semibold text-lg opactiy-50`}
+          } opactiy-50 flex h-[44px] w-fit justify-center border border-secondary-800 bg-white text-center text-lg font-semibold text-black hover:opacity-50`}
           onClick={(e) => {
             e.preventDefault();
-            e.stopPropagation()
+            e.stopPropagation();
           }}
         >
           <>
             {loading ? (
               <CircularProgress size={12} sx={{ color: "black" }} />
             ) : (
-              <div className="w-full flex justify-between items-center">
+              <div className="flex w-full items-center justify-between">
                 <IconButton
                   onClick={(e) => {
                     e?.preventDefault();
@@ -67,9 +67,9 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
                   }}
                 >
                   {currentQuantity > 1 ? (
-                    <MinusIcon className="w-4 h-4 text-secondary-800" />
+                    <MinusIcon className="h-4 w-4 text-secondary-800" />
                   ) : (
-                    <TrashIcon className="w-4 h-4 text-secondary-800" />
+                    <TrashIcon className="h-4 w-4 text-secondary-800" />
                   )}
                 </IconButton>
                 <span>{currentQuantity}</span>
@@ -81,7 +81,7 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
                     handleIncreaseQuantity();
                   }}
                 >
-                  <PlusIcon className="w-4 h-4 text-secondary-800" />
+                  <PlusIcon className="h-4 w-4 text-secondary-800" />
                 </IconButton>
               </div>
             )}
@@ -98,18 +98,20 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
               router?.push("/login");
             }
           }}
-          className={`items-center disabled:opacity-50 rounded-full  ${
+          className={`items-center rounded-full disabled:opacity-50 ${
             mode == Mode.detail ? "px-6 py-3" : "px-2 py-2"
           } ${
             mode == Mode.detail ? "min-w-[300px]" : "min-w-[100px]"
-          }  justify-center text-center w-fit flex hover:opacity-50 bg-primary-500 text-white font-semibold text-lg `}
+          } flex w-fit justify-center bg-primary-500 text-center text-lg font-semibold text-white hover:opacity-50`}
         >
           <>
             {loading ? (
               <CircularProgress size={32} />
             ) : (
               <>
-                {mode == Mode.detail && <AddShoppingCart />}
+                {mode == Mode.detail && (
+                  <AddShoppingCart sx={{ width: 24, height: 24 }} />
+                )}
                 <p>{mode == Mode.detail ? "Thêm vào giỏ hàng" : "+ Add"}</p>
               </>
             )}

@@ -46,7 +46,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
 
   return (
     <div className="w-full bg-primary-500">
-      <div className="mx-auto max-w-[1560px] pb-4 laptop:pb-0">
+      <div className="mx-auto max-w-[1560px] pb-8 laptop:pb-0">
         {/* <TopBar /> */}
         <div className="flex w-full items-center justify-between space-x-4 px-4 py-4 tablet:space-x-6 laptop:justify-around laptop:space-x-6 desktop:space-x-8">
           <div className="flex w-1/3 laptop:hidden laptop:w-0">
@@ -93,6 +93,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
             </div>
           </div>
         </div>
+
         <div className="flex px-2 laptop:hidden">
           <SearchBar
             ref={searchInputRef}
@@ -108,15 +109,20 @@ const Header: React.FC<IHeaderProps> = (props) => {
         </div>
       </div>
 
-      <div className="border-seconday-500 flex h-[50px] w-full items-center justify-center gap-x-4 border-b bg-primary-600 shadow-lg laptop:pb-0">
-        {listCategory?.map((category: any) => (
-          <Link href="/">
-            <p className="text-md font-semibold text-secondary-500">
-              {category?.name}
-            </p>
-          </Link>
-        ))}
+      <div className="hidden h-[50px] w-full items-center justify-center gap-x-4 bg-primary-600 shadow-lg laptop:flex laptop:pb-0">
+        {listCategory?.map((category: any, index: number) => {
+          if (index <= 2) {
+            return (
+              <Link href="/">
+                <p className="text-md font-semibold text-secondary-500">
+                  {category?.name}
+                </p>
+              </Link>
+            );
+          }
+        })}
       </div>
+
       {openSearchSheet && (
         <SearchSheet
           open={openSearchSheet}

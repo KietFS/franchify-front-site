@@ -1,9 +1,6 @@
 import useDebounce from "@/hooks/useDebounce";
 import useSearch from "@/hooks/useSearch";
-import {
-  MagnifyingGlassCircleIcon,
-  MagnifyingGlassIcon,
-} from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { TextField, Box } from "@mui/material";
 import React, { forwardRef, useEffect } from "react";
 
@@ -75,10 +72,10 @@ const SearchBar = forwardRef<HTMLInputElement, ISearchBarProps>(
           }}
         />
 
-        <MagnifyingGlassIcon className="text-secondary-900 w-6 h-6" />
+        <MagnifyingGlassIcon className="h-6 w-6 text-secondary-900" />
       </Box>
     );
-  }
+  },
 );
 
 export default SearchBar;

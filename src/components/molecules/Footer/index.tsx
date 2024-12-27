@@ -14,7 +14,7 @@ const FooterSection: React.FC<IFooterSectionProps> = () => {
   }, []);
 
   return (
-    <div className="flex w-full flex-col items-center border-t border-t-secondary-600 bg-secondary-500 px-3 py-14 text-[13px] md:px-10">
+    <div className="flex w-full flex-col items-center border-t border-t-secondary-600 bg-secondary-500 px-8 py-14 text-[13px] md:px-10">
       <div className="flex w-full max-w-[1570px] flex-shrink-0 flex-col md:flex-row">
         <div className="w-full md:w-1/3">
           <div className="mt-3 pr-[30%]">
