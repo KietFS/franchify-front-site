@@ -9,6 +9,7 @@ import { TrashIcon } from "@heroicons/react/24/outline";
 import useCart from "@/hooks/useCart";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
+import { IStoreProduct } from "@/types/models";
 
 enum Mode {
   card = "card",
