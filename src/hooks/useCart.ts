@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useToast } from "./useToast";
 import { setCurrentCart } from "@/redux/slices/cart";
 import { apiURL } from "@/constanst";
+import { IProduct } from "@/types/models";
 
 const useCart = (currentProduct?: IProduct) => {
   const { accessToken } = useSelector((state: any) => state.auth);
@@ -45,13 +46,13 @@ const useCart = (currentProduct?: IProduct) => {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
-        }
+        },
       );
       if (response?.data?.success) {
         toast.sendToast(
           "Thành công",
           "Thêm sản phẩm vào giỏ hàng thành công",
-          "success"
+          "success",
         );
         getUserCart();
         dispatch(setCurrentCart(response?.data?.data?.cart));
@@ -73,7 +74,7 @@ const useCart = (currentProduct?: IProduct) => {
             `${apiURL}/cart/change-quantity`,
             {
               cartDetailId: currentCart?.cartDetails?.find(
-                (item: any) => item.product?.id == currentProduct?.id
+                (item: any) => item.product?.id == currentProduct?.id,
               )?.id,
               quantity: newQuantity,
             },
@@ -81,14 +82,14 @@ const useCart = (currentProduct?: IProduct) => {
               headers: {
                 Authorization: `Bearer ${accessToken}`,
               },
-            }
+            },
           )
           .then((response) => {
             if (response?.data?.success) {
               toast.sendToast(
                 "Thành công",
                 "Tăng số lượng thành công",
-                "success"
+                "success",
               );
               getUserCart();
             }
@@ -118,7 +119,7 @@ const useCart = (currentProduct?: IProduct) => {
             `${apiURL}/cart/change-quantity`,
             {
               cartDetailId: currentCart?.cartDetails?.find(
-                (item: any) => item.product?.id == currentProduct?.id
+                (item: any) => item.product?.id == currentProduct?.id,
               )?.id,
               quantity: newQuantity,
             },
@@ -126,14 +127,14 @@ const useCart = (currentProduct?: IProduct) => {
               headers: {
                 Authorization: `Bearer ${accessToken}`,
               },
-            }
+            },
           )
           .then((response) => {
             if (response?.data?.success) {
               toast.sendToast(
                 "Thành công",
                 "Giảm số lượng thành công",
-                "success"
+                "success",
               );
               getUserCart();
             }
@@ -156,7 +157,7 @@ const useCart = (currentProduct?: IProduct) => {
   const handleRemoveProduct = async () => {
     try {
       let currentCartDetailId = currentCart?.cartDetails?.find(
-        (item: any) => item.product?.id == currentProduct?.id
+        (item: any) => item.product?.id == currentProduct?.id,
       )?.id;
       setLoading(true);
       axios
@@ -170,7 +171,7 @@ const useCart = (currentProduct?: IProduct) => {
             toast.sendToast(
               "Thành công",
               "Xóa sản phẩm khỏi giỏ hàng thành công",
-              "success"
+              "success",
             );
             getUserCart();
           }
@@ -190,7 +191,7 @@ const useCart = (currentProduct?: IProduct) => {
   useEffect(() => {
     if (currentCart && currentProduct) {
       const findedQuantity = currentCart?.cartDetails?.find(
-        (item: any) => item.product?.id == currentProduct?.id
+        (item: any) => item.product?.id == currentProduct?.id,
       )?.quantity;
       setCurrentQuantity(findedQuantity || 0);
     }
