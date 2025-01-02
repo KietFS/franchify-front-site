@@ -1,6 +1,6 @@
 "use client";
 
-import { IProduct } from "@/@types";
+import { IProduct } from "@/types/models";
 import { useRouter } from "next/navigation";
 
 const useNavigation = () => {
@@ -18,7 +18,7 @@ const useNavigation = () => {
       }
     });
 
-    router.push(`/product-detail/${final}-${item?.upc}`);
+    router.push(`/product-detail/${final}-${item?.upc}`, { scroll: true });
   };
 
   return {
