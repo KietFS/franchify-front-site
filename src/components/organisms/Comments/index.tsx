@@ -69,7 +69,7 @@ const ProductComments: React.FC<IProductCommentsProps> = (props) => {
   }, [productDetail]);
 
   return (
-    <div className="mt-16 flex w-full flex-col justify-center">
+    <div className="mt-16 flex w-full flex-col justify-center px-8">
       <h1 className="text-3xl font-bold text-secondary-900">
         Bình luận về sản phẩm
       </h1>
