@@ -5,24 +5,21 @@ import { apiURL } from "@/constanst";
 //@ts-ignore
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   if (req.method === "GET") {
-    const { currentStoreId,categoryId, page } = req.query;
+    const { currentStoreId, categoryId, page } = req.query;
     try {
-    let url = `${apiURL}/products/by-store?storeId=${currentStoreId}&pageSize=8`;
+      let url = `${apiURL}/products/by-store?storeId=${currentStoreId}&pageSize=8`;
 
-    if (page) {
+      if (page) {
         url += `&page=${page}`;
       }
       if (categoryId) {
         url += `&category=${categoryId}`;
       }
-
-      const response = await axios.get(
-        url
-      );
-      res.status(response.status).json(response.data);
+      const response = await fetch(url);
+      res.status(response.status).json(response?.json());
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         res.status(error.response.status).json(error.response.data);
