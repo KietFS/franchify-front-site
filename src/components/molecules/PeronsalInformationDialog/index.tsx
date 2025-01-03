@@ -5,12 +5,12 @@ import CustomDialog from "../CustomDialog";
 import Input from "@/components/atom/Input";
 import Button from "@/components/atom/Button";
 import { Divider } from "@mui/material";
-import { ICreateOrderUserInfo } from "@/@types";
+import { ICreateOrderUserInfoDto } from "@/types/dtos";
 
 interface IPersonalInformationDialogProps {
   open: boolean;
   onClose: () => void;
-  onSave: (values: ICreateOrderUserInfo) => void;
+  onSave: (values: ICreateOrderUserInfoDto) => void;
   defaultValues?: any;
 }
 
@@ -20,8 +20,7 @@ const PersonalInformationDialog: React.FC<IPersonalInformationDialogProps> = (
   const { open, onClose, onSave, defaultValues } = props;
   const { control, getValues, handleSubmit } = useForm();
 
-  const handleSave = (values: ICreateOrderUserInfo) => {
-    console.log("values", values);
+  const handleSave = (values: ICreateOrderUserInfoDto) => {
     onSave(values);
     onClose();
   };
@@ -51,7 +50,7 @@ const PersonalInformationDialog: React.FC<IPersonalInformationDialogProps> = (
               <Button
                 type="submit"
                 onClick={handleSubmit((data) =>
-                  handleSave(data as ICreateOrderUserInfo),
+                  handleSave(data as ICreateOrderUserInfoDto),
                 )}
               >
                 Xác nhận

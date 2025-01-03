@@ -5,7 +5,7 @@ import Input from "@/components/atom/Input";
 import { Typography, Box, Divider, CircularProgress } from "@mui/material";
 import Image from "next/image";
 import { set, useForm } from "react-hook-form";
-import axios, {AxiosResponse} from "axios";
+import axios, { AxiosResponse } from "axios";
 import React from "react";
 import { useToast } from "@/hooks/useToast";
 import { useRouter } from "next/navigation";
@@ -26,14 +26,18 @@ const LoginPage: React.FC<ILoginPageProps> = (props) => {
   const handlePressLogin = async (values: IUserLoginPayload) => {
     try {
       setLoading(true);
-      const response = await axios.post<any, AxiosResponse<any>, IUserLoginPayload>(`${apiURL}/auth/signin`, values);
+      const response = await axios.post<
+        any,
+        AxiosResponse<any>,
+        IUserLoginPayload
+      >(`${apiURL}/auth/signin`, values);
       const { success, data, error } = response.data;
       if (success) {
         dispatch(setAccessToken(data?.accessToken));
         dispatch(setUser(data));
         router.push("/");
         setLoading(false);
-        toast.sendToast("Success", "Login successfully");
+        toast.sendToast("Success", "Đăng nhập thành công");
       } else {
         setLoading(false);
         toast.sendToast("Error", "Login failed", data?.message);
@@ -44,19 +48,19 @@ const LoginPage: React.FC<ILoginPageProps> = (props) => {
         router.push(
           `/verify-account?phoneNumber=${(
             values.phoneNumber as string
-          ).substring(1)}`
+          ).substring(1)}`,
         );
       }
       toast.sendToast(
         "Error",
         error?.response?.data?.message || "Login error",
-        "error"
+        "error",
       );
     }
   };
 
   return (
-    <div className="w-full h-auto flex justify-center items-center bg-white">
+    <div className="flex h-auto w-full items-center justify-center bg-white">
       <Box
         sx={{
           display: "flex",
@@ -98,8 +102,8 @@ const LoginPage: React.FC<ILoginPageProps> = (props) => {
         <Divider sx={{ height: 4, width: "100%", margin: "4px 0" }} />
 
         <form
-          onSubmit={handleSubmit(handlePressLogin)}
-          className="w-full flex gap-y-6 flex-col"
+          onSubmit={handleSubmit(handlePressLogin as any)}
+          className="flex w-full flex-col gap-y-6"
         >
           <Input
             name="phoneNumber"
@@ -130,7 +134,8 @@ const LoginPage: React.FC<ILoginPageProps> = (props) => {
 
         <Box>
           <Typography sx={{ fontSize: "14px", color: "GrayText" }}>
-            Bằng cách tiếp tục, bạn đã đồng ý với The Coffee House về Điều khoản sử dụng và Chính sách bảo mật
+            Bằng cách tiếp tục, bạn đã đồng ý với The Coffee House về Điều khoản
+            sử dụng và Chính sách bảo mật
           </Typography>
         </Box>
         <Divider sx={{ height: 4, width: "100%" }} />
@@ -144,7 +149,7 @@ const LoginPage: React.FC<ILoginPageProps> = (props) => {
               columnGap: "2px",
             }}
           >
-              Chưa có tài khoản?
+            Chưa có tài khoản?
             <Link
               style={{ marginLeft: "4px", textDecoration: "underline" }}
               href="/create-account"

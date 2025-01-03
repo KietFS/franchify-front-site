@@ -28,8 +28,7 @@ interface ICreateOrderProps {}
 const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
   const [openUserInfo, setOpenUserInfo] = React.useState<boolean>(false);
   const [openAddress, setOpenAddress] = React.useState<boolean>(false);
-  const [isApplyUserSavePoints, setIsApplyUserSavePoints] =
-    useState<boolean>(false);
+  const [openPayment, setOpenEmail] = React.useState<boolean>(false);
   const { createOrder, actionLoading } = useOrder();
   const { user, accessToken } = useAuth() || {};
   const router = useRouter();
@@ -70,13 +69,7 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
     await createOrder(data, async () => {
       await getUserCart();
       router.push("/orders");
-      if (isApplyUserSavePoints) {
-        await updateUserSavePoints(
-          Number(user?.savePoints - (user?.savePoints * 70) / 100),
-        );
-      } else {
-        await updateUserSavePoints(Number(user?.savePoints + 1));
-      }
+      await updateUserSavePoints(Number(user?.savePoints + 1));
     });
   };
 
@@ -84,7 +77,7 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
     <>
       <div className="flex w-full max-w-full flex-col gap-y-8 px-8 tablet:gap-x-4 laptop:flex-row laptop:gap-x-10 laptop:gap-y-4">
         <div className="flex w-full flex-col gap-y-4 laptop:w-[70%]">
-          <div className="border-secodary-600 grid w-full grid-cols-3 gap-x-4 rounded-2xl border px-8 py-4">
+          <div className="grid w-full grid-cols-3 gap-x-4 rounded-2xl border border-gray-300 px-8 py-4">
             <p className="text-md font-semibold text-secondary-900 laptop:text-xl">
               Thông tin người nhận
             </p>
@@ -112,7 +105,7 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
             </div>
           </div>
 
-          <div className="border-secodary-600 grid w-full grid-cols-3 gap-x-4 rounded-2xl border px-8 py-4">
+          <div className="grid w-full grid-cols-3 gap-x-4 rounded-2xl border border-gray-300 px-8 py-4">
             <p className="text-md font-semibold text-secondary-900 laptop:text-xl">
               Địa chỉ nhận hàng
             </p>
@@ -141,7 +134,7 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
             </button>
           </div>
 
-          <div className="border-secodary-600 grid w-full grid-cols-3 gap-x-4 rounded-2xl border px-8 py-4">
+          <div className="grid w-full grid-cols-3 gap-x-4 rounded-2xl border border-gray-300 px-8 py-4">
             <p className="text-md font-semibold text-secondary-900 laptop:text-xl">
               Thanh toán
             </p>
@@ -160,28 +153,8 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
             </button>
           </div>
         </div>
-        <div className="w-full cursor-pointer flex-col gap-y-4 rounded-lg border border-secondary-600 px-8 py-4 laptop:flex laptop:w-[30%]">
-          <CartSummary
-            isApplyUserSavePoints={isApplyUserSavePoints}
-            shippingFee={orderAddress?.shippingFee}
-          />
-
-          {user?.savePoints && (
-            <button className="ml-[-4px] flex items-center text-left text-secondary-900">
-              <Radio
-                // onBlur={() => setIsApplyUserSavePoints(false)}
-                checked={isApplyUserSavePoints}
-                onChange={() =>
-                  setIsApplyUserSavePoints(!isApplyUserSavePoints)
-                }
-              />
-              Sử dụng điểm tích lũy:{" "}
-              {((user?.savePoints * 70) / 100)?.toFixed(0) || 0} tương ứng{" "}
-              {Number(((user?.savePoints * 70) / 100) * 1000)
-                ?.toString()
-                .prettyMoney()}
-            </button>
-          )}
+        <div className="w-full cursor-pointer flex-col justify-between gap-y-4 rounded-lg border border-secondary-600 px-8 py-4 laptop:flex laptop:w-[30%]">
+          <CartSummary shippingFee={orderAddress?.shippingFee} />
 
           <Button
             isLoading={actionLoading}
@@ -202,7 +175,6 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
                     email: user?.email,
                     phoneNumber: user?.phoneNumber,
                   },
-                  isApplyUserSavePoints: isApplyUserSavePoints,
                 });
               }
             }}

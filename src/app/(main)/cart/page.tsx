@@ -6,21 +6,22 @@ import CartSummary from "@/components/organisms/CartSummary";
 import useAuth from "@/hooks/useAuth";
 import useCart from "@/hooks/useCart";
 import useOrder from "@/hooks/useOrder";
-import { ShoppingBagIcon, InformationCircleIcon } from "@heroicons/react/24/solid";
+import {
+  ShoppingBagIcon,
+  InformationCircleIcon,
+} from "@heroicons/react/24/solid";
 
 import { CircularProgress, Divider } from "@mui/material";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
 
 interface ICartProps {}
 
 const Cart: React.FC<ICartProps> = (props) => {
-  const { currentCart } = useSelector((state: any) => state.cart);
   const { user, isAuthenticated } = useAuth();
-  const { getUserCart, loading } = useCart();
+  const { getUserCart, loading, currentCart } = useCart();
   const { actionLoading } = useOrder();
   const router = useRouter();
 
@@ -35,7 +36,7 @@ const Cart: React.FC<ICartProps> = (props) => {
   return (
     <>
       <div className="flex min-h-[700px] w-full justify-center px-8 py-20">
-        {currentCart?.cartDetails?.length > 0 ? (
+        {currentCart?.cartDetails?.length > 0 && !loading ? (
           <div className="h-fit w-[1200px]">
             <h1 className="text-3xl font-bold text-secondary-900">
               Giỏ hàng của bạn
@@ -50,7 +51,7 @@ const Cart: React.FC<ICartProps> = (props) => {
 
               <div className="h-full w-[10px] bg-primary-200"></div>
 
-              <div className="flex w-full flex-col justify-between gap-y-8 laptop:w-1/3">
+              <div className="flex w-full flex-col justify-between gap-y-8 rounded-lg border border-gray-300 p-6 laptop:w-1/3">
                 <CartSummary />
                 <Button
                   onClick={() => handleClickCreateOrder()}
@@ -64,13 +65,13 @@ const Cart: React.FC<ICartProps> = (props) => {
           </div>
         ) : (
           <>
-            {isAuthenticated ?
-                <>
-              {loading ? (
+            {isAuthenticated ? (
+              <>
+                {loading ? (
                   <div className="flex h-full w-full items-center justify-center">
                     <CircularProgress size={24} />
                   </div>
-              ) : (
+                ) : (
                   <div className="flex h-full w-full flex-col items-center justify-center">
                     <ShoppingBagIcon className="h-20 w-20 text-secondary-800" />
                     <h1 className="mt-4 text-3xl font-bold text-secondary-900">
@@ -82,22 +83,23 @@ const Cart: React.FC<ICartProps> = (props) => {
                       </p>
                     </Link>
                   </div>
-              )}
-            </> :
-                <>
-                  <div className="flex h-full w-full flex-col items-center justify-center">
-                    <InformationCircleIcon className="h-20 w-20 text-secondary-800"/>
-                    <h1 className="mt-4 text-3xl font-bold text-secondary-900">
-                        Bạn chưa đăng nhập
-                    </h1>
-                    <Link href="/login">
-                      <p className="text-md mt-4 font-bold text-secondary-900 underline">
-                            Vui lòng đăng nhập để xem giỏ hàng
-                      </p>
-                    </Link>
-                  </div>
-                </>
-            }
+                )}
+              </>
+            ) : (
+              <>
+                {/* <div className="flex h-full w-full flex-col items-center justify-center">
+                  <InformationCircleIcon className="h-20 w-20 text-secondary-800" />
+                  <h1 className="mt-4 text-3xl font-bold text-secondary-900">
+                    Bạn chưa đăng nhập
+                  </h1>
+                  <Link href="/login">
+                    <p className="text-md mt-4 font-bold text-secondary-900 underline">
+                      Vui lòng đăng nhập để xem giỏ hàng
+                    </p>
+                  </Link>
+                </div> */}
+              </>
+            )}
           </>
         )}
       </div>
