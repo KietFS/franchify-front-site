@@ -7,7 +7,7 @@
     "dev": "npm run generate-style && next dev",
     "build": "next build",
     "start": "next start",
-    "test:e2e": "playwright test test/app.e2e-spec.js",
+    "test:e2e": "playwright test",
     "lint": "next lint"
   },
   "dependencies": {
@@ -20,8 +20,10 @@
     "@mui/material": "^6.1.5",
     "@mui/material-nextjs": "^5.16.6",
     "@reduxjs/toolkit": "^1.9.1",
+    "@testing-library/react": "^16.1.0",
     "axios": "^1.7.4",
     "dayjs": "^1.11.13",
+    "dotenv": "^16.4.7",
     "form": "^0.2.4",
     "formik": "^2.4.6",
     "next": "14.2.5",
@@ -32,6 +34,7 @@
     "react-hook-form": "^7.47.0",
     "react-redux": "^8.0.5",
     "react-slick": "^0.30.2",
+    "redux-mock-store": "^1.5.5",
     "redux-persist": "^6.0.0",
     "redux-persist-transform-filter": "^0.0.22",
     "slick-carousel": "^1.8.1",
@@ -39,6 +42,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.49.1",
+    "@types/mocha": "^10.0.10",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

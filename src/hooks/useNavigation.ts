@@ -1,10 +1,9 @@
 "use client";
 
+import { IProduct } from "@/types/models";
 import { useRouter } from "next/navigation";
 import useStore from "./useStore";
 import { IStoreProduct } from "@/types/models";
-
-interface IProduct extends Record<string, any> {}
 
 const useNavigation = () => {
   const router = useRouter();
@@ -22,27 +21,11 @@ const useNavigation = () => {
       }
     });
 
-    router.push(`/product-detail/${final}-${item?.upc}-${currentStore?.id}`);
-  };
-
-  const productDetailLink = (item: IStoreProduct) => {
-    let splits = (item?.product?.name as string)?.split(" ");
-    let final = "";
-
-    splits?.map((key: any, index: number) => {
-      if (index == splits?.length - 1) {
-        final = final + `${key}`;
-      } else {
-        final = final + `${key}-`;
-      }
-    });
-
-    return `/product-detail/${final}-${item?.product?.upc}-${currentStore?.id}`;
+    router.push(`/product-detail/${final}-${item?.upc}`, { scroll: true });
   };
 
   return {
     navigateToProductDetail,
-    productDetailLink,
   };
 };
 

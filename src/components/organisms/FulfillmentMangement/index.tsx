@@ -34,7 +34,7 @@ const FulfillmentMangement: React.FC<IFulfillmentMangementProps> = (props) => {
   };
 
   useEffect(() => {
-     getStoreByLocation();
+    getStoreByLocation();
   }, []);
 
   useEffect(() => {
@@ -74,15 +74,15 @@ const FulfillmentMangement: React.FC<IFulfillmentMangementProps> = (props) => {
         <>
           <button
             onClick={handleClick}
-            className="p-2 text-black-500 rounded-full w-fit desktop:max-w-[250px] bg-transparent justify-center items-center flex gap-x-2"
+            className="text-black-500 flex w-fit items-center justify-center gap-x-2 rounded-full bg-transparent p-2 desktop:max-w-[250px]"
           >
-            <TruckIcon className="w-8 h-8 text-secondary-500 mr-1" />
+            <TruckIcon className="mr-1 h-8 w-8 text-secondary-500" />
             <div>
-              <p className="text-secondary-500 font-regular hidden desktop:flex truncate">
+              <p className="font-regular hidden truncate text-secondary-500 desktop:flex">
                 Bạn đang chọn
               </p>
-              <p className="text-secondary-500 font-regular hidden desktop:flex truncate max-w-[100px]">
-                {`Cửa hàng: ${currentStore?.id}`}
+              <p className="font-regular hidden max-w-[100px] truncate text-secondary-500 desktop:flex">
+                Cửa hàng {currentStore?.id}
               </p>
             </div>
           </button>
@@ -118,12 +118,12 @@ const FulfillmentMangement: React.FC<IFulfillmentMangementProps> = (props) => {
               },
             }}
           >
-            <div className="w-[280px] border border-secondary-100 min-h-[400px] shadow-sm bg-secondary-50 px-4 py-8 rounded-lg flex flex-col gap-y-4">
+            <div className="flex min-h-[400px] w-[280px] flex-col gap-y-4 rounded-lg border border-secondary-100 bg-secondary-50 px-4 py-8 shadow-sm">
               <div>
-                <p className="text-secondary-900 text-sm font-normal">
+                <p className="text-sm font-normal text-secondary-900">
                   Bạn đang mua sắm ở
                 </p>
-                <strong className="text-primary-600 text-lg">
+                <strong className="text-lg text-primary-600">
                   {currentStore?.name}
                 </strong>
               </div>
@@ -137,26 +137,26 @@ const FulfillmentMangement: React.FC<IFulfillmentMangementProps> = (props) => {
                     currentStore?.closeTime,
                   ) ? (
                     <>
-                      <BuildingStorefrontIcon className="w-4 h-4 text-green-500" />
-                      <p className="text-sm text-green-600 font-bold">
+                      <BuildingStorefrontIcon className="h-4 w-4 text-green-500" />
+                      <p className="text-sm font-bold text-green-600">
                         Đang mở cửa
                       </p>
                     </>
                   ) : (
                     <>
-                      <BuildingStorefrontIcon className="w-4 h-4 text-red-500" />
-                      <p className="text-sm text-red-600 font-bold">
+                      <BuildingStorefrontIcon className="h-4 w-4 text-red-500" />
+                      <p className="text-sm font-bold text-red-600">
                         Đã đóng cửa
                       </p>
                     </>
                   )}
                 </div>
-                <strong className="text-secondary-900 font-normal text-sm">
+                <strong className="text-sm font-normal text-secondary-900">
                   5201 4th St #7, Lubbock, TX 79416
                 </strong>
               </div>
 
-              <a className="no-underline text-secondary-900 text-sm font-semibold cursor-pointer hover:underline">
+              <a className="cursor-pointer text-sm font-semibold text-secondary-900 no-underline hover:underline">
                 Store Detail
               </a>
 
@@ -164,12 +164,12 @@ const FulfillmentMangement: React.FC<IFulfillmentMangementProps> = (props) => {
 
               <div>
                 <div className="flex items-center gap-x-2">
-                  <ShoppingBagIcon className="w-8 h-8 text-primary-500" />
+                  <ShoppingBagIcon className="h-8 w-8 text-primary-500" />
                   <div>
-                    <p className="text-secondary-800 text-sm font-semibold">
+                    <p className="text-sm font-semibold text-secondary-800">
                       Free for orders over $30{" "}
                     </p>
-                    <p className="text-sm text-secondary-800 font-normal">
+                    <p className="text-sm font-normal text-secondary-800">
                       Varies by location
                     </p>
                   </div>

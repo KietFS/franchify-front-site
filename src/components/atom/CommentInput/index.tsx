@@ -1,6 +1,6 @@
 "use client";
 
-import { TextField, Button, Avatar, CircularProgress } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import React from "react";
 import RichTextInput from "../RichTextInput";
 import { useSelector } from "react-redux";
@@ -30,7 +30,7 @@ const CommentInput: React.FC<ICommentInputProps> = (props) => {
 
   return (
     <div className="flex w-full gap-x-3">
-      <div className="bg-primary-600 text-center text-secondary-500 w-[40px] h-[40px] cursor-pointer rounded-full flex items-center justify-center box-border">
+      <div className="box-border flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full bg-primary-600 text-center text-secondary-500">
         {(user?.username?.[0] as string)?.toUpperCase()}
       </div>
       <div className="w-full">
@@ -47,14 +47,14 @@ const CommentInput: React.FC<ICommentInputProps> = (props) => {
           <div className="flex items-center gap-x-3">
             {isClosable && (
               <button
-                className="bg-white text-primary-500 border-primary-500 border rounded-md px-3 py-1 mt-2 min-w-[80px]"
+                className="mt-2 min-w-[80px] rounded-md border border-primary-500 bg-white px-3 py-1 text-primary-500"
                 onClick={() => onClose?.()}
               >
                 Đóng
               </button>
             )}
             <button
-              className="bg-primary-500 text-white font-semibold rounded-md px-3 py-1 mt-2 min-w-[80px]"
+              className="mt-2 min-w-[80px] rounded-md bg-primary-500 px-3 py-1 font-semibold text-white"
               onClick={() => onPostComment()}
             >
               {isPosting ? (

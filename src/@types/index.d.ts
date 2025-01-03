@@ -1,6 +1,9 @@
 declare module "@heroicons/react/outline";
 declare module "styled-components";
+<<<<<<< HEAD
 declare module "./user.d.ts";
+=======
+>>>>>>> origin/main
 
 declare interface String {
   truncate: (num: number) => string;
