@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 // @ts-ignore
 import EmptyImage from "@/assets/images/EmptyImage.png";
@@ -8,7 +8,6 @@ import QuantityButton from "../QuantityButton";
 import { IconButton } from "@mui/material";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import Link from "next/link";
-import useAuth from "@/hooks/useAuth";
 import useStore from "@/hooks/useStore";
 import { IProduct, IStoreProduct } from "@/types/models";
 import useNavigation from "@/hooks/useNavigation";
@@ -20,9 +19,9 @@ interface IProductCardProps {
 }
 
 const ProductCard: React.FC<IProductCardProps> = (props) => {
-  const { handleItemClick, item, index } = props;
-  const { currentStore } = useStore();
+  const { item, index } = props;
   const { productDetailLink } = useNavigation();
+  const [imageError, setImageError] = useState(false);
 
   return (
     <Link href={productDetailLink(item.product)}>
@@ -32,17 +31,20 @@ const ProductCard: React.FC<IProductCardProps> = (props) => {
             <PlaylistAddIcon sx={{ width: 40, height: 40, color: "#4b5563" }} />
           </IconButton>
         </div>
-        {!!item?.product?.thumbnail ? (
+        {!!item?.product?.thumbnail && !imageError ? (
           <img
             src={item.product?.thumbnail}
             className="h-auto w-full rounded-xl object-cover desktop:min-h-[200px] desktop:max-w-[250px]"
             alt={`Product ${index + 1}`}
+            onError={() => setImageError(true)}
           />
         ) : (
           <Image
             src={EmptyImage}
             className="h-auto w-full rounded-xl object-contain desktop:h-[200px] desktop:max-w-[250px]"
             alt={`Product ${index + 1}`}
+            width={250}
+            height={200}
           />
         )}
         <div className="mt-6 flex w-full flex-col gap-x-4 gap-y-4">

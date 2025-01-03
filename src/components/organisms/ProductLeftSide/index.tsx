@@ -6,6 +6,7 @@ import Image from "next/image";
 
 //@ts-ignore
 import EmptyImage from "@/assets/images/EmptyImage.png";
+import { IStoreProduct } from "@/types/models";
 
 interface ILeftSideProps {
   storeProduct?: IStoreProduct;
@@ -14,6 +15,7 @@ interface ILeftSideProps {
 const ProductLeftSide: React.FC<ILeftSideProps> = ({ storeProduct }) => {
   const [isMobile, setIsMobile] = useState(false);
   const sliderRef = useRef(null);
+  const [imageError, setImageError] = useState(false);
 
   const settings = {
     dots: false,
@@ -30,25 +32,25 @@ const ProductLeftSide: React.FC<ILeftSideProps> = ({ storeProduct }) => {
   ];
 
   return (
-    <div className="max-w-[340px] tablet:max-w-[240px] laptop:max-w-[420px] desktop:max-w-[480px] mx-auto">
-      <div className="w-full h-full  bg-white">
+    <div className="mx-auto max-w-[340px] tablet:max-w-[240px] laptop:max-w-[420px] desktop:max-w-[480px]">
+      <div className="h-full w-full bg-white">
         {carouselImages?.length > 1 ? (
-          <Slider ref={sliderRef} {...settings} className="rounded-lg mx-auto">
+          <Slider ref={sliderRef} {...settings} className="mx-auto rounded-lg">
             {carouselImages?.map((item: any, index: number) => (
               <div
                 key={index}
-                className="flex justify-center items-center h-[420px] w-full rounded-lg cursor-pointer hover:opacity-80"
+                className="flex h-[420px] w-full cursor-pointer items-center justify-center rounded-lg hover:opacity-80"
               >
                 {item ? (
                   <img
                     src={item}
-                    className="w-full h-full object-cover rounded-xl"
+                    className="h-full w-full rounded-xl object-cover"
                     alt={`Product image ${index + 1}`}
                   />
                 ) : (
                   <Image
                     src={EmptyImage}
-                    className="w-full h-full object-cover rounded-xl"
+                    className="h-full w-full rounded-xl object-cover"
                     alt={`Product image ${index + 1}`}
                   />
                 )}
@@ -56,28 +58,41 @@ const ProductLeftSide: React.FC<ILeftSideProps> = ({ storeProduct }) => {
             ))}
           </Slider>
         ) : (
-          <Image
-            width={400}
-            height={400}
-            src={carouselImages[0] as string}
-            className="w-full h-full object-cover rounded-xl"
-            alt={`Product image`}
-          />
+          <>
+            {carouselImages[0] && !imageError ? (
+              <Image
+                width={400}
+                onError={() => setImageError(true)}
+                height={400}
+                src={carouselImages[0] as string}
+                className="h-full w-full rounded-xl object-cover"
+                alt={`Product image`}
+              />
+            ) : (
+              <Image
+                src={EmptyImage}
+                height={400}
+                width={400}
+                // className="h-full w-full rounded-xl object-cover"
+                alt={`Product image empty`}
+              />
+            )}
+          </>
         )}
 
-        <div className="flex flex-wrap gap-4 mt-8 justify-center">
+        <div className="mt-8 flex flex-wrap justify-center gap-4">
           {carouselImages?.length > 1 &&
             carouselImages?.map((item: any, index: number) => (
               <div
                 key={`carousel-${index}`}
-                className="p-2 border border-secondary-700 rounded-xl cursor-pointer hover:opacity-50"
+                className="cursor-pointer rounded-xl border border-secondary-700 p-2 hover:opacity-50"
                 onClick={() => (sliderRef.current as any)?.slickGoTo(index)}
               >
                 <img
                   src={item}
                   width="400"
                   height="400"
-                  className="w-[40px] h-[40px] laptop:w-[80px] laptop:h-[80px] object-cover rounded-lg"
+                  className="h-[40px] w-[40px] rounded-lg object-cover laptop:h-[80px] laptop:w-[80px]"
                   alt={`Thumbnail ${index + 1}`}
                 />
               </div>
