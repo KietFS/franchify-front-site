@@ -32,7 +32,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
 
   const { currentCart, getUserCart } = useCart();
   const { listCategory, getCategories } = useCategory();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
 
   const searchInputRef = useRef<HTMLInputElement>(null);
 
@@ -41,7 +41,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
   }, []);
 
   useEffect(() => {
-    !currentCart && getUserCart();
+    !currentCart && isAuthenticated && getUserCart();
   }, []);
 
   return (

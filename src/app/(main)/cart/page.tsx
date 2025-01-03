@@ -6,7 +6,10 @@ import CartSummary from "@/components/organisms/CartSummary";
 import useAuth from "@/hooks/useAuth";
 import useCart from "@/hooks/useCart";
 import useOrder from "@/hooks/useOrder";
-import { ShoppingBagIcon, InformationCircleIcon } from "@heroicons/react/24/solid";
+import {
+  ShoppingBagIcon,
+  InformationCircleIcon,
+} from "@heroicons/react/24/solid";
 
 import { CircularProgress, Divider } from "@mui/material";
 
@@ -25,7 +28,7 @@ const Cart: React.FC<ICartProps> = (props) => {
   const router = useRouter();
 
   useEffect(() => {
-    !currentCart && getUserCart();
+    !currentCart && user && getUserCart();
   }, []);
 
   const handleClickCreateOrder = async () => {
@@ -64,13 +67,13 @@ const Cart: React.FC<ICartProps> = (props) => {
           </div>
         ) : (
           <>
-            {isAuthenticated ?
-                <>
-              {loading ? (
+            {isAuthenticated ? (
+              <>
+                {loading ? (
                   <div className="flex h-full w-full items-center justify-center">
                     <CircularProgress size={24} />
                   </div>
-              ) : (
+                ) : (
                   <div className="flex h-full w-full flex-col items-center justify-center">
                     <ShoppingBagIcon className="h-20 w-20 text-secondary-800" />
                     <h1 className="mt-4 text-3xl font-bold text-secondary-900">
@@ -82,22 +85,23 @@ const Cart: React.FC<ICartProps> = (props) => {
                       </p>
                     </Link>
                   </div>
-              )}
-            </> :
-                <>
-                  <div className="flex h-full w-full flex-col items-center justify-center">
-                    <InformationCircleIcon className="h-20 w-20 text-secondary-800"/>
-                    <h1 className="mt-4 text-3xl font-bold text-secondary-900">
-                        Bạn chưa đăng nhập
-                    </h1>
-                    <Link href="/login">
-                      <p className="text-md mt-4 font-bold text-secondary-900 underline">
-                            Vui lòng đăng nhập để xem giỏ hàng
-                      </p>
-                    </Link>
-                  </div>
-                </>
-            }
+                )}
+              </>
+            ) : (
+              <>
+                <div className="flex h-full w-full flex-col items-center justify-center">
+                  <InformationCircleIcon className="h-20 w-20 text-secondary-800" />
+                  <h1 className="mt-4 text-3xl font-bold text-secondary-900">
+                    Bạn chưa đăng nhập
+                  </h1>
+                  <Link href="/login">
+                    <p className="text-md mt-4 font-bold text-secondary-900 underline">
+                      Vui lòng đăng nhập để xem giỏ hàng
+                    </p>
+                  </Link>
+                </div>
+              </>
+            )}
           </>
         )}
       </div>
