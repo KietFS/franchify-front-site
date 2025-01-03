@@ -3,6 +3,7 @@ import ProductLeftSide from "../../organisms/ProductLeftSide";
 import ProductRightSide from "../../organisms/ProductRightSide";
 import ProductComments from "@/components/organisms/Comments";
 import SimilarProducts from "@/components/organisms/SimilarProducts";
+import { IStoreProduct } from "@/types/models";
 
 interface IProductDetailTemplateProps {
   product: IStoreProduct;
@@ -10,23 +11,23 @@ interface IProductDetailTemplateProps {
 }
 
 const ProductDetailTemplate: React.FC<IProductDetailTemplateProps> = (
-  props
+  props,
 ) => {
   const { product, relatedProduct } = props;
 
+  if (!product) {
+    return null;
+  }
+
   return (
     <>
-      {!!product ? (
-        <>
-          <div className="flex gap-y-8 gap-x-[80px] justify-center  flex-col tablet:flex-row">
-            <ProductLeftSide storeProduct={product} />
-            {!!product ? <ProductRightSide storeProduct={product} /> : null}
-          </div>
+      <div className="flex flex-col justify-center gap-x-[80px] gap-y-8 tablet:flex-row">
+        <ProductLeftSide storeProduct={product} />
+        <ProductRightSide storeProduct={product} />
+      </div>
 
-          <ProductComments productDetail={product} />
-          <SimilarProducts listProduct={relatedProduct} />
-        </>
-      ) : null}
+      <ProductComments productDetail={product} />
+      <SimilarProducts listProduct={relatedProduct} />
     </>
   );
 };
