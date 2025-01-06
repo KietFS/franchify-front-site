@@ -12,7 +12,7 @@ const ProductRightSide: React.FC<IProductRightSideProps> = (props) => {
   const { storeProduct } = props;
 
   return (
-    <div className="flex h-full w-full flex-col gap-y-8 tablet:w-[360px] laptop:h-full laptop:w-[400px] desktop:h-full desktop:w-[480px]">
+    <div className="flex h-full w-full flex-col gap-y-8 laptop:h-full laptop:w-[400px] desktop:h-full desktop:w-[480px]">
       <h1 className="text-3xl font-bold text-secondary-900">
         {storeProduct?.product?.name}
       </h1>

@@ -32,7 +32,7 @@ const ProductLeftSide: React.FC<ILeftSideProps> = ({ storeProduct }) => {
   ];
 
   return (
-    <div className="mx-auto max-w-[340px] tablet:max-w-[240px] laptop:max-w-[420px] desktop:max-w-[480px]">
+    <div className="mx-auto max-w-[340px] tablet:max-w-[340px] laptop:max-w-[380px] desktop:max-w-[480px]">
       <div className="h-full w-full bg-white">
         {carouselImages?.length > 1 ? (
           <Slider ref={sliderRef} {...settings} className="mx-auto rounded-lg">
@@ -60,12 +60,10 @@ const ProductLeftSide: React.FC<ILeftSideProps> = ({ storeProduct }) => {
         ) : (
           <>
             {carouselImages[0] && !imageError ? (
-              <Image
-                width={400}
+              <img
                 onError={() => setImageError(true)}
-                height={400}
                 src={carouselImages[0] as string}
-                className="h-full w-full rounded-xl object-cover"
+                className="h-full w-full rounded-xl object-contain"
                 alt={`Product image`}
               />
             ) : (
