@@ -22,12 +22,14 @@ import {
   ICreateOrderDto,
   ICreateOrderUserInfoDto,
 } from "@/types/dtos";
+import PaymentDialog from "@/components/molecules/PaymentDialog";
 
 interface ICreateOrderProps {}
 
 const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
   const [openUserInfo, setOpenUserInfo] = React.useState<boolean>(false);
   const [openAddress, setOpenAddress] = React.useState<boolean>(false);
+  const [openPayment, setOpenPayment] = React.useState<boolean>(false);
   const [isApplyUserSavePoints, setIsApplyUserSavePoints] =
     useState<boolean>(false);
   const { createOrder, actionLoading } = useOrder();
@@ -151,8 +153,8 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
             </div>
 
             <button
-              border-none
-              className="text-right font-bold text-primary-500"
+              onClick={() => setOpenPayment(true)}
+              className="border-none text-right font-bold text-primary-500"
             >
               Chỉnh sửa
             </button>
@@ -200,7 +202,7 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
                     email: user?.email,
                     phoneNumber: user?.phoneNumber,
                   },
-                });
+                } as any);
               }
             }}
             className="mt-12"
@@ -227,6 +229,10 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
           }}
           onClose={() => setOpenAddress(false)}
         />
+      ) : null}
+
+      {openPayment ? (
+        <PaymentDialog onClose={() => setOpenPayment(false)} />
       ) : null}
     </>
   );
