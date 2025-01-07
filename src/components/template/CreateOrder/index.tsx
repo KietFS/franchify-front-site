@@ -10,13 +10,8 @@ import { useRouter } from "next/navigation";
 import OrderSummary from "@/components/organisms/OrderSummary";
 import CartSummary from "@/components/organisms/CartSummary";
 import { useToast } from "@/hooks/useToast";
-import { Radio } from "@mui/material";
 import useStore from "@/hooks/useStore";
 import useCart from "@/hooks/useCart";
-import axios from "axios";
-import { apiURL } from "@/constanst";
-import { useDispatch } from "react-redux";
-import { setUser } from "@/redux/slices/auth";
 import {
   ICreateOrderAddressDto,
   ICreateOrderDto,
@@ -33,7 +28,7 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
   const [isApplyUserSavePoints, setIsApplyUserSavePoints] =
     useState<boolean>(false);
   const { createOrder, actionLoading } = useOrder();
-  const { user, accessToken } = useAuth() || {};
+  const { user } = useAuth() || {};
   const router = useRouter();
   const toast = useToast();
   const { currentStore } = useStore();
@@ -43,42 +38,11 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
     useState<ICreateOrderUserInfoDto | null>(null);
   const [orderAddress, setOrderAddress] =
     useState<ICreateOrderAddressDto | null>(null);
-  const dispatch = useDispatch();
-
-  const updateUserSavePoints = async (points: number) => {
-    try {
-      const response = await axios.put(
-        `${apiURL}/auth/profile`,
-        {
-          savePoints: user?.savePoints - (user?.savePoints * 70) / 100,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        },
-      );
-
-      if (response?.data?.success) {
-        dispatch(setUser(response?.data?.data));
-      }
-    } catch (error) {
-      console.error("Get order detail error", error);
-    } finally {
-    }
-  };
 
   const handleClickCreateOrder = async (data: ICreateOrderDto) => {
     await createOrder(data, async () => {
       await getUserCart();
       router.push("/orders");
-      if (isApplyUserSavePoints) {
-        await updateUserSavePoints(
-          Number(user?.savePoints - (user?.savePoints * 70) / 100),
-        );
-      } else {
-        await updateUserSavePoints(Number(user?.savePoints + 1));
-      }
     });
   };
 
@@ -161,27 +125,7 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
           </div>
         </div>
         <div className="w-full cursor-pointer flex-col gap-y-4 rounded-lg border border-secondary-600 px-8 py-4 tablet:w-[30%] laptop:flex">
-          <CartSummary
-            isApplyUserSavePoints={isApplyUserSavePoints}
-            shippingFee={orderAddress?.shippingFee}
-          />
-
-          {user?.savePoints && (
-            <button className="ml-[-4px] flex items-center text-left text-secondary-900">
-              <Radio
-                // onBlur={() => setIsApplyUserSavePoints(false)}
-                checked={isApplyUserSavePoints}
-                onChange={() =>
-                  setIsApplyUserSavePoints(!isApplyUserSavePoints)
-                }
-              />
-              Sử dụng điểm tích lũy:{" "}
-              {((user?.savePoints * 70) / 100)?.toFixed(0) || 0} tương ứng{" "}
-              {Number(((user?.savePoints * 70) / 100) * 1000)
-                ?.toString()
-                .prettyMoney()}
-            </button>
-          )}
+          <CartSummary shippingFee={orderAddress?.shippingFee} />
 
           <Button
             isLoading={actionLoading}

@@ -6,11 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useToast } from "./useToast";
 import { setCurrentCart } from "@/redux/slices/cart";
 import { apiURL } from "@/constanst";
-import { IProduct } from "@/types/models";
+import { ICart, IProduct } from "@/types/models";
+import { IRootState } from "@/redux";
 
 const useCart = (currentProduct?: IProduct) => {
-  const { accessToken } = useSelector((state: any) => state.auth);
-  const { currentCart } = useSelector((state: any) => state.cart);
+  const { accessToken } = useSelector((state: IRootState) => state.auth);
+  const { currentCart } = useSelector((state: IRootState) => state.cart) as {
+    currentCart: ICart;
+  };
   const [loading, setLoading] = useState<boolean>(false);
   const [currentQuantity, setCurrentQuantity] = useState<number>(0);
   const toast = useToast();
