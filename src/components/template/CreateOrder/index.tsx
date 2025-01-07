@@ -25,8 +25,6 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
   const [openUserInfo, setOpenUserInfo] = React.useState<boolean>(false);
   const [openAddress, setOpenAddress] = React.useState<boolean>(false);
   const [openPayment, setOpenPayment] = React.useState<boolean>(false);
-  const [isApplyUserSavePoints, setIsApplyUserSavePoints] =
-    useState<boolean>(false);
   const { createOrder, actionLoading } = useOrder();
   const { user } = useAuth() || {};
   const router = useRouter();
