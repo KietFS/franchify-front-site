@@ -11,7 +11,9 @@ const ProductDetailPage = async (props: any) => {
   let product: IStoreProduct | null = null;
   let relatedProducts = null;
 
-  const response = await fetchProductDetail(upc, storeId);
+
+ const response = await fetchProductDetail(upc, storeId);
+
 
   if (response.success) {
     product = response?.data?.storeProduct;

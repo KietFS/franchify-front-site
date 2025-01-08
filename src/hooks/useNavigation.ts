@@ -20,7 +20,7 @@ const useNavigation = () => {
       }
     });
 
-    router.push(`/product-detail/${final}-${item?.upc}`);
+    router.push(`/product-detail/${final}-${item?.upc}`, { scroll: true });
   };
 
   const productDetailLink = (item: IProduct) => {
