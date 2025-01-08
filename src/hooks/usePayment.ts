@@ -33,7 +33,34 @@ const usePayment = () => {
     }
   };
 
-  const dispatchSetPaymentMethod = dispatch(setPaymentMethod);
+  const createPaymentUrl = async (payload: {
+    amount: number;
+    orderId: number;
+  }) => {
+    try {
+      const response = await fetch(`${apiURL}/payment/vnpay-create-payment`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        return data;
+      } else {
+        console.log("Failed to create payment url", response.statusText);
+        return null;
+      }
+    } catch (error) {
+      console.log("Create payment url error", error);
+      return null;
+    }
+  };
+
+  const dispatchSetPaymentMethod = (payload: any) =>
+    dispatch(setPaymentMethod(payload));
 
   return {
     // payment
@@ -42,6 +69,7 @@ const usePayment = () => {
     getBankList,
     paymentMethod,
     dispatchSetPaymentMethod,
+    createPaymentUrl,
   };
 };
 

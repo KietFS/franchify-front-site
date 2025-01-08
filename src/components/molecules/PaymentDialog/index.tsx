@@ -5,9 +5,13 @@ import CustomDialog from "../CustomDialog";
 import usePayment from "@/hooks/usePayment";
 import { Radio } from "@mui/material";
 import useConfig from "@/hooks/useConfig";
-import { useDispatch } from "react-redux";
-import { setPaymentMethod } from "@/redux/slices/payment";
 import Button from "@/components/atom/Button";
+
+enum PaymentMethod {
+  COD = "COD",
+  MOMO = "MOMO",
+  VNPAY = "VNPAY",
+}
 
 interface IPaymentDialogProps {
   onClose: () => void;
@@ -15,21 +19,20 @@ interface IPaymentDialogProps {
 
 const PaymentDialog: React.FC<IPaymentDialogProps> = (props) => {
   const { onClose } = props;
-  const { getBankList, bankList } = usePayment();
+  const { getBankList, bankList, createPaymentUrl } = usePayment();
   const { paymentMethod, dispatchSetPaymentMethod } = usePayment();
   const { tenantConfigs } = useConfig();
-  const dispatch = useDispatch();
 
   const paymentMethods = useMemo(() => {
     return [
       {
-        id: 1,
+        id: PaymentMethod.COD,
         name: "Thanh toán khi nhận hàng",
         description: "Thanh toán khi nhận hàng",
         logo: null,
       },
       {
-        id: 2,
+        id: PaymentMethod.VNPAY,
         name: "Thanh toán qua VNPay",
         description: "Thanh toán qua VnPay",
         logo: null,
@@ -38,10 +41,15 @@ const PaymentDialog: React.FC<IPaymentDialogProps> = (props) => {
   }, []);
 
   useEffect(() => {
-    getBankList();
+    // getBankList();
   }, []);
 
-  const handleConfirmOrder = () => {};
+  const handleConfirmOrder = () => {
+    createPaymentUrl({
+      amount: 100,
+      orderId: 2,
+    });
+  };
 
   return (
     <CustomDialog
@@ -58,7 +66,7 @@ const PaymentDialog: React.FC<IPaymentDialogProps> = (props) => {
                 key={`payment-method-${index}`}
               >
                 <button
-                  onClick={() => dispatch(setPaymentMethod(method))}
+                  onClick={() => dispatchSetPaymentMethod(method)}
                   className="flex w-full cursor-pointer items-start gap-x-4 rounded-xl border border-secondary-600 px-6 py-4 text-left"
                 >
                   {/* <img

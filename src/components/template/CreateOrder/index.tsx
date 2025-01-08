@@ -7,7 +7,6 @@ import useAuth from "@/hooks/useAuth";
 import useOrder from "@/hooks/useOrder";
 import Button from "@/components/atom/Button";
 import { useRouter } from "next/navigation";
-import OrderSummary from "@/components/organisms/OrderSummary";
 import CartSummary from "@/components/organisms/CartSummary";
 import { useToast } from "@/hooks/useToast";
 import useStore from "@/hooks/useStore";
@@ -38,9 +37,15 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
     useState<ICreateOrderAddressDto | null>(null);
 
   const handleClickCreateOrder = async (data: ICreateOrderDto) => {
-    await createOrder(data, async () => {
-      await getUserCart();
-      router.push("/orders");
+    await createOrder(data, async (data) => {
+      if (data?.paymentUrl) {
+        toast.sendToast("Thành công", "Vui lòng thanh toán đơn hàng");
+        window.open(data.paymentUrl, "_blank");
+      } else {
+        toast.sendToast("Thành công", "Đặt hàng thành công");
+        await getUserCart();
+        router.push("/orders");
+      }
     });
   };
 
