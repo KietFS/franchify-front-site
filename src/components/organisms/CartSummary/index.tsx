@@ -8,13 +8,11 @@ import { useSelector } from "react-redux";
 
 interface ICartSummaryProps {
   shippingFee?: number;
-  isApplyUserSavePoints?: boolean;
 }
 
 const CartSummary: React.FC<ICartSummaryProps> = (props) => {
-  const { isApplyUserSavePoints = false } = props;
   const { currentCart } = useCart();
-  const { user } = useAuth() || {}
+  const { user } = useAuth() || {};
 
   const totalPrice = () => {
     let total = 0;
@@ -31,12 +29,6 @@ const CartSummary: React.FC<ICartSummaryProps> = (props) => {
       afterTotal = afterTotal + item?.product?.price?.price * item?.quantity;
     });
 
-    if (user?.savePoints > 0) {
-      if (isApplyUserSavePoints) {
-        afterTotal = afterTotal - (Number(( user?.savePoints * 70/100)?.toFixed(0)));
-      }
-    }
-
     return `${afterTotal}`?.prettyMoney();
   };
 
@@ -46,16 +38,9 @@ const CartSummary: React.FC<ICartSummaryProps> = (props) => {
       finalPrice = finalPrice + item?.product?.price?.price * item?.quantity;
     });
 
-    if (user?.savePoints > 0) {
-      if (isApplyUserSavePoints) {
-        finalPrice = finalPrice - (Number(( user?.savePoints * 70/100)?.toFixed(0)))
-      }
-    }
-
     if (props?.shippingFee) {
       finalPrice = finalPrice + props?.shippingFee;
     }
-
 
     return `${finalPrice}`?.prettyMoney();
   };
@@ -70,17 +55,6 @@ const CartSummary: React.FC<ICartSummaryProps> = (props) => {
           <p className="text-md font-bold text-secondary-900">Tạm tính</p>
           <p className="text-md font-bold text-green-600">{totalPrice()}</p>
         </div>
-
-        {isApplyUserSavePoints && (
-          <div className="flex w-full items-center justify-between">
-            <p className="text-md font-bold text-secondary-900">
-              Giảm giá ( bằng điểm )
-            </p>
-            <p className="text-md font-bold text-red-600">
-              -{((user?.savePoints * 70/100 * 1000)?.toFixed(0))?.toString()?.prettyMoney()}
-            </p>
-          </div>
-        )}
 
         <Divider />
 
@@ -105,8 +79,6 @@ const CartSummary: React.FC<ICartSummaryProps> = (props) => {
         )}
 
         <Divider />
-
-   
 
         <div className="flex w-full items-center justify-between">
           <p className="text-md font-bold text-secondary-900">Tổng ước tính</p>

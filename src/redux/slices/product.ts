@@ -1,13 +1,14 @@
+import { IStoreProduct } from "@/types/models";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface IInitialState {
   storeProdutcs: IStoreProduct[];
-  popularProducts: IStoreProduct[]
+  popularProducts: IStoreProduct[];
 }
 
 const initialState: IInitialState = {
   storeProdutcs: [],
-  popularProducts: []
+  popularProducts: [],
 };
 
 const productSlice = createSlice({

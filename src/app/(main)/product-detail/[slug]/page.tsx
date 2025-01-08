@@ -1,59 +1,34 @@
 import React from "react";
 import ProductDetailTemplate from "@/components/template/ProductDetail";
 import { IStoreProduct } from "@/types/models";
+import { fetchProductDetail } from "@/services/product-detail";
 
 const ProductDetailPage = async (props: any) => {
-  const upc = props?.params?.slug?.split("-")[1];
-  const storeId = props?.params?.slug?.split("-")[0];
+  const length = props?.params?.slug?.split("-").length;
+  const upc = props?.params?.slug?.split("-")[length - 2];
+  const storeId = props?.params?.slug?.split("-")[length - 1];
 
   let product: IStoreProduct | null = null;
   let relatedProducts = null;
 
-  console.log("storeId", storeId);
-  console.log("upc", upc);
 
-  try {
-    const response = await fetch(
-      `http://localhost:3000/api/product-detail?upc=${upc}&storeId=${storeId}`,
-      {
-        method: "POST",
-        body: JSON.stringify({
-          name: "KIET",
-        }),
-      },
-    );
+ const response = await fetchProductDetail(upc, storeId);
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
 
-    const data = await response.json();
-    console.log("response data", data);
-
-    // Assuming the response structure
-    if (data.success) {
-      product = data.data.storeProduct;
-      relatedProducts = data.data.relatedProducts;
-    } else {
-      product = null;
-      relatedProducts = [];
-    }
-  } catch (error: any) {
-    console.log("error", error);
-    relatedProducts = [];
-    product = null;
-  }
-
-  return (
-    <>
-      {product && (
+  if (response.success) {
+    product = response?.data?.storeProduct;
+    relatedProducts = response?.data?.relatedProducts;
+    return (
+      <>
         <ProductDetailTemplate
-          product={product}
+          product={product as any}
           relatedProduct={relatedProducts}
         />
-      )}
-    </>
-  );
+      </>
+    );
+  } else {
+    return null;
+  }
 };
 
 export default ProductDetailPage;

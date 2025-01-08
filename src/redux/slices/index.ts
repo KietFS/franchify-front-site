@@ -7,6 +7,7 @@ import product from "./product";
 import category from "./category";
 import config from "./config";
 import order from "./order";
+import payment from "./payment";
 
 export const reducer = combineReducers({
   auth,
@@ -17,4 +18,5 @@ export const reducer = combineReducers({
   category,
   config,
   order,
+  payment,
 });

@@ -4,6 +4,9 @@ import axios from "axios";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useToast } from "./useToast";
+import { ICreateOrderDto } from "@/types/dtos";
+import usePayment from "./usePayment";
+import { useRouter } from "next/router";
 
 const useOrder = () => {
   const [actionLoading, setActionLoading] = useState<boolean>(false);
@@ -14,8 +17,8 @@ const useOrder = () => {
   const toast = useToast();
 
   const createOrder = async (
-    createOrder: ICreateOrder,
-    onSuccess?: () => void,
+    createOrder: ICreateOrderDto,
+    onSuccess?: (data: any) => void,
   ) => {
     try {
       setActionLoading(true);
@@ -25,8 +28,7 @@ const useOrder = () => {
         },
       });
       if (response?.data?.success) {
-        toast.sendToast("Thành công", "Đặt hàng thành công");
-        onSuccess && onSuccess();
+        onSuccess && onSuccess(response?.data?.data);
       }
     } catch (error) {
       toast.sendToast(

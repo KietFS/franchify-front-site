@@ -8,19 +8,14 @@ import { apiURL } from "@/constanst";
 const useComments = (productDetail: any) => {
   const [listComments, setListComments] = useState<any[]>([]);
   const [loadComments, setLoadComments] = useState<boolean>(false);
-  const { accessToken } = useSelector((state: any) => state.auth);
-  const [isPosting, setIsPosting] = useState<boolean>(false);
 
   const getListComments = async () => {
     try {
       setLoadComments(true);
       const response = await axios.get(
-        `${apiURL}/products/${productDetail?.id}/comments`
+        `${apiURL}/products/${productDetail?.id}/comments`,
       );
 
-      if (response) {
-        console.log(response?.data?.data);
-      }
       if (response?.data?.success) {
         setLoadComments(false);
         let comments = response?.data?.data;

@@ -7,74 +7,46 @@ import useAuth from "@/hooks/useAuth";
 import useOrder from "@/hooks/useOrder";
 import Button from "@/components/atom/Button";
 import { useRouter } from "next/navigation";
-import OrderSummary from "@/components/organisms/OrderSummary";
 import CartSummary from "@/components/organisms/CartSummary";
 import { useToast } from "@/hooks/useToast";
-import { Radio } from "@mui/material";
 import useStore from "@/hooks/useStore";
 import useCart from "@/hooks/useCart";
-import axios from "axios";
-import { apiURL } from "@/constanst";
-import { useDispatch } from "react-redux";
-import { setUser } from "@/redux/slices/auth";
+import {
+  ICreateOrderAddressDto,
+  ICreateOrderDto,
+  ICreateOrderUserInfoDto,
+} from "@/types/dtos";
+import PaymentDialog from "@/components/molecules/PaymentDialog";
 
 interface ICreateOrderProps {}
 
 const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
   const [openUserInfo, setOpenUserInfo] = React.useState<boolean>(false);
   const [openAddress, setOpenAddress] = React.useState<boolean>(false);
-  const [isApplyUserSavePoints, setIsApplyUserSavePoints] =
-    useState<boolean>(false);
+  const [openPayment, setOpenPayment] = React.useState<boolean>(false);
   const { createOrder, actionLoading } = useOrder();
-  const { user, accessToken } = useAuth() || {}
+  const { user } = useAuth() || {};
   const router = useRouter();
   const toast = useToast();
-  const {currentStore} = useStore()
-  const {getUserCart} = useCart()
+  const { currentStore } = useStore();
+  const { getUserCart } = useCart();
 
   const [orderUserInfo, setOrderUserInfo] =
-    useState<ICreateOrderUserInfo | null>(null);
-  const [orderAddress, setOrderAddress] = useState<ICreateOrderAddress | null>(
-    null,
-  );
-  const dispatch = useDispatch();
+    useState<ICreateOrderUserInfoDto | null>(null);
+  const [orderAddress, setOrderAddress] =
+    useState<ICreateOrderAddressDto | null>(null);
 
-  const updateUserSavePoints = async (points: number) => {
-    try {
-      const response = await axios.put(
-        `${apiURL}/auth/profile`,
-        {
-          savePoints: user?.savePoints - user?.savePoints * 70 / 100,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-  
-      if (response?.data?.success) {
-        dispatch(setUser(response?.data?.data))
+  const handleClickCreateOrder = async (data: ICreateOrderDto) => {
+    await createOrder(data, async (data) => {
+      if (data?.paymentUrl) {
+        toast.sendToast("Thành công", "Vui lòng thanh toán đơn hàng");
+        window.open(data.paymentUrl, "_blank");
+      } else {
+        toast.sendToast("Thành công", "Đặt hàng thành công");
+        await getUserCart();
+        router.push("/orders");
       }
-    } catch (error) {
-
-      console.error("Get order detail error", error);
-    } finally {
-    }
-  };
-
-  const handleClickCreateOrder = async (data: ICreateOrder) => {
-    await createOrder(data, async () => {
-
-      await getUserCart()
-      router.push("/orders")
-      if (isApplyUserSavePoints){
-        await updateUserSavePoints(Number(user?.savePoints - user?.savePoints * 70 / 100))
-       } else {
-        await updateUserSavePoints(Number(user?.savePoints + 1))
-       }
     });
-
   };
 
   return (
@@ -148,29 +120,15 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
             </div>
 
             <button
-              border-none
-              className="text-right font-bold text-primary-500"
+              onClick={() => setOpenPayment(true)}
+              className="border-none text-right font-bold text-primary-500"
             >
               Chỉnh sửa
             </button>
           </div>
         </div>
         <div className="w-full cursor-pointer flex-col gap-y-4 rounded-lg border border-secondary-600 px-8 py-4 tablet:w-[30%] laptop:flex">
-          <CartSummary
-            isApplyUserSavePoints={isApplyUserSavePoints}
-            shippingFee={orderAddress?.shippingFee}
-          />
-
-          {user?.savePoints && <button className="ml-[-4px] flex items-center text-left text-secondary-900">
-            <Radio
-              // onBlur={() => setIsApplyUserSavePoints(false)}
-              checked={isApplyUserSavePoints}
-              onChange={() => setIsApplyUserSavePoints(!isApplyUserSavePoints)}
-            />
-            Sử dụng điểm tích lũy: {(user?.savePoints * 70/100)?.toFixed(0) || 0} tương ứng {Number(user?.savePoints * 70/100 * 1000)?.toString().prettyMoney()} 
-          </button>}
-
-     
+          <CartSummary shippingFee={orderAddress?.shippingFee} />
 
           <Button
             isLoading={actionLoading}
@@ -191,8 +149,7 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
                     email: user?.email,
                     phoneNumber: user?.phoneNumber,
                   },
-                  isApplyUserSavePoints: isApplyUserSavePoints,
-                });
+                } as any);
               }
             }}
             className="mt-12"
@@ -219,6 +176,10 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
           }}
           onClose={() => setOpenAddress(false)}
         />
+      ) : null}
+
+      {openPayment ? (
+        <PaymentDialog onClose={() => setOpenPayment(false)} />
       ) : null}
     </>
   );

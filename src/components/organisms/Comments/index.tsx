@@ -43,7 +43,7 @@ const ProductComments: React.FC<IProductCommentsProps> = (props) => {
             headers: {
               Authorization: `Bearer ${accessToken}`,
             },
-          }
+          },
         );
         const { success } = response?.data;
         if (success) {
@@ -56,7 +56,7 @@ const ProductComments: React.FC<IProductCommentsProps> = (props) => {
       if (error?.response?.status == 401) {
         toast.sendToast(
           "error",
-          "Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại"
+          "Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại",
         );
       }
     } finally {
@@ -65,12 +65,12 @@ const ProductComments: React.FC<IProductCommentsProps> = (props) => {
   };
 
   useEffect(() => {
-    getListComments();
-  }, []);
+    productDetail && getListComments();
+  }, [productDetail]);
 
   return (
-    <div className="mt-16 flex flex-col justify-center w-full">
-      <h1 className="text-secondary-900 font-bold text-3xl">
+    <div className="mt-16 flex w-full flex-col justify-center px-8">
+      <h1 className="text-3xl font-bold text-secondary-900">
         Bình luận về sản phẩm
       </h1>
       <Divider sx={{ marginY: 4 }} />
@@ -78,7 +78,7 @@ const ProductComments: React.FC<IProductCommentsProps> = (props) => {
       <>
         {listComments?.length > 0 ? (
           <>
-            <div className="mt-2 flex flex-col gap-y-2 ">
+            <div className="mt-2 flex flex-col gap-y-2">
               {listComments?.map((item, index) => (
                 <CommentCard
                   key={index}
@@ -111,9 +111,9 @@ const ProductComments: React.FC<IProductCommentsProps> = (props) => {
           </>
         ) : (
           <>
-            <div className="flex items-center gap-x-1  mt-4">
-              <InformationCircleIcon className="text-secondary-900 w-[20px] h-[20px]" />
-              <p className="text-secondary-900 font-bold italic text-sm">
+            <div className="mt-4 flex items-center gap-x-1">
+              <InformationCircleIcon className="h-[20px] w-[20px] text-secondary-900" />
+              <p className="text-sm font-bold italic text-secondary-900">
                 Sản phẩm chưa có bình luận nào
               </p>
             </div>

@@ -7,6 +7,7 @@ import product from "./slices/product";
 import category from "./slices/category";
 import config from "./slices/config";
 import order from "./slices/order";
+import payment from "./slices/payment";
 
 const rootReducer = combineReducers({
   auth: auth,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   category: category,
   config: config,
   order: order,
+  payment: payment,
 }) as any;
 
 export default rootReducer;
