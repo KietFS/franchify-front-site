@@ -1,6 +1,4 @@
 "use client";
-
-import axios from "axios";
 import useStore from "./useStore";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,28 +22,31 @@ const useProducts = () => {
   }) => {
     try {
       setLoading(true);
-
       let url = `${apiURL}/products/by-store?storeId=${currentStore?.id}&pageSize=${payload?.pageSize || 8}`;
-
       if (payload?.page) {
         url += `&page=${payload.page}`;
       }
-
       if (payload?.categoryId) {
         url += `&category=${payload.categoryId}`;
       }
 
-      const response = await axios.get(url, {
+      const response = await fetch(url, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
+        next: {
+          tags: ["all-products"],
+          revalidate: 60,
+        },
       });
-
-      if (response?.data?.success) {
-        setStoreProducts(storeProducts?.concat(response?.data?.data?.results));
-        setTotal(response?.data?.data?.total);
-      } else {
-        setStoreProducts(storeProducts || []);
+      if (response?.ok) {
+        const data = await response.json();
+        if (data?.success) {
+          setStoreProducts(storeProducts?.concat(data?.data?.results));
+          setTotal(data?.data?.total);
+        } else {
+          setStoreProducts(storeProducts || []);
+        }
       }
     } catch (error) {
       console.warn("GET PRODUCT RESPONSE", error);
@@ -55,23 +56,26 @@ const useProducts = () => {
   };
 
   const getAllPopularProducts = async (payload: { page?: number }) => {
-    // if (popularProducts?.length > 0) {
-    //   return Promise.resolve();
-    // }
     try {
       setLoading(true);
       let url = `${apiURL}/products/by-store/popular?storeId=${currentStore?.id}&pageSize=100`;
       if (payload?.page) {
         url += `&page=${payload.page}`;
       }
-      const response = await axios.get(url, {
+      const response = await fetch(url, {
+        method: "GET",
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
+        next: {
+          tags: ["popular-products"],
+          revalidate: 60,
+        },
       });
-      if (response?.data?.success) {
-        console.log("RESPONSE DATA", response?.data);
-        dispatch(setPopularProducts(response?.data?.data?.results));
+      if (response?.ok) {
+        const data = await response.json();
+        console.log("data", data);
+        dispatch(setPopularProducts(data?.data?.results));
       } else {
         dispatch(setPopularProducts([]));
       }
