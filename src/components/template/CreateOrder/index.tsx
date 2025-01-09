@@ -17,6 +17,7 @@ import {
   ICreateOrderUserInfoDto,
 } from "@/types/dtos";
 import PaymentDialog from "@/components/molecules/PaymentDialog";
+import usePayment from "@/hooks/usePayment";
 
 interface ICreateOrderProps {}
 
@@ -30,6 +31,7 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
   const toast = useToast();
   const { currentStore } = useStore();
   const { getUserCart } = useCart();
+  const { paymentMethod } = usePayment();
 
   const [orderUserInfo, setOrderUserInfo] =
     useState<ICreateOrderUserInfoDto | null>(null);
@@ -149,6 +151,7 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
                     email: user?.email,
                     phoneNumber: user?.phoneNumber,
                   },
+                  paymentMethod: paymentMethod?.id,
                 } as any);
               }
             }}
