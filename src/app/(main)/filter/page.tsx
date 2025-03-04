@@ -10,10 +10,13 @@ const FilterPage = () => {
   const keyword = searchParams.get("keyword") || "";
 
   return (
-    <Head>
-      <title>Filter Page</title>
-        <FilterTemplate keyword={keyword} category={category} />
-    </Head>
+      <>
+          <Head>
+              <title>Filter Page</title>
+          </Head>
+              <FilterTemplate keyword={keyword} category={category}/>
+      </>
+
   );
 };
 

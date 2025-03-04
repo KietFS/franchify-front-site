@@ -13,16 +13,13 @@ interface IFilterTemplateProps {
 const FilterTemplate: React.FC<IFilterTemplateProps> = (props) => {
     const { keyword, category } = props;
 
-    console.log('keyword', keyword);
-    console.log('categories', category);
-
     return (
         <div>
-            <div className="flex flex-col justify-center gap-x-[80px] gap-y-8 px-8 laptop:flex-row max-w-[1200px]">
-                <div className="laptop:max-w-[340px] w-full max-w-auto">
+            <div className="flex flex-col justify-center gap-x-[80px] gap-y-8 px-8 laptop:flex-row">
+                <div className="laptop:max-w-[440px] w-full max-w-auto">
                     <FilterBar />
                 </div>
-                <div className="laptop:max-w-[780px] w-full max-w-auto">
+                <div className="laptop:max-w-[1040px] w-full max-w-auto">
                     <ProductFilterGrid />
                 </div>
             </div>

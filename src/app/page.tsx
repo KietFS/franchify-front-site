@@ -16,9 +16,9 @@ export default function Home() {
       <Carousel />
       <div className="mx-auto flex w-full flex-col gap-y-20 px-10 py-20 desktop:w-[1200px] desktop:px-0">
         <PopularProducts />
-        {/* {listCategory?.map((category: any) => (
-          <ProductGrid category={category} key={category?.id} />
-        ))} */}
+        {/* {listCategory?.map((category: any) => (*/}
+        {/*      <ProductGrid category={category} key={category?.id} />*/}
+        {/*))}*/}
         <ProductScroll />
       </div>
     </div>

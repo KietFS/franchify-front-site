@@ -29,6 +29,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
 
   const [openSearchDropDown, setOpenSearchDropdown] = useState<boolean>(false);
   const [openSearchSheet, setOpenSearchSheet] = useState<boolean>(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const { currentCart, getUserCart } = useCart();
   const { listCategory, getCategories } = useCategory();
@@ -43,6 +44,20 @@ const Header: React.FC<IHeaderProps> = (props) => {
   useEffect(() => {
     !currentCart && isAuthenticated && getUserCart();
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setOpenSearchDropdown(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownRef]);
+
 
   return (
     <div className="w-full bg-primary-500">
@@ -64,12 +79,13 @@ const Header: React.FC<IHeaderProps> = (props) => {
             <SearchBar
               key="desktop-search-bar"
               placeholder="Search for anything, any words"
-              onBlur={() => setTimeout(() => setOpenSearchDropdown(false), 200)}
               onFocus={() => setOpenSearchDropdown(true)}
             />
 
             {openSearchDropDown ? (
-              <div className="absolute bottom-auto left-auto top-[70px] z-50 flex h-auto max-h-[400px] min-h-[150px] w-[600px] flex-col overflow-auto rounded-xl border-2 border-secondary-50 bg-white px-4 py-4 shadow-md">
+              <div
+                  ref={dropdownRef}
+                  className="absolute bottom-auto left-auto top-[70px] z-50 flex h-auto max-h-[400px] min-h-[150px] w-[600px] flex-col overflow-auto rounded-xl border-2 border-secondary-50 bg-white px-4 py-4 shadow-md">
                 <SearchDropdown
                   open={openSearchDropDown}
                   onClose={() => setOpenSearchDropdown(false)}

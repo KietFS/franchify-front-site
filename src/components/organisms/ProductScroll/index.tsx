@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/components/atom/Button";
+
 import ProductCard from "@/components/molecules/ProductCard";
 import useProducts from "@/hooks/useProducts";
 import useStore from "@/hooks/useStore";
@@ -18,29 +18,6 @@ const ProductScroll: React.FC<IProductScrollProps> = (props) => {
     currentStore && getAllProducts({ page: currentPage, pageSize: 100 });
   }, []);
 
-  // useEffect(() => {
-  //   if (currentPage >= 1) {
-  //     currentStore && getAllProducts({ page: currentPage, pageSize: 100 });
-  //   }
-  // }, [currentPage]);
-
-  // const handleScroll = () => {
-  //   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-  //   if (scrollTop + clientHeight >= scrollHeight) {
-  //     if (storeProducts?.length < total) {
-  //       // setCurrentPage((prev) => prev + 1);
-  //       window.removeEventListener("scroll", handleScroll);
-  //     }
-  //   }
-  // };
-
-  //   if (!loading) {
-  //     window.addEventListener("scroll", handleScroll);
-  //   }
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, [loading]);
 
   return (
     <div>
