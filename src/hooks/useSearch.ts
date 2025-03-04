@@ -3,12 +3,11 @@
 import { apiURL } from "@/constanst";
 import { setLoading, setSearchResults } from "@/redux/slices/search";
 import axios from "axios";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const useSearch = () => {
   const { searchResults, isLoading } = useSelector(
-    (state: any) => state.search
+    (state: any) => state.search,
   );
 
   const dispatch = useDispatch();
@@ -28,6 +27,8 @@ const useSearch = () => {
         dispatch(setLoading(false));
         if (searchResponse?.data?.data?.length > 0) {
           dispatchSetSearchResult(searchResponse?.data?.data);
+        } else {
+          dispatchSetSearchResult([]);
         }
       }
     } catch (error) {

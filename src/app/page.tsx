@@ -12,13 +12,13 @@ export default function Home() {
   const { listCategory } = useCategory();
 
   return (
-    <div className="w-full flex flex-col items-center justify-center flex-wrap">
+    <div className="flex w-full flex-col flex-wrap items-center justify-center">
       <Carousel />
-      <div className="w-full desktop:w-[1200px] mx-auto flex px-10 desktop:px-0 flex-col py-20 gap-y-20">
+      <div className="mx-auto flex w-full flex-col gap-y-20 px-10 py-20 desktop:w-[1200px] desktop:px-0">
         <PopularProducts />
-        {listCategory?.map((category: any) => (
+        {/* {listCategory?.map((category: any) => (
           <ProductGrid category={category} key={category?.id} />
-        ))}
+        ))} */}
         <ProductScroll />
       </div>
     </div>

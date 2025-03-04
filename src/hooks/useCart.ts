@@ -191,6 +191,37 @@ const useCart = (currentProduct?: IProduct) => {
     }
   };
 
+  const handleClearCart = async () => {
+    try {
+      setLoading(true);
+      axios
+        .delete(`${apiURL}/cart/clear/`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then((response) => {
+          if (response?.data?.success) {
+            toast.sendToast(
+              "Thành công",
+              "Xóa sản phẩm khỏi giỏ hàng thành công",
+              "success",
+            );
+            getUserCart();
+          }
+        })
+        .catch((error) => {
+          console.warn("GET PRODUCT RESPONSE", error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } catch (error) {
+      console.log("REMOVE PRODUCT ERROR", error);
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     if (currentCart && currentProduct) {
       const findedQuantity = currentCart?.cartDetails?.find(
@@ -208,6 +239,7 @@ const useCart = (currentProduct?: IProduct) => {
     handleDecreaseQuantity,
     handleRemoveProduct,
     currentQuantity,
+    handleClearCart,
     loading,
   };
 };

@@ -123,14 +123,12 @@ const ProductCarousel: React.FC<ISimilarProduct> = ({ listProduct }) => {
                 key={`card-${index}`}
                 className="flex max-h-[540px] items-stretch border-r border-gray-300 p-2"
               >
-                <Link href={`/product-detail/${item?.product?.upc}`}>
-                  <ProductCard
-                    item={item}
-                    index={index}
-                    key={`card-${index}`}
-                    handleItemClick={() => {}}
-                  />
-                </Link>
+                <ProductCard
+                  item={item}
+                  index={index}
+                  key={`card-${index}`}
+                  handleItemClick={() => {}}
+                />
               </div>
             ))}
           </Slider>

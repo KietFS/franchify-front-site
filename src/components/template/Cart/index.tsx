@@ -20,7 +20,7 @@ interface ICartTemplateProps {}
 
 const CartTemplate: React.FC<ICartTemplateProps> = (props) => {
   const { user, isAuthenticated } = useAuth();
-  const { getUserCart, loading, currentCart } = useCart();
+  const { getUserCart, loading, currentCart, handleClearCart } = useCart();
   const { actionLoading } = useOrder();
   const router = useRouter();
 
@@ -34,7 +34,7 @@ const CartTemplate: React.FC<ICartTemplateProps> = (props) => {
 
   return (
     <>
-      <div className="flex min-h-[700px] w-full max-w-full justify-center px-8 py-20">
+      <div className="flex w-full max-w-full justify-center px-8 py-20">
         {currentCart?.cartDetails?.length > 0 ? (
           <div className="flex h-fit w-[1200px] flex-col gap-y-8">
             <h1 className="text-3xl font-bold text-secondary-900">
@@ -42,11 +42,13 @@ const CartTemplate: React.FC<ICartTemplateProps> = (props) => {
             </h1>
             <CartMethod />
             <Divider />
+            <div className="flex w-full items-center justify-between">
+              <h2 className="break-words text-2xl font-bold text-gray-900">
+                {currentCart?.cartDetails?.length} items
+              </h2>
+            </div>
             <div className="flex flex-col gap-x-4 gap-y-4 laptop:flex-row">
-              <div className="flex max-h-[700px] w-full flex-col gap-y-4 overflow-auto laptop:w-2/3">
-                <h2 className="break-words text-2xl font-bold text-gray-900">
-                  {currentCart?.cartDetails?.length} items
-                </h2>
+              <div className="flex w-full flex-col gap-y-4 overflow-auto laptop:w-2/3">
                 {currentCart?.cartDetails?.map((item: any, index: number) => (
                   <CartItem key={index} cartItem={item} />
                 ))}
@@ -54,7 +56,7 @@ const CartTemplate: React.FC<ICartTemplateProps> = (props) => {
 
               <div className="h-full w-[10px] bg-primary-200"></div>
 
-              <div className="flex w-full flex-col justify-between gap-y-8 rounded-xl border border-secondary-600 px-6 py-8 laptop:w-1/3">
+              <div className="flex h-fit w-full flex-col gap-y-20 rounded-xl border border-secondary-600 px-6 py-8 laptop:w-1/3">
                 <CartSummary />
                 <Button
                   onClick={() => handleClickCreateOrder()}
@@ -65,6 +67,12 @@ const CartTemplate: React.FC<ICartTemplateProps> = (props) => {
                 </Button>
               </div>
             </div>
+            <p
+              onClick={() => handleClearCart()}
+              className="cursor-pointer text-xl text-secondary-700 underline"
+            >
+              Xóa hết sản phẩm
+            </p>
           </div>
         ) : (
           <>

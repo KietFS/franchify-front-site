@@ -99,15 +99,15 @@ const fetchTailwindConfig = async () => {
         };
         `;
 
-      console.log("configContent", configContent);
+      console.log("Generating Tailwind CSS configuration...");
       fs.writeFileSync("tailwind.config.js", configContent);
       console.log(
-        "Tailwind CSS configuration fetched and written to tailwind.config.js"
+        "Tailwind CSS configuration fetched and written to tailwind.config.js",
       );
     } else {
       console.error(
         "Error fetching Tailwind CSS configuration:",
-        response?.data?.message
+        response?.data?.message,
       );
     }
   } catch (error) {

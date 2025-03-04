@@ -6,6 +6,7 @@ import useProducts from "@/hooks/useProducts";
 import useStore from "@/hooks/useStore";
 import { CircularProgress } from "@mui/material";
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 interface IProductGridProps {
   category: any;
@@ -14,13 +15,19 @@ interface IProductGridProps {
 const ProductGrid: React.FC<IProductGridProps> = (props) => {
   const { category } = props;
   const [currentPage, setCurrentPage] = React.useState<number>(1);
-  const { getAllProducts, storeProducts, loading } = useProducts();
+  const { getAllProducts, loading } = useProducts();
+  const state = useSelector((state: any) => state.product);
+  const cachedProducts = state?.[`products-${category.id}`] || [];
   const { currentStore } = useStore();
 
   useEffect(() => {
     if (currentPage >= 1) {
       currentStore &&
-        getAllProducts({ categoryId: category.id, page: currentPage });
+        getAllProducts({
+          categoryId: category.id,
+          page: currentPage,
+          cacheKey: `products-${category.id}`,
+        });
     }
   }, [currentPage, currentStore]);
 
@@ -42,13 +49,13 @@ const ProductGrid: React.FC<IProductGridProps> = (props) => {
         </>
       ) : (
         <>
-          {storeProducts?.length > 0 && (
+          {cachedProducts?.length > 0 && (
             <div>
               <h1 className="mb-16 text-4xl font-bold text-secondary-900">
                 Danh mục {category?.name}
               </h1>
               <div className="grid w-full tablet:grid-cols-2 laptop:grid-cols-4">
-                {storeProducts?.map((item: any, index: number) => (
+                {cachedProducts?.map((item: any, index: number) => (
                   <div
                     key={`card-${index}`}
                     className="border-b border-r border-t border-gray-300 p-2"

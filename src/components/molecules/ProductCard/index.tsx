@@ -20,11 +20,17 @@ interface IProductCardProps {
 
 const ProductCard: React.FC<IProductCardProps> = (props) => {
   const { item, index } = props;
-  const { productDetailLink } = useNavigation();
+  const { productDetailLink, navigateToProductDetail } = useNavigation();
   const [imageError, setImageError] = useState(false);
 
   return (
-    <Link href={productDetailLink(item.product)}>
+    <div
+      onClick={(e) => {
+        navigateToProductDetail(item.product as any);
+        e?.preventDefault();
+        e?.stopPropagation();
+      }}
+    >
       <div className="z-0 my-8 flex h-full min-h-[500px] cursor-pointer flex-col items-center justify-between border-gray-200 p-4 laptop:my-2">
         <div className="mb-4 ml-auto h-[50px]">
           <IconButton>
@@ -74,7 +80,7 @@ const ProductCard: React.FC<IProductCardProps> = (props) => {
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

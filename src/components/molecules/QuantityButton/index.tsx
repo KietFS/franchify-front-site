@@ -53,7 +53,7 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
         >
           <>
             {loading ? (
-              <CircularProgress size={12} sx={{ color: "black" }} />
+              <CircularProgress size={28} />
             ) : (
               <div className="flex w-full items-center justify-between">
                 <IconButton
@@ -107,7 +107,7 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
         >
           <>
             {loading ? (
-              <CircularProgress size={32} />
+              <CircularProgress size={28} />
             ) : (
               <>
                 {mode == Mode.detail && <AddShoppingCart />}

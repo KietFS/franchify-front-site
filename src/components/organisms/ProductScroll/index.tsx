@@ -4,7 +4,6 @@ import Button from "@/components/atom/Button";
 import ProductCard from "@/components/molecules/ProductCard";
 import useProducts from "@/hooks/useProducts";
 import useStore from "@/hooks/useStore";
-import { CircularProgress } from "@mui/material";
 import React, { useEffect, useRef } from "react";
 
 interface IProductScrollProps {}
@@ -17,35 +16,34 @@ const ProductScroll: React.FC<IProductScrollProps> = (props) => {
 
   useEffect(() => {
     currentStore && getAllProducts({ page: currentPage, pageSize: 100 });
-  }, [currentStore]);
+  }, []);
 
-  useEffect(() => {
-    if (currentPage >= 1) {
-      currentStore && getAllProducts({ page: currentPage, pageSize: 100 });
-    }
-  }, [currentPage]);
+  // useEffect(() => {
+  //   if (currentPage >= 1) {
+  //     currentStore && getAllProducts({ page: currentPage, pageSize: 100 });
+  //   }
+  // }, [currentPage]);
 
-  const handleScroll = () => {
-    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-    if (scrollTop + clientHeight >= scrollHeight) {
-      if (storeProducts?.length < total) {
-        // setCurrentPage((prev) => prev + 1);
-        window.removeEventListener("scroll", handleScroll);
-      }
-    }
-  };
+  // const handleScroll = () => {
+  //   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+  //   if (scrollTop + clientHeight >= scrollHeight) {
+  //     if (storeProducts?.length < total) {
+  //       // setCurrentPage((prev) => prev + 1);
+  //       window.removeEventListener("scroll", handleScroll);
+  //     }
+  //   }
+  // };
 
-  useEffect(() => {
-    if (!loading) {
-      window.addEventListener("scroll", handleScroll);
-    }
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [loading]);
+  //   if (!loading) {
+  //     window.addEventListener("scroll", handleScroll);
+  //   }
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, [loading]);
 
   return (
-    <div ref={scrollRef}>
+    <div>
       {storeProducts?.length > 0 && (
         <div>
           <h1 className="mb-16 text-4xl font-bold text-secondary-900">
@@ -69,7 +67,7 @@ const ProductScroll: React.FC<IProductScrollProps> = (props) => {
 
           {loading && (
             <div className="grid w-full grid-cols-4 gap-4">
-              {Array(total - storeProducts?.length)
+              {Array(total)
                 .fill(1)
                 ?.map((item, index) => (
                   <div
