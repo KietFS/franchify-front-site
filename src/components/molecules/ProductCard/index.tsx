@@ -7,8 +7,6 @@ import EmptyImage from "@/assets/images/EmptyImage.png";
 import QuantityButton from "../QuantityButton";
 import { IconButton } from "@mui/material";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
-import Link from "next/link";
-import useStore from "@/hooks/useStore";
 import { IProduct, IStoreProduct } from "@/types/models";
 import useNavigation from "@/hooks/useNavigation";
 
