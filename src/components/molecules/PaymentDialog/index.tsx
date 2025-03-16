@@ -15,6 +15,7 @@ enum PaymentMethod {
 
 interface IPaymentDialogProps {
   onClose: () => void;
+  onSelectPaymentMethod: (method: PaymentMethod) => void;
 }
 
 const PaymentDialog: React.FC<IPaymentDialogProps> = (props) => {
@@ -44,13 +45,6 @@ const PaymentDialog: React.FC<IPaymentDialogProps> = (props) => {
     // getBankList();
   }, []);
 
-  const handleConfirmOrder = () => {
-    createPaymentUrl({
-      amount: 100,
-      orderId: 2,
-    });
-  };
-
   return (
     <CustomDialog
       open={true}
@@ -75,6 +69,7 @@ const PaymentDialog: React.FC<IPaymentDialogProps> = (props) => {
                   className="h-16 w-16"
                 /> */}
                   <Radio
+                    onChange={() => dispatchSetPaymentMethod(method)}
                     sx={{
                       color: tenantConfigs?.primaryColorScheme || "primary",
                       "&.Mui-checked": {
@@ -99,7 +94,6 @@ const PaymentDialog: React.FC<IPaymentDialogProps> = (props) => {
             <Button onClick={() => onClose()} className="w-[200px]">
               Xác nhận
             </Button>
-            {/* <Button className="w-fit">Xác nhận</Button> */}
           </div>
         </div>
       }

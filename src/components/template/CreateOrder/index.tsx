@@ -17,6 +17,8 @@ import {
   ICreateOrderUserInfoDto,
 } from "@/types/dtos";
 import PaymentDialog from "@/components/molecules/PaymentDialog";
+import { setPaymentMethod } from "@/redux/slices/payment";
+import { useSelector } from "react-redux";
 
 interface ICreateOrderProps {}
 
@@ -30,6 +32,7 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
   const toast = useToast();
   const { currentStore } = useStore();
   const { getUserCart } = useCart();
+  const { paymentMethod } = useSelector((state: any) => state.payment);
 
   const [orderUserInfo, setOrderUserInfo] =
     useState<ICreateOrderUserInfoDto | null>(null);
@@ -37,10 +40,10 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
     useState<ICreateOrderAddressDto | null>(null);
 
   const handleClickCreateOrder = async (data: ICreateOrderDto) => {
-    await createOrder(data, async (data) => {
-      if (data?.paymentUrl) {
+    await createOrder(data, async (resData) => {
+      if (resData?.paymentUrl) {
         toast.sendToast("Thành công", "Vui lòng thanh toán đơn hàng");
-        window.open(data.paymentUrl, "_blank");
+        window.open(resData.paymentUrl, "_blank");
       } else {
         toast.sendToast("Thành công", "Đặt hàng thành công");
         await getUserCart();
@@ -149,6 +152,7 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
                     email: user?.email,
                     phoneNumber: user?.phoneNumber,
                   },
+                  paymentMethod: paymentMethod?.id,
                 } as any);
               }
             }}
@@ -179,7 +183,10 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
       ) : null}
 
       {openPayment ? (
-        <PaymentDialog onClose={() => setOpenPayment(false)} />
+        <PaymentDialog
+          onSelectPaymentMethod={(method) => {}}
+          onClose={() => setOpenPayment(false)}
+        />
       ) : null}
     </>
   );
