@@ -17,8 +17,9 @@ import {
   ICreateOrderUserInfoDto,
 } from "@/types/dtos";
 import PaymentDialog from "@/components/molecules/PaymentDialog";
-import { setPaymentMethod } from "@/redux/slices/payment";
 import { useSelector } from "react-redux";
+import OverlayLoading from "@/components/organisms/OverlayLoading";
+import usePayment from "@/hooks/usePayment";
 
 interface ICreateOrderProps {}
 
@@ -26,6 +27,8 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
   const [openUserInfo, setOpenUserInfo] = React.useState<boolean>(false);
   const [openAddress, setOpenAddress] = React.useState<boolean>(false);
   const [openPayment, setOpenPayment] = React.useState<boolean>(false);
+  const [fetchPaymentStatusLoading, setFetchPaymentStatusLoading] =
+    React.useState<boolean>(false);
   const { createOrder, actionLoading } = useOrder();
   const { user } = useAuth() || {};
   const router = useRouter();
@@ -33,6 +36,7 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
   const { currentStore } = useStore();
   const { getUserCart } = useCart();
   const { paymentMethod } = useSelector((state: any) => state.payment);
+  const { fetchPaymentStatus } = usePayment();
 
   const [orderUserInfo, setOrderUserInfo] =
     useState<ICreateOrderUserInfoDto | null>(null);
@@ -44,6 +48,7 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
       if (resData?.paymentUrl) {
         toast.sendToast("Thành công", "Vui lòng thanh toán đơn hàng");
         window.open(resData.paymentUrl, "_blank");
+        setFetchPaymentStatusLoading(true);
       } else {
         toast.sendToast("Thành công", "Đặt hàng thành công");
         await getUserCart();
@@ -51,6 +56,10 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
       }
     });
   };
+
+  // const handleFetchPaymentStatus = setInterval(() => {
+  //   const data = fetchPaymentStatus(DataTransfer.);
+  // }, 1000);
 
   return (
     <>
@@ -187,6 +196,10 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
           onSelectPaymentMethod={(method) => {}}
           onClose={() => setOpenPayment(false)}
         />
+      ) : null}
+
+      {fetchPaymentStatusLoading ? (
+        <OverlayLoading isLoading={fetchPaymentStatusLoading} />
       ) : null}
     </>
   );
