@@ -48,6 +48,8 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
       if (resData?.paymentUrl) {
         toast.sendToast("Thành công", "Vui lòng thanh toán đơn hàng");
         window.open(resData.paymentUrl, "_blank");
+        const resDataParams = new URLSearchParams(resData.paymentUrl);
+        console.log("res data params", resDataParams);
         setFetchPaymentStatusLoading(true);
       } else {
         toast.sendToast("Thành công", "Đặt hàng thành công");
@@ -58,7 +60,7 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
   };
 
   // const handleFetchPaymentStatus = setInterval(() => {
-  //   const data = fetchPaymentStatus(DataTransfer.);
+  //   const data = fetchPaymentStatus();
   // }, 1000);
 
   return (
@@ -198,9 +200,7 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
         />
       ) : null}
 
-      {fetchPaymentStatusLoading ? (
-        <OverlayLoading isLoading={fetchPaymentStatusLoading} />
-      ) : null}
+      {fetchPaymentStatusLoading ? <OverlayLoading /> : null}
     </>
   );
 };

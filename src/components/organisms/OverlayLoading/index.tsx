@@ -1,20 +1,23 @@
+"use client";
+
 import * as React from "react";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import Button from "@mui/material/Button";
+import { useSelector } from "react-redux";
 
-interface IOverlayLoading {
-  isLoading: boolean;
-}
+interface IOverlayLoading {}
 
 const OverlayLoading: React.FC<IOverlayLoading> = (props) => {
+  const { isGlobalLoading } = useSelector((state: any) => state.common);
+
   return (
     <>
-      {props.isLoading ? (
+      {isGlobalLoading ? (
         <div>
           <Backdrop
             sx={(theme) => ({ color: "#fff", zIndex: theme.zIndex.drawer + 1 })}
-            open={props.isLoading}
+            open={isGlobalLoading}
           >
             <CircularProgress color="inherit" />
           </Backdrop>

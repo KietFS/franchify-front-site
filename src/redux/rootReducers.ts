@@ -8,6 +8,7 @@ import category from "./slices/category";
 import config from "./slices/config";
 import order from "./slices/order";
 import payment from "./slices/payment";
+import common from "./slices/common";
 
 const rootReducer = combineReducers({
   auth: auth,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   category: category,
   config: config,
   order: order,
+  common: common,
   payment: payment,
 }) as any;
 
