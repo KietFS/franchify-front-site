@@ -26,6 +26,9 @@ export async function generateMetadata({
   };
 }
 
+// Add export const dynamic = 'force-dynamic' to force dynamic rendering
+export const dynamic = "force-dynamic";
+
 const FilterPage = async ({ searchParams }: Props) => {
   const searchParamsCategory = searchParams?.categories || "";
   const keyword = searchParams?.keyword || "";
@@ -64,7 +67,7 @@ const FilterPage = async ({ searchParams }: Props) => {
           defaultData={defaultData}
           keyword={keyword}
           categories={categories}
-          onSale={false}
+          onSale={onSale === "true"}
         />
       )}
     </>

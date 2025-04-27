@@ -10,6 +10,7 @@ import FilterPageLoading from "@/components/organisms/FilterPageLoading";
 import Button from "@/components/atom/Button";
 import FilterDrawer from "@/components/organisms/FilterDrawer";
 import OverlayLoading from "@/components/organisms/OverlayLoading";
+import { useRouter } from "next/navigation";
 
 interface IFilterTemplateProps {
   defaultData?: {
@@ -40,6 +41,7 @@ const FilterTemplate: React.FC<IFilterTemplateProps> = (props) => {
     dispatchSetOnSale,
   } = useSearch();
   const [openFilter, setOpenFilter] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     if (defaultData) {
@@ -78,6 +80,15 @@ const FilterTemplate: React.FC<IFilterTemplateProps> = (props) => {
     dispatchSetCurrentPage(Number(page) || 1);
     dispatchSetCategories(categories?.split(",") || []);
     dispatchSetOnSale(onSale === "true");
+
+    // Force dynamic refresh when back and forth with browser back and forth
+    window.addEventListener("popstate", () => {
+      router.refresh();
+    });
+
+    return () => {
+      window.removeEventListener("popstate", () => {});
+    };
   }, []);
 
   return (
@@ -92,11 +103,14 @@ const FilterTemplate: React.FC<IFilterTemplateProps> = (props) => {
               </div>
               <div className="max-w-auto w-full">
                 <div className="mb-8 flex w-full items-center justify-between">
-                  <h3 className="text-[24px] font-semibold text-secondary-900">
-                    {keyword && keyword?.length > 0
-                      ? `Hiển thị kết quả cho "${keyword}"`
-                      : "Hiển thị tất cả kết quả"}
-                  </h3>
+                  {products?.length > 0 && (
+                    <h3 className="text-[24px] font-semibold text-secondary-900">
+                      {keyword && keyword?.length > 0
+                        ? `Hiển thị kết quả cho "${keyword}"`
+                        : "Hiển thị tất cả kết quả"}
+                    </h3>
+                  )}
+
                   <button
                     onClick={() => setOpenFilter(true)}
                     className="block border-none bg-none text-[20px] font-semibold text-primary-500 laptop:hidden"

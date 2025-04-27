@@ -3,7 +3,8 @@
 import FilterFacets from "@/components/molecules/FilterFacets";
 import useSearch from "@/hooks/useSearch";
 import { IProduct } from "@/types/models";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { FunnelIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
 interface IFilterBarProps {}
@@ -20,6 +21,7 @@ const FilterBar: React.FC<IFilterBarProps> = () => {
     onSale,
     resetFilter,
   } = useSearch();
+  const router = useRouter();
 
   const onSaleProducts = products.filter(
     (product: IProduct) => product.isOnSale,
@@ -64,50 +66,58 @@ const FilterBar: React.FC<IFilterBarProps> = () => {
 
   const handleClearFilter = () => {
     resetFilter();
-    window.location.reload();
+    getProductsByParams(
+      {
+        onSale: false,
+        categories: [],
+      },
+      true,
+    );
   };
 
   return (
-    <div className="block h-fit w-full flex-col gap-5 rounded-sm pr-4 md:flex-row">
-      <div className="flex flex-col gap-y-6">
-        <div className="flex w-full items-center justify-between">
-          <h3 className="text-[24px] font-semibold text-secondary-900">
-            Lọc bởi
-          </h3>
-          {categories.length > 0 || onSale ? (
-            <button
-              aria-label="Reset bộ lọc"
-              className="border-none bg-none"
-              onClick={handleClearFilter}
-            >
-              <XMarkIcon className="h-6 w-6" />
-            </button>
-          ) : null}
-        </div>
+    <>
+      <div className="block h-fit w-full flex-col gap-5 rounded-sm pr-4 md:flex-row">
+        <div className="flex flex-col gap-y-6">
+          <div className="flex w-full items-center justify-between">
+            <h3 className="text-[24px] font-semibold text-secondary-900">
+              Lọc bởi
+            </h3>
+            {categories.length > 0 || onSale ? (
+              <button
+                aria-label="Reset bộ lọc"
+                className="border-none bg-none"
+                onClick={handleClearFilter}
+              >
+                <FunnelIcon className="h-6 w-6" />
+              </button>
+            ) : null}
+          </div>
 
-        <FilterFacets
-          selectedIds={categories}
-          setSelectedIds={(data) => handleCategoryChange(data)}
-          facets={categoryFacets}
-          title="Danh mục"
-        />
-
-        {onSaleProducts.length > 0 && (
           <FilterFacets
-            selectedIds={onSale ? ["on-sale"] : []}
-            setSelectedIds={(data) => handleOnSaleChange(data)}
-            facets={[
-              {
-                id: "on-sale",
-                name: "Đang giảm giá",
-                count: onSaleProducts.length,
-              },
-            ]}
-            title="Giảm giá"
+            selectedIds={categories}
+            setSelectedIds={(data) => handleCategoryChange(data)}
+            facets={categoryFacets}
+            title="Danh mục"
           />
-        )}
+
+          {onSaleProducts.length > 0 && (
+            <FilterFacets
+              selectedIds={onSale ? ["on-sale"] : []}
+              setSelectedIds={(data) => handleOnSaleChange(data)}
+              facets={[
+                {
+                  id: "on-sale",
+                  name: "Đang giảm giá",
+                  count: onSaleProducts.length,
+                },
+              ]}
+              title="Giảm giá"
+            />
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

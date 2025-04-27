@@ -105,7 +105,7 @@ const useSearch = () => {
   };
 
   const getProductsByParams = async (
-    payload: {
+    payload?: {
       page?: number;
       pageSize?: number;
       keyword?: string;

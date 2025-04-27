@@ -1,9 +1,9 @@
 "use client";
 import ProductCard from "@/components/molecules/ProductCard";
-import useProducts from "@/hooks/useProducts";
 import useSearch from "@/hooks/useSearch";
-import useStore from "@/hooks/useStore";
 import { IProduct } from "@/types/models";
+import { InboxIcon } from "@heroicons/react/24/outline";
+
 import React, { useEffect, useRef } from "react";
 
 interface IProductScrollProps {
@@ -14,6 +14,7 @@ interface IProductScrollProps {
 const ProductFilterGrid: React.FC<IProductScrollProps> = (props) => {
   const [currentPage, setCurrentPage] = React.useState<number>(1);
   const { products } = props;
+  const { keyword, categories, onSale } = useSearch();
 
   return (
     <div>
@@ -36,11 +37,22 @@ const ProductFilterGrid: React.FC<IProductScrollProps> = (props) => {
           </div>
         </div>
       ) : (
-        <div className="flex h-full w-full items-center justify-center">
-          <h4 className="text-center text-gray-500">
-            Không tìm thấy sản phẩm phù hợp
-          </h4>
-        </div>
+        <>
+          {(keyword && keyword?.length > 0) ||
+          categories?.length > 0 ||
+          onSale ? (
+            <div className="flex h-full w-full flex-col">
+              <h1 className="text-left text-2xl font-semibold text-secondary-900">
+                Rất tiếc, không tìm thấy sản phẩm phù hợp
+              </h1>
+              <h4 className="mt-4 text-left text-sm text-gray-500">
+                Sản phẩm mà bạn tìm kiếm không tồn tại
+              </h4>
+
+              <InboxIcon className="mt-8 h-40 w-40 text-gray-500" />
+            </div>
+          ) : null}
+        </>
       )}
     </div>
   );

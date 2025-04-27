@@ -68,22 +68,20 @@ const StoreProductCard: React.FC<IProductCardProps> = (props) => {
             />
           </div>
           <div className="h-[100px]">
-            <div>
+            <div className="flex flex-col gap-y-1">
               <p className="w-full text-left text-lg font-bold text-gray-600">
                 {item?.name}
               </p>
               <p
                 className={`text-sxs w-full text-left font-bold text-gray-600 ${
-                  item?.price?.salePrice ? "line-through" : ""
+                  item?.isOnSale ? "text-red-500" : ""
                 }`}
               >
                 {item?.price?.displayPrice}
               </p>
-              {item.price?.salePrice && (
-                <p
-                  className={`text-md mt-2 w-full text-left font-bold text-red-500`}
-                >
-                  {item?.price?.displaySalePrice}
+              {item?.isOnSale && (
+                <p className="text-sxs w-full text-left font-bold text-gray-500">
+                  Đang giảm giá
                 </p>
               )}
             </div>

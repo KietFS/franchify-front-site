@@ -3,6 +3,7 @@ import useSearch from "@/hooks/useSearch";
 import {
   MagnifyingGlassCircleIcon,
   MagnifyingGlassIcon,
+  XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { TextField, Box } from "@mui/material";
 import { useRouter } from "next/navigation";
@@ -39,7 +40,7 @@ const SearchBar = forwardRef<HTMLInputElement, ISearchBarProps>(
       setKeyword("");
       dispatchSetKeyword("");
       if (window.location.pathname.includes("/filter")) {
-        router.push("/");
+        router.push("/filter?keyword=");
       } else {
         router.refresh();
       }
@@ -50,6 +51,16 @@ const SearchBar = forwardRef<HTMLInputElement, ISearchBarProps>(
         getSearchPredictions(debounceKeyword);
       }
     }, [debounceKeyword]);
+
+    useEffect(() => {
+      const keywordParams = new URLSearchParams(window.location.search).get(
+        "keyword",
+      );
+      if (keywordParams) {
+        setKeyword(keywordParams);
+        dispatchSetKeyword(keywordParams);
+      }
+    }, []);
 
     return (
       <Box
@@ -76,6 +87,7 @@ const SearchBar = forwardRef<HTMLInputElement, ISearchBarProps>(
           }}
           placeholder={placeholder}
           fullWidth
+          value={keyword}
           id="input"
           onChange={(e) => {
             setKeyword(e.target.value);
@@ -103,7 +115,7 @@ const SearchBar = forwardRef<HTMLInputElement, ISearchBarProps>(
             className="cursor-pointer border-none bg-none"
             onClick={handleClearKeyword}
           >
-            <MagnifyingGlassIcon className="h-6 w-6 text-secondary-900" />
+            <XMarkIcon className="h-6 w-6 text-secondary-900" />
           </button>
         ) : (
           <MagnifyingGlassIcon className="h-6 w-6 text-secondary-900" />
