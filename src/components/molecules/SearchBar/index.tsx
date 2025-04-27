@@ -5,6 +5,7 @@ import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 import { TextField, Box } from "@mui/material";
+import { useRouter } from "next/navigation";
 import React, { forwardRef, useEffect } from "react";
 
 interface ISearchBarProps {
@@ -21,11 +22,32 @@ const SearchBar = forwardRef<HTMLInputElement, ISearchBarProps>(
     const { onChange, onBlur, onFocus, placeholder, autoFocus = false } = props;
     const [keyword, setKeyword] = React.useState<string>("");
     const debounceKeyword = useDebounce(keyword, 500);
-    const { searchingByKeyword } = useSearch();
+    const { getSearchPredictions, dispatchSetKeyword } = useSearch();
+    const router = useRouter();
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        e.stopPropagation();
+        dispatchSetKeyword(keyword);
+        onBlur?.();
+        router.push(`/filter?keyword=${keyword}`);
+      }
+    };
+
+    const handleClearKeyword = () => {
+      setKeyword("");
+      dispatchSetKeyword("");
+      if (window.location.pathname.includes("/filter")) {
+        router.push("/");
+      } else {
+        router.refresh();
+      }
+    };
 
     useEffect(() => {
       if (debounceKeyword?.length > 0) {
-        searchingByKeyword(debounceKeyword);
+        getSearchPredictions(debounceKeyword);
       }
     }, [debounceKeyword]);
 
@@ -41,6 +63,7 @@ const SearchBar = forwardRef<HTMLInputElement, ISearchBarProps>(
         }}
       >
         <TextField
+          onKeyDown={handleKeyDown}
           autoFocus={autoFocus}
           inputRef={ref}
           onBlur={() => onBlur?.()}
@@ -75,10 +98,19 @@ const SearchBar = forwardRef<HTMLInputElement, ISearchBarProps>(
           }}
         />
 
-        <MagnifyingGlassIcon className="text-secondary-900 w-6 h-6" />
+        {keyword?.length > 0 ? (
+          <button
+            className="cursor-pointer border-none bg-none"
+            onClick={handleClearKeyword}
+          >
+            <MagnifyingGlassIcon className="h-6 w-6 text-secondary-900" />
+          </button>
+        ) : (
+          <MagnifyingGlassIcon className="h-6 w-6 text-secondary-900" />
+        )}
       </Box>
     );
-  }
+  },
 );
 
 export default SearchBar;

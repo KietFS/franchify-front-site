@@ -62,6 +62,11 @@ const FilterBar: React.FC<IFilterBarProps> = () => {
     window.history.pushState({}, "", url.toString());
   };
 
+  const handleClearFilter = () => {
+    resetFilter();
+    window.location.reload();
+  };
+
   return (
     <div className="block h-fit w-full flex-col gap-5 rounded-sm pr-4 md:flex-row">
       <div className="flex flex-col gap-y-6">
@@ -69,13 +74,15 @@ const FilterBar: React.FC<IFilterBarProps> = () => {
           <h3 className="text-[24px] font-semibold text-secondary-900">
             Lọc bởi
           </h3>
-          <button
-            aria-label="Reset bộ lọc"
-            className="border-none bg-none"
-            onClick={resetFilter}
-          >
-            <XMarkIcon className="h-6 w-6" />
-          </button>
+          {categories.length > 0 || onSale ? (
+            <button
+              aria-label="Reset bộ lọc"
+              className="border-none bg-none"
+              onClick={handleClearFilter}
+            >
+              <XMarkIcon className="h-6 w-6" />
+            </button>
+          ) : null}
         </div>
 
         <FilterFacets

@@ -75,6 +75,8 @@ const useSearch = () => {
     dispatchSetCategories([]);
     dispatchSetOnSale(false);
     dispatchSetCurrentPage(1);
+
+    window.history.replaceState({}, "", window.location.pathname);
   };
 
   const getSearchPredictions = async (keyword: string) => {
@@ -124,7 +126,6 @@ const useSearch = () => {
         pageSize: payload?.pageSize || PRODUCT_FILTER_PAGE_SIZE,
       });
       if (getProductResponse?.success) {
-        console.log("getProductResponse", getProductResponse);
         dispatchSetProductsLoading(false);
         if (!!getProductResponse?.data?.results) {
           dispatchSetProducts(getProductResponse?.data?.results);
