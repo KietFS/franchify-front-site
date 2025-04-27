@@ -47,7 +47,10 @@ const Header: React.FC<IHeaderProps> = (props) => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setOpenSearchDropdown(false);
       }
     };
@@ -57,7 +60,6 @@ const Header: React.FC<IHeaderProps> = (props) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [dropdownRef]);
-
 
   return (
     <div className="w-full bg-primary-500">
@@ -80,12 +82,14 @@ const Header: React.FC<IHeaderProps> = (props) => {
               key="desktop-search-bar"
               placeholder="Search for anything, any words"
               onFocus={() => setOpenSearchDropdown(true)}
+              onBlur={() => setOpenSearchDropdown(false)}
             />
 
             {openSearchDropDown ? (
               <div
-                  ref={dropdownRef}
-                  className="absolute bottom-auto left-auto top-[70px] z-50 flex h-auto max-h-[400px] min-h-[150px] w-[600px] flex-col overflow-auto rounded-xl border-2 border-secondary-50 bg-white px-4 py-4 shadow-md">
+                ref={dropdownRef}
+                className="absolute bottom-auto left-auto top-[70px] z-50 flex h-auto max-h-[400px] min-h-[150px] w-[600px] flex-col overflow-auto rounded-xl border-2 border-secondary-50 bg-white px-4 py-4 shadow-md"
+              >
                 <SearchDropdown
                   open={openSearchDropDown}
                   onClose={() => setOpenSearchDropdown(false)}
@@ -125,13 +129,20 @@ const Header: React.FC<IHeaderProps> = (props) => {
       </div>
 
       <div className="border-seconday-500 flex h-[50px] w-full items-center justify-center gap-x-4 border-b bg-primary-600 shadow-lg laptop:pb-0">
-        {listCategory?.map((category: any) => (
-          <Link key={`link-${category}`} href="/">
-            <p className="text-md font-semibold text-secondary-500">
-              {category?.name}
-            </p>
-          </Link>
-        ))}
+        {listCategory?.map((category: any, categoryIndex: number) => {
+          if (categoryIndex < 4) {
+            return (
+              <Link
+                key={`link-${category}`}
+                href={`/filter?categories=${category?.id}`}
+              >
+                <p className="text-md font-semibold text-secondary-500">
+                  {category?.name}
+                </p>
+              </Link>
+            );
+          }
+        })}
       </div>
       {openSearchSheet && (
         <SearchSheet

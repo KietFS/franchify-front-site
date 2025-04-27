@@ -1,7 +1,7 @@
 "use client";
 
 import Button from "@/components/atom/Button";
-import ProductCard from "@/components/molecules/ProductCard";
+import StoreProductCard from "@/components/molecules/StoreProductCard";
 import useProducts from "@/hooks/useProducts";
 import useStore from "@/hooks/useStore";
 import { CircularProgress } from "@mui/material";
@@ -60,7 +60,7 @@ const ProductGrid: React.FC<IProductGridProps> = (props) => {
                     key={`card-${index}`}
                     className="border-b border-r border-t border-gray-300 p-2"
                   >
-                    <ProductCard
+                    <StoreProductCard
                       handleItemClick={() => {}}
                       item={item}
                       index={index}

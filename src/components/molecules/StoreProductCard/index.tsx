@@ -7,13 +7,12 @@ import EmptyImage from "@/assets/images/EmptyImage.png";
 import QuantityButton from "../QuantityButton";
 import { IconButton } from "@mui/material";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
-import { IProduct } from "@/types/models";
+import { IProduct, IStoreProduct } from "@/types/models";
 import useNavigation from "@/hooks/useNavigation";
-import useStore from "@/hooks/useStore";
 
 interface IProductCardProps {
   handleItemClick: (product: IProduct) => void;
-  item: IProduct;
+  item: IStoreProduct;
   index: number;
 }
 
@@ -22,12 +21,10 @@ const StoreProductCard: React.FC<IProductCardProps> = (props) => {
   const { productDetailLink, navigateToProductDetail } = useNavigation();
   const [imageError, setImageError] = useState(false);
 
-  const { currentStore } = useStore();
-
   return (
     <div
       onClick={(e) => {
-        navigateToProductDetail(item as any);
+        navigateToProductDetail(item.product as any);
         e?.preventDefault();
         e?.stopPropagation();
       }}
@@ -38,9 +35,9 @@ const StoreProductCard: React.FC<IProductCardProps> = (props) => {
             <PlaylistAddIcon sx={{ width: 40, height: 40, color: "#4b5563" }} />
           </IconButton>
         </div>
-        {!!item?.thumbnail && !imageError ? (
+        {!!item?.product?.thumbnail && !imageError ? (
           <img
-            src={item?.thumbnail}
+            src={item.product?.thumbnail}
             className="h-auto w-full rounded-xl object-cover desktop:min-h-[200px] desktop:max-w-[250px]"
             alt={`Product ${index + 1}`}
             onError={() => setImageError(true)}
@@ -56,28 +53,19 @@ const StoreProductCard: React.FC<IProductCardProps> = (props) => {
         )}
         <div className="mt-6 flex w-full flex-col gap-x-4 gap-y-4">
           <div className="w-[200px]">
-            <QuantityButton
-              storeProduct={{
-                product: item,
-                id: item.id,
-                price: item?.price,
-                store: currentStore as any,
-                inventory: 0,
-              }}
-              mode={"card" as any}
-            />
+            <QuantityButton storeProduct={item} mode={"card" as any} />
           </div>
           <div className="h-[100px]">
             <div>
               <p className="w-full text-left text-lg font-bold text-gray-600">
-                {item?.name}
+                {item?.product?.name}
               </p>
               <p
                 className={`text-sxs w-full text-left font-bold text-gray-600 ${
                   item?.price?.salePrice ? "line-through" : ""
                 }`}
               >
-                {item?.price?.displayPrice}
+                {item?.product?.price?.displayPrice}
               </p>
               {item.price?.salePrice && (
                 <p

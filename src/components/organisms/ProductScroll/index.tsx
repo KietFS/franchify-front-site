@@ -1,7 +1,6 @@
 "use client";
 
-
-import ProductCard from "@/components/molecules/ProductCard";
+import StoreProductCard from "@/components/molecules/StoreProductCard";
 import useProducts from "@/hooks/useProducts";
 import useStore from "@/hooks/useStore";
 import React, { useEffect, useRef } from "react";
@@ -18,7 +17,6 @@ const ProductScroll: React.FC<IProductScrollProps> = (props) => {
     currentStore && getAllProducts({ page: currentPage, pageSize: 100 });
   }, []);
 
-
   return (
     <div>
       {storeProducts?.length > 0 && (
@@ -32,7 +30,7 @@ const ProductScroll: React.FC<IProductScrollProps> = (props) => {
                 key={`card-${index}`}
                 className="border-b border-r border-t border-gray-300 p-2"
               >
-                <ProductCard
+                <StoreProductCard
                   key={`card-${index}`}
                   handleItemClick={() => {}}
                   item={item}

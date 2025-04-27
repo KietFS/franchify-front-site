@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
-import ProductCard from "@/components/molecules/ProductCard";
+import ProductCard from "@/components/molecules/StoreProductCard";
 import "./style.css";
 import Link from "next/link";
 import { IStoreProduct } from "@/types/models";
