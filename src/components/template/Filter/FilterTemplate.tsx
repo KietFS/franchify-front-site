@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import FilterBar from "@/components/organisms/FilterBar/FilterBar";
+import FilterBar from "@/components/organisms/FilterBar";
 import ProductFilterGrid from "@/components/organisms/ProductFilterGrid/ProductFilterGrid";
 import useSearch from "@/hooks/useSearch";
 import useStore from "@/hooks/useStore";

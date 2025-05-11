@@ -1,6 +1,6 @@
 import { Box, Drawer } from "@mui/material";
 import React from "react";
-import FilterBar from "../FilterBar/FilterBar";
+import FilterBar from "../FilterBar";
 import Button from "@/components/atom/Button";
 
 interface IFilterDrawerProps {

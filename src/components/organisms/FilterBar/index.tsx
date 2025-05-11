@@ -2,7 +2,7 @@
 
 import FilterFacets from "@/components/molecules/FilterFacets";
 import useSearch from "@/hooks/useSearch";
-import { IProduct } from "@/types/models";
+import { IProduct } from "@/types /models";
 import { FunnelIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
