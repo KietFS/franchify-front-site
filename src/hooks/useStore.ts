@@ -25,13 +25,12 @@ const useStore = () => {
   const getListStore = async (longtitude?: number, latitude?: number) => {
     try {
       let url = `${apiURL}/store`;
-
       if (longtitude !== undefined && latitude !== undefined) {
         url += `?currentLng=${longtitude}&currentLat=${latitude}`;
       }
-
       const response = await axios.get(url);
 
+      console.log("GET LIST STORE RESPONSE", response?.data);
       if (response?.data?.success) {
         console.log("GET LIST STORE RESPONSE", response?.data?.data);
         dispatch(setListStore(response?.data?.data?.results));

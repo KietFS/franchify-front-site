@@ -10,14 +10,12 @@ import useCart from "@/hooks/useCart";
 
 import SearchSheet from "@/components/molecules/SearchSheet";
 import SearchDropdown from "@/components/molecules/SearchDropdown";
-import useSearch from "@/hooks/useSearch";
 import useCategory from "@/hooks/useCategories";
 import useAuth from "@/hooks/useAuth";
 import AccountButton from "../AccountButton";
 import MobileDrawer from "@/components/molecules/MobileDrawer";
 import Link from "next/link";
-import TopBar from "@/components/molecules/TopBar";
-import useConfig from "@/hooks/useConfig";
+import MiddleBar from "@/components/molecules/MiddleBar";
 
 interface IHeaderProps {}
 
@@ -32,14 +30,9 @@ const Header: React.FC<IHeaderProps> = (props) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const { currentCart, getUserCart } = useCart();
-  const { listCategory, getCategories } = useCategory();
   const { isAuthenticated, user } = useAuth();
 
   const searchInputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    getCategories();
-  }, []);
 
   useEffect(() => {
     !currentCart && isAuthenticated && getUserCart();
@@ -127,23 +120,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
           />
         </div>
       </div>
-
-      <div className="border-seconday-500 flex h-[50px] w-full items-center justify-center gap-x-4 border-b bg-primary-600 shadow-lg laptop:pb-0">
-        {listCategory?.map((category: any, categoryIndex: number) => {
-          if (categoryIndex < 4) {
-            return (
-              <Link
-                key={`link-${category}`}
-                href={`/filter?categories=${category?.id}`}
-              >
-                <p className="text-md font-semibold text-secondary-500">
-                  {category?.name}
-                </p>
-              </Link>
-            );
-          }
-        })}
-      </div>
+      <MiddleBar />
       {openSearchSheet && (
         <SearchSheet
           open={openSearchSheet}

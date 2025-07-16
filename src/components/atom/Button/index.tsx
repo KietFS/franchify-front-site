@@ -30,6 +30,7 @@ const Button: React.FC<IButtonProps> = (props) => {
 
   return (
     <button
+      data-testid="button-component"
       className={`ripple flex w-full min-w-[120px] items-center justify-center rounded-lg px-4 py-2 text-center ${
         disable ? "opacity-10" : ""
       } ${className} ${
@@ -44,9 +45,13 @@ const Button: React.FC<IButtonProps> = (props) => {
       disabled={disable}
     >
       {isLoading ? (
-        <CircularProgress sx={{ color: "white" }} size={24} />
+        <CircularProgress
+          data-testid="button-loading-spinner"
+          sx={{ color: "white" }}
+          size={24}
+        />
       ) : (
-        children
+        <div data-testid="button-children">{children}</div>
       )}
     </button>
   );

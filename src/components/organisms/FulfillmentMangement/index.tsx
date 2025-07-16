@@ -35,6 +35,7 @@ const FulfillmentMangement: React.FC<IFulfillmentMangementProps> = (props) => {
   };
 
   useEffect(() => {
+    getListStore();
     getStoreByLocation(getListStore, currentStore);
   }, []);
 
@@ -63,7 +64,7 @@ const FulfillmentMangement: React.FC<IFulfillmentMangementProps> = (props) => {
             </p>
           </div>
         ) : (
-          <p className="text-sm font-semibold text-secondary-700">
+          <p className="hidden text-sm font-semibold text-secondary-700 laptop:inline-block">
             Vui lòng chọn cửa hàng để tiếp tục
           </p>
         )}

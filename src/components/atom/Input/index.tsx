@@ -1,10 +1,10 @@
 import React from "react";
-import { Controller } from "react-hook-form";
+import { Controller, Control } from "react-hook-form";
 import TextField from "@mui/material/TextField";
 import FormHelperText from "@mui/material/FormHelperText";
 
 interface InputProps {
-  control: any;
+  control: Control<any>;
   name: string;
   label: string;
   placeholder?: string;

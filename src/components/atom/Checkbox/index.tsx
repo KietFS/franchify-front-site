@@ -16,7 +16,16 @@ const Checkbox: React.FC<ICheckboxProps> = (props) => {
   return (
     <FormControlLabel
       control={
-        <MuiCheckBox {...checkboxProps} inputProps={{ "aria-label": label }} />
+        <MuiCheckBox
+          disabled={checkboxProps?.disabled}
+          {...checkboxProps}
+          inputProps={{
+            "aria-label": label,
+          }}
+          aria-disabled={checkboxProps?.disabled}
+          aria-checked={checkboxProps?.checked}
+          data-testid="checkbox"
+        />
       }
       label={
         <>
