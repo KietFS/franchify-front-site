@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "test:e2e": "playwright test",
-    "test": "jest",
+    "test": "jest --coverage",
     "lint": "next lint"
   },
   "dependencies": {
