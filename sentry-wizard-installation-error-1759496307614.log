@@ -1,0 +1,22 @@
+npm ERR! code ERESOLVE
+npm ERR! ERESOLVE unable to resolve dependency tree
+npm ERR! 
+npm ERR! While resolving: franchify-front-site@0.1.0
+npm ERR! Found: @mui/material@6.5.0
+npm ERR! node_modules/@mui/material
+npm ERR!   @mui/material@"^6.1.5" from the root project
+npm ERR! 
+npm ERR! Could not resolve dependency:
+npm ERR! peer @mui/material@"^5.0.0" from @mui/icons-material@5.18.0
+npm ERR! node_modules/@mui/icons-material
+npm ERR!   @mui/icons-material@"^5.16.7" from the root project
+npm ERR! 
+npm ERR! Fix the upstream dependency conflict, or retry
+npm ERR! this command with --force or --legacy-peer-deps
+npm ERR! to accept an incorrect (and potentially broken) dependency resolution.
+npm ERR! 
+npm ERR! 
+npm ERR! For a full report see:
+npm ERR! /Users/huynhngoctuankiet/.npm/_logs/2025-10-03T12_58_22_141Z-eresolve-report.txt
+
+npm ERR! A complete log of this run can be found in: /Users/huynhngoctuankiet/.npm/_logs/2025-10-03T12_58_22_141Z-debug-0.log

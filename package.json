@@ -21,6 +21,7 @@
     "@mui/material": "^6.1.5",
     "@mui/material-nextjs": "^5.16.6",
     "@reduxjs/toolkit": "^1.9.1",
+    "@sentry/nextjs": "^10",
     "@stencil/react-output-target": "^0.8.2",
     "@testing-library/react": "^16.3.0",
     "axios": "^1.7.4",
