@@ -5,7 +5,7 @@ Franchsify is an multi-tenant application using multi-tenant logic. Every tenant
 * **Framework**: NextJS 14 with App Router with optimization for fetching data and caching, type ensurance with a sub-repo that have all the interfaces, hooks generated base on the backend code base with a CLI which is written my myself.
 * **Styling**: Using TailwindCSS with dynamic tailwind config file base on the color scheme of the tenant setting on the admin application, beside that using some MUI component.
 * **State and Data Mangement**: Using Redux toolkit, redux persistent, using technique with custom hooks to prevent unecessary fetching data.
-* **Testing**: Using playwright for end-to-end testing before deploy, consider adding more unique techs to ensure stability of the code base.
+* **Testing**: Jest, Playwright, Axe core
 * **CI/CD**: Using github workflow for CI/CD, run jobs like check types, run end-to-end & unit test
 
 ## Key Features
