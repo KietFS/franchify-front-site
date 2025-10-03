@@ -21,7 +21,7 @@ const ProductDetailTemplate: React.FC<IProductDetailTemplateProps> = (
 
   return (
     <>
-      <div className="flex flex-col justify-center gap-x-[80px] gap-y-8 px-8 laptop:flex-row">
+      <div className="flex flex-col justify-center gap-x-[80px] gap-y-8 px-8 laptop:flex-row max-w-[1200px]">
         <ProductLeftSide storeProduct={product} />
         <ProductRightSide storeProduct={product} />
       </div>

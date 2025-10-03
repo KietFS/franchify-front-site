@@ -4,7 +4,6 @@ import useAuth from "@/hooks/useAuth";
 import useCart from "@/hooks/useCart";
 import { Divider } from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
 
 interface ICartSummaryProps {
   shippingFee?: number;
@@ -12,7 +11,6 @@ interface ICartSummaryProps {
 
 const CartSummary: React.FC<ICartSummaryProps> = (props) => {
   const { currentCart } = useCart();
-  const { user } = useAuth() || {};
 
   const totalPrice = () => {
     let total = 0;

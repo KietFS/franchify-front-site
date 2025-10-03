@@ -7,33 +7,40 @@ import EmptyImage from "@/assets/images/EmptyImage.png";
 import QuantityButton from "../QuantityButton";
 import { IconButton } from "@mui/material";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
-import Link from "next/link";
-import useStore from "@/hooks/useStore";
-import { IProduct, IStoreProduct } from "@/types/models";
+import { IProduct } from "@/types/models";
 import useNavigation from "@/hooks/useNavigation";
+import useStore from "@/hooks/useStore";
 
 interface IProductCardProps {
   handleItemClick: (product: IProduct) => void;
-  item: IStoreProduct;
+  item: IProduct;
   index: number;
 }
 
-const ProductCard: React.FC<IProductCardProps> = (props) => {
+const StoreProductCard: React.FC<IProductCardProps> = (props) => {
   const { item, index } = props;
-  const { productDetailLink } = useNavigation();
+  const { productDetailLink, navigateToProductDetail } = useNavigation();
   const [imageError, setImageError] = useState(false);
 
+  const { currentStore } = useStore();
+
   return (
-    <Link href={productDetailLink(item.product)}>
+    <div
+      onClick={(e) => {
+        navigateToProductDetail(item as any);
+        e?.preventDefault();
+        e?.stopPropagation();
+      }}
+    >
       <div className="z-0 my-8 flex h-full min-h-[500px] cursor-pointer flex-col items-center justify-between border-gray-200 p-4 laptop:my-2">
         <div className="mb-4 ml-auto h-[50px]">
           <IconButton>
             <PlaylistAddIcon sx={{ width: 40, height: 40, color: "#4b5563" }} />
           </IconButton>
         </div>
-        {!!item?.product?.thumbnail && !imageError ? (
+        {!!item?.thumbnail && !imageError ? (
           <img
-            src={item.product?.thumbnail}
+            src={item?.thumbnail}
             className="h-auto w-full rounded-xl object-cover desktop:min-h-[200px] desktop:max-w-[250px]"
             alt={`Product ${index + 1}`}
             onError={() => setImageError(true)}
@@ -49,33 +56,40 @@ const ProductCard: React.FC<IProductCardProps> = (props) => {
         )}
         <div className="mt-6 flex w-full flex-col gap-x-4 gap-y-4">
           <div className="w-[200px]">
-            <QuantityButton storeProduct={item} mode={"card" as any} />
+            <QuantityButton
+              storeProduct={{
+                product: item,
+                id: item.id,
+                price: item?.price,
+                store: currentStore as any,
+                inventory: 0,
+              }}
+              mode={"card" as any}
+            />
           </div>
           <div className="h-[100px]">
-            <div>
+            <div className="flex flex-col gap-y-1">
               <p className="w-full text-left text-lg font-bold text-gray-600">
-                {item?.product?.name}
+                {item?.name}
               </p>
               <p
                 className={`text-sxs w-full text-left font-bold text-gray-600 ${
-                  item?.price?.salePrice ? "line-through" : ""
+                  item?.isOnSale ? "text-red-500" : ""
                 }`}
               >
-                {item?.product?.price?.displayPrice}
+                {item?.price?.displayPrice}
               </p>
-              {item.price?.salePrice && (
-                <p
-                  className={`text-md mt-2 w-full text-left font-bold text-red-500`}
-                >
-                  {item?.price?.displaySalePrice}
+              {item?.isOnSale && (
+                <p className="text-sxs w-full text-left font-bold text-gray-500">
+                  Đang giảm giá
                 </p>
               )}
             </div>
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
-export default ProductCard;
+export default StoreProductCard;

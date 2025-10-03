@@ -29,18 +29,18 @@ const RichTextInput: React.FC<IRichTextInputProps> = (props) => {
           <div
             className={`w-full rounded-sm ${
               !!error ? "text-secondary-900" : "text-red-500"
-            }  `}
+            } `}
           >
             <div className="flex items-center justify-between">
               <div className="flex">
-                <p className="text-md font-bold text-secondary-900 mr-1">
+                <p className="text-md mr-1 font-bold text-secondary-900">
                   {label}
                 </p>
-                {false && <p className="text-blue-500 font-bold">*</p>}
+                {false && <p className="font-bold text-blue-500">*</p>}
               </div>
             </div>
             <div
-              className={`flex mt-1 ${
+              className={`mt-1 flex ${
                 focus && !error
                   ? "border-2 border-secondary-900"
                   : !!error
@@ -52,7 +52,7 @@ const RichTextInput: React.FC<IRichTextInputProps> = (props) => {
                   : error
                     ? "bg-red-50"
                     : "bg-secondary-100"
-              } px-2 py-1 rounded-lg  ${className}`}
+              } rounded-lg px-2 py-1 ${className}`}
             >
               <textarea
                 autoComplete="off"
@@ -61,17 +61,17 @@ const RichTextInput: React.FC<IRichTextInputProps> = (props) => {
                 onBlur={() => setFocus(false)}
                 onFocus={() => setFocus(true)}
                 onChange={(e) => onChange(e.target.value)}
-                className={`px-2 py-1 w-[100%] min-h-[100px]  ${
+                className={`min-h-[100px] w-[100%] px-2 py-1 ${
                   focus && !error
-                    ? "bg-secondary-50 border-primary-500"
+                    ? "border-primary-500 bg-secondary-50"
                     : error
                       ? "bg-red-50"
                       : "bg-secondary-100"
-                } text-secondary-900 rounded-lg w-80 h-8 text-sm  outline-none ring-0 border-transparent focus:border-transparent focus:ring-0 focus:outline-transparent`}
+                } h-8 w-80 rounded-lg border-transparent text-sm text-secondary-900 outline-none ring-0 focus:border-transparent focus:outline-transparent focus:ring-0`}
               />
             </div>
             {error && (
-              <p className="text-red-500 text-xs font-semibold mt-1">
+              <p className="mt-1 text-xs font-semibold text-red-500">
                 {error?.message}
               </p>
             )}

@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 //styles
-import Image from "next/image";
-import { CheckBadgeIcon } from "@heroicons/react/20/solid";
-
-//utils and types
-import axios from "axios";
-
 interface ICartList {}
 
 export interface ICartItem {
@@ -25,23 +19,23 @@ export interface ICartItem {
 
 const CartList: React.FC<ICartList> = (props) => {
   return (
-    <div className="h-fit laptop:min-h-[600px] laptop:w-4/5 w-full bg-white rounded-lg border border-primary-200 shadow-lg px-8 py-4">
-      <h3 className="text-xl laptop:text-2xl text-blue-500 font-bold">
+    <div className="h-fit w-full rounded-lg border border-primary-200 bg-white px-8 py-4 shadow-lg laptop:min-h-[600px] laptop:w-4/5">
+      <h3 className="text-xl font-bold text-blue-500 laptop:text-2xl">
         Giỏ hàng của bạn ()
       </h3>
-      <div className="flex flex-col gap-y-5 mt-10">
-        <div className="grid grid-cols-3 laptop:grid-cols-4 gap-x-10 py-2 px-4 border border-primary-200 rounded-lg">
-          <p className="text-primary-600 font-semibold text-xs laptop:text-lg ">
+      <div className="mt-10 flex flex-col gap-y-5">
+        <div className="grid grid-cols-3 gap-x-10 rounded-lg border border-primary-200 px-4 py-2 laptop:grid-cols-4">
+          <p className="text-xs font-semibold text-primary-600 laptop:text-lg">
             Tên
           </p>
 
-          <p className="text-primary-600 font-semibold text-lg flex laptop:flex">
+          <p className="flex text-lg font-semibold text-primary-600 laptop:flex">
             Hình ảnh
           </p>
-          <p className="text-primary-600 font-semibold text-lg hidden laptop:flex">
+          <p className="hidden text-lg font-semibold text-primary-600 laptop:flex">
             Mua từ
           </p>
-          <p className="text-primary-600 font-semibold text-xs laptop:text-lg">
+          <p className="text-xs font-semibold text-primary-600 laptop:text-lg">
             Giá
           </p>
         </div>

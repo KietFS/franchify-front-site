@@ -17,6 +17,9 @@ import {
   ICreateOrderUserInfoDto,
 } from "@/types/dtos";
 import PaymentDialog from "@/components/molecules/PaymentDialog";
+import { useSelector } from "react-redux";
+import OverlayLoading from "@/components/organisms/OverlayLoading";
+import usePayment from "@/hooks/usePayment";
 
 interface ICreateOrderProps {}
 
@@ -24,12 +27,16 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
   const [openUserInfo, setOpenUserInfo] = React.useState<boolean>(false);
   const [openAddress, setOpenAddress] = React.useState<boolean>(false);
   const [openPayment, setOpenPayment] = React.useState<boolean>(false);
+  const [fetchPaymentStatusLoading, setFetchPaymentStatusLoading] =
+    React.useState<boolean>(false);
   const { createOrder, actionLoading } = useOrder();
   const { user } = useAuth() || {};
   const router = useRouter();
   const toast = useToast();
   const { currentStore } = useStore();
   const { getUserCart } = useCart();
+  const { paymentMethod } = useSelector((state: any) => state.payment);
+  const { fetchPaymentStatus } = usePayment();
 
   const [orderUserInfo, setOrderUserInfo] =
     useState<ICreateOrderUserInfoDto | null>(null);
@@ -37,10 +44,13 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
     useState<ICreateOrderAddressDto | null>(null);
 
   const handleClickCreateOrder = async (data: ICreateOrderDto) => {
-    await createOrder(data, async (data) => {
-      if (data?.paymentUrl) {
+    await createOrder(data, async (resData) => {
+      if (resData?.paymentUrl) {
         toast.sendToast("Thành công", "Vui lòng thanh toán đơn hàng");
-        window.open(data.paymentUrl, "_blank");
+        window.open(resData.paymentUrl, "_blank");
+        const resDataParams = new URLSearchParams(resData.paymentUrl);
+        console.log("res data params", resDataParams);
+        setFetchPaymentStatusLoading(true);
       } else {
         toast.sendToast("Thành công", "Đặt hàng thành công");
         await getUserCart();
@@ -48,6 +58,10 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
       }
     });
   };
+
+  // const handleFetchPaymentStatus = setInterval(() => {
+  //   const data = fetchPaymentStatus();
+  // }, 1000);
 
   return (
     <>
@@ -149,6 +163,7 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
                     email: user?.email,
                     phoneNumber: user?.phoneNumber,
                   },
+                  paymentMethod: paymentMethod?.id,
                 } as any);
               }
             }}
@@ -179,8 +194,13 @@ const CreateOrder: React.FC<ICreateOrderProps> = (props) => {
       ) : null}
 
       {openPayment ? (
-        <PaymentDialog onClose={() => setOpenPayment(false)} />
+        <PaymentDialog
+          onSelectPaymentMethod={(method) => {}}
+          onClose={() => setOpenPayment(false)}
+        />
       ) : null}
+
+      {fetchPaymentStatusLoading ? <OverlayLoading /> : null}
     </>
   );
 };

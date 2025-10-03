@@ -2,6 +2,7 @@ import React from "react";
 import ProductDetailTemplate from "@/components/template/ProductDetail";
 import { IStoreProduct } from "@/types/models";
 import { fetchProductDetail } from "@/services/product-detail";
+import { notFound } from "next/navigation";
 
 const ProductDetailPage = async (props: any) => {
   const length = props?.params?.slug?.split("-").length;
@@ -11,11 +12,9 @@ const ProductDetailPage = async (props: any) => {
   let product: IStoreProduct | null = null;
   let relatedProducts = null;
 
+  const response = await fetchProductDetail(upc, storeId);
 
- const response = await fetchProductDetail(upc, storeId);
-
-
-  if (response.success) {
+  if (response?.success) {
     product = response?.data?.storeProduct;
     relatedProducts = response?.data?.relatedProducts;
     return (
@@ -27,7 +26,7 @@ const ProductDetailPage = async (props: any) => {
       </>
     );
   } else {
-    return null;
+    return notFound();
   }
 };
 

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
-import ProductCard from "@/components/molecules/ProductCard";
+import ProductCard from "@/components/molecules/StoreProductCard";
 import "./style.css";
 import Link from "next/link";
 import { IStoreProduct } from "@/types/models";
@@ -123,14 +123,12 @@ const ProductCarousel: React.FC<ISimilarProduct> = ({ listProduct }) => {
                 key={`card-${index}`}
                 className="flex max-h-[540px] items-stretch border-r border-gray-300 p-2"
               >
-                <Link href={`/product-detail/${item?.product?.upc}`}>
-                  <ProductCard
-                    item={item}
-                    index={index}
-                    key={`card-${index}`}
-                    handleItemClick={() => {}}
-                  />
-                </Link>
+                <ProductCard
+                  item={item}
+                  index={index}
+                  key={`card-${index}`}
+                  handleItemClick={() => {}}
+                />
               </div>
             ))}
           </Slider>

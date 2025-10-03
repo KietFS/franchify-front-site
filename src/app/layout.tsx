@@ -12,7 +12,6 @@ import "slick-carousel/slick/slick-theme.css";
 import { Provider } from "react-redux";
 import { store } from "@/redux";
 import "../utils/prototype";
-// In app directory
 import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 const inter = Lexend({ subsets: ["latin"] });
 

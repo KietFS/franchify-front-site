@@ -1,13 +1,14 @@
 {
-  "name": "mf-user",
+  "name": "franchify-front-site",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "generate-style": "node src/scripts/generate-style.js",
-    "dev": "npm run generate-style && next dev",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "test:e2e": "playwright test",
+    "test": "jest --coverage",
     "lint": "next lint"
   },
   "dependencies": {
@@ -20,7 +21,9 @@
     "@mui/material": "^6.1.5",
     "@mui/material-nextjs": "^5.16.6",
     "@reduxjs/toolkit": "^1.9.1",
-    "@testing-library/react": "^16.1.0",
+    "@sentry/nextjs": "^10",
+    "@stencil/react-output-target": "^0.8.2",
+    "@testing-library/react": "^16.3.0",
     "axios": "^1.7.4",
     "dayjs": "^1.11.13",
     "dotenv": "^16.4.7",
@@ -42,6 +45,9 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.49.1",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@types/jest": "^29.5.14",
     "@types/mocha": "^10.0.10",
     "@types/node": "^20",
     "@types/react": "^18",
@@ -49,10 +55,13 @@
     "@types/react-slick": "^0.23.13",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "postcss": "^8",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.8",
     "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }

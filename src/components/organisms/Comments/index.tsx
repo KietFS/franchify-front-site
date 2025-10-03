@@ -83,6 +83,7 @@ const ProductComments: React.FC<IProductCommentsProps> = (props) => {
                 <CommentCard
                   key={index}
                   commentMode="view"
+                  test-id="comment-card"
                   {...item}
                   productDetail={props.productDetail}
                   onReplyingSuccess={() => {
@@ -126,6 +127,7 @@ const ProductComments: React.FC<IProductCommentsProps> = (props) => {
                       message: "Không được để trống phần comment",
                     },
                   })}
+                  test-id="comment-input"
                   control={control}
                   label="Đăng bình luận"
                   onPostComment={handleSubmit(handlePostComment)}
