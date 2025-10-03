@@ -8,13 +8,6 @@ Franchsify is an multi-tenant application using multi-tenant logic. Every tenant
 * **Testing**: Using playwright for end-to-end testing before deploy, consider adding more unique techs to ensure stability of the code base.
 * **CI/CD**: Using github workflow for CI/CD, run jobs like check types, run end-to-end & unit test
 
-
-## Tenant example
-![Screenshot 2024-12-03 at 08 33 31](https://github.com/user-attachments/assets/b91a49de-c12c-4e56-bcb7-387ac5b1fa74)
-![Screenshot 2024-12-24 at 23 53 02](https://github.com/user-attachments/assets/007b1a0a-b37a-4eee-926f-54a4902ea981)
-
-
-
 ## Key Features
 * Search Product.
 * Filter, Sort Product.
@@ -23,7 +16,6 @@ Franchsify is an multi-tenant application using multi-tenant logic. Every tenant
 * Orders, tracking orders
 * Checkout.
 * Order tracking service.
-
 
 
 ## Getting Started
