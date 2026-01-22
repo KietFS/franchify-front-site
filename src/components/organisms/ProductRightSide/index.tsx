@@ -1,7 +1,7 @@
 "use client";
 
 import QuantityButton from "@/components/molecules/QuantityButton";
-import { IStoreProduct } from "@/types/models";
+import { IStoreProduct } from "@/@types/type";
 import React from "react";
 
 interface IProductRightSideProps {

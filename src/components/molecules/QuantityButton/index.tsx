@@ -9,7 +9,7 @@ import { TrashIcon } from "@heroicons/react/24/outline";
 import useCart from "@/hooks/useCart";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
-import { IStoreProduct } from "@/types/models";
+import { IStoreProduct } from "@/@types/type";
 
 enum Mode {
   card = "card",
@@ -45,7 +45,7 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
             mode == Mode.detail ? "px-6 py-3" : "px-2 py-1"
           } ${
             mode == Mode.detail ? "min-w-[300px]" : "min-w-[130px]"
-          } opactiy-50 flex w-fit justify-center border border-secondary-800 bg-white text-center text-lg font-semibold text-black hover:opacity-50`}
+            } opactiy-50 flex w-fit justify-center border border-secondary-800 bg-white text-center text-lg font-semibold text-black hover:opacity-50`}
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -103,7 +103,7 @@ const QuantityButton: React.FC<IQuantityButtonProps> = (props) => {
             mode == Mode.detail ? "px-6 py-3" : "px-2 py-2"
           } ${
             mode == Mode.detail ? "min-w-[300px]" : "min-w-[100px]"
-          } flex w-fit justify-center bg-primary-500 text-center text-lg font-semibold text-white hover:opacity-50`}
+            } flex w-fit justify-center bg-primary-500 text-center text-lg font-semibold text-white hover:opacity-50`}
         >
           <>
             {loading ? (

@@ -9,8 +9,8 @@ import { IconButton } from "@mui/material";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import Link from "next/link";
 import useStore from "@/hooks/useStore";
-import { IProduct, IStoreProduct } from "@/types/models";
 import useNavigation from "@/hooks/useNavigation";
+import { IProduct, IStoreProduct } from "@/@types/type";
 
 interface IProductCardProps {
   handleItemClick: (product: IProduct) => void;
@@ -28,7 +28,7 @@ const ProductCard: React.FC<IProductCardProps> = (props) => {
       <div className="z-0 my-8 flex h-full min-h-[500px] cursor-pointer flex-col items-center justify-between border-gray-200 p-4 laptop:my-2">
         <div className="mb-4 ml-auto h-[50px]">
           <IconButton>
-            <PlaylistAddIcon sx={{ width: 40, height: 40, color: "#4b5563" }} />
+            <PlaylistAddIcon sx={{ width: 40, height: 40, color: "#000000" }} />
           </IconButton>
         </div>
         {!!item?.product?.thumbnail && !imageError ? (
@@ -53,19 +53,18 @@ const ProductCard: React.FC<IProductCardProps> = (props) => {
           </div>
           <div className="h-[100px]">
             <div>
-              <p className="w-full text-left text-lg font-bold text-gray-600">
+              <p className="w-full text-left text-lg font-bold text-black">
                 {item?.product?.name}
               </p>
               <p
-                className={`text-sxs w-full text-left font-bold text-gray-600 ${
-                  item?.price?.salePrice ? "line-through" : ""
-                }`}
+                className={`text-sxs w-full text-left font-bold text-gray-700 ${item?.price?.salePrice ? "line-through" : ""
+                  }`}
               >
                 {item?.product?.price?.displayPrice}
               </p>
               {item.price?.salePrice && (
                 <p
-                  className={`text-md mt-2 w-full text-left font-bold text-red-500`}
+                  className={`text-md mt-2 w-full text-left font-bold text-black`}
                 >
                   {item?.price?.displaySalePrice}
                 </p>
