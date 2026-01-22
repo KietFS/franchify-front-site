@@ -4,8 +4,8 @@ import { useForm } from "react-hook-form";
 import CustomDialog from "../CustomDialog";
 import Input from "@/components/atom/Input";
 import Button from "@/components/atom/Button";
-import { Divider } from "@mui/material";
-import { ICreateOrderUserInfo } from "@/@types";
+import Divider from "@mui/material/Divider";
+import { ICreateOrderUserInfo } from "@/@types/type";
 
 interface IPersonalInformationDialogProps {
   open: boolean;

@@ -6,7 +6,7 @@ import Image from "next/image";
 
 //@ts-ignore
 import EmptyImage from "@/assets/images/EmptyImage.png";
-import { IStoreProduct } from "@/types/models";
+import { IStoreProduct } from "@/@types/type";
 
 interface ILeftSideProps {
   storeProduct?: IStoreProduct;

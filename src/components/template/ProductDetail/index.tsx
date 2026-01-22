@@ -3,7 +3,7 @@ import ProductLeftSide from "../../organisms/ProductLeftSide";
 import ProductRightSide from "../../organisms/ProductRightSide";
 import ProductComments from "@/components/organisms/Comments";
 import SimilarProducts from "@/components/organisms/SimilarProducts";
-import { IStoreProduct } from "@/types/models";
+import { IStoreProduct } from "@/@types/type";
 
 interface IProductDetailTemplateProps {
   product: IStoreProduct;

@@ -2,7 +2,8 @@
 import { Lexend } from "next/font/google";
 import "./globals.css";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
+import ThemeProvider from "@mui/material/styles/ThemeProvider";
 import theme from "@/theme";
 import Header from "@/components/organisms/Header";
 import { ToastProvider } from "@/hooks/useToast";

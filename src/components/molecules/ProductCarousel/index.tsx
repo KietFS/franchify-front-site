@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import ProductCard from "@/components/molecules/ProductCard";
 import "./style.css";
 import Link from "next/link";
-import { IStoreProduct } from "@/types/models";
+import { IStoreProduct } from "@/@types/type";
 
 interface ISimilarProduct {
   listProduct: IStoreProduct[];
@@ -128,7 +128,7 @@ const ProductCarousel: React.FC<ISimilarProduct> = ({ listProduct }) => {
                     item={item}
                     index={index}
                     key={`card-${index}`}
-                    handleItemClick={() => {}}
+                    handleItemClick={() => { }}
                   />
                 </Link>
               </div>

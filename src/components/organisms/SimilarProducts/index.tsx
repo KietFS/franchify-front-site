@@ -1,7 +1,7 @@
 "use client";
 
 import ProductCarousel from "@/components/molecules/ProductCarousel";
-import { IStoreProduct } from "@/types/models";
+import { IStoreProduct } from "@/@types/type";
 import { Divider } from "@mui/material";
 import React from "react";
 
